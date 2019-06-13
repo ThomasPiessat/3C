@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
 {
-
     [HideInInspector]
     public Vector2 m_input;
 
     #region ACTIONS
-    // movement bools
     [HideInInspector]
-    public bool
-        m_isGrounded,
-        m_isSprinting;
-
-    // action bools
+    public bool m_isGrounded = false;
     [HideInInspector]
-    public bool
-        m_isJumping;
+    public bool m_isSprinting = false;
+    [HideInInspector]
+    public bool m_isJumping = false;
     #endregion
 
     #region COMPONENTS               
-    
+
     [HideInInspector]
     public Rigidbody m_rigidbody;
 
@@ -31,11 +26,20 @@ public class ThirdPersonController : MonoBehaviour
     #region VARIABLES
 
     [HideInInspector]
-    public float m_speed, m_direction, m_verticalVelocity;    // general variables to the locomotion
+    public float m_speed = 0f;
     [HideInInspector]
-    public float m_velocity;
+    public float m_direction = 0f;
+    [HideInInspector]
+    public float  m_verticalVelocity = 0f;
+    [HideInInspector]
+    public float m_velocity = 0f;
 
-    public bool lockMovement;
+    [HideInInspector]
+    public float m_jumpTimer = 0f;
+    [HideInInspector]
+    public float m_jumpCounter = 0f;
+
+    public bool lockMovement = false;
     #endregion
 
     // Start is called before the first frame update
@@ -47,7 +51,7 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Init()
@@ -62,12 +66,11 @@ public class ThirdPersonController : MonoBehaviour
 
     public virtual void Jump()
     {
-        // conditions to do this action
         bool jumpConditions = m_isGrounded && !m_isJumping;
-        // return if jumpCondigions is false
-        if (!jumpConditions) return;
-        // trigger jump behaviour
-        //jumpCounter = jumpTimer;
+
+        if (!jumpConditions)
+            return;
+        m_jumpCounter = m_jumpTimer;
         m_isJumping = true;
     }
 
