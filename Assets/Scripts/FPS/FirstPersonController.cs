@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdPersonController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour
 {
     #region ATTRIBUTES
 
@@ -23,8 +23,8 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private string m_rotateCameraXInput = "Mouse X";
     [SerializeField] private string m_rotateCameraYInput = "Mouse Y";
 
-    protected ThirdPersonCharacter m_character;
-    protected ThirdPersonCamera m_tpsCamera;
+    protected FirstPersonCharacter m_character;
+    protected FirstPersonCamera m_fpsCamera;
 
     #endregion
 
@@ -35,9 +35,9 @@ public class ThirdPersonController : MonoBehaviour
 
     protected virtual void CharacterInit()
     {
-        m_character = GetComponent<ThirdPersonCharacter>();
+        m_character = GetComponent<FirstPersonCharacter>();
 
-        m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
+        m_fpsCamera = FindObjectOfType<FirstPersonCamera>();
         //if (m_fpsCamera) m_fpsCamera.SetMainTarget(this.transform);
 
         Cursor.visible = false;
@@ -136,32 +136,32 @@ public class ThirdPersonController : MonoBehaviour
 
     protected virtual void CameraInput()
     {
-        if (m_tpsCamera == null)
+        if (m_fpsCamera == null)
             return;
         var Y = Input.GetAxis(m_rotateCameraYInput);
         var X = Input.GetAxis(m_rotateCameraXInput);
 
-        m_tpsCamera.RotateCamera(X, Y);
+        m_fpsCamera.RotateCamera(X, Y);
 
         // tranform Character direction from camera if not KeepDirection
         //if (!keepDirection)
         //    m_cc.UpdateTargetDirection(m_fpsCamera != null ? m_fpsCamera.transform : null);
         // rotate the character with the camera while strafing        
-        RotateWithCamera(m_tpsCamera != null ? m_tpsCamera.transform : null);
+        RotateWithCamera(m_fpsCamera != null ? m_fpsCamera.transform : null);
     }
 
     protected virtual void UpdateCameraStates()
     {
         // CAMERA STATE - you can change the CameraState here, the bool means if you want lerp of not, make sure to use the same CameraState String that you named on TPCameraListData
-        if (m_tpsCamera == null)
+        if (m_fpsCamera == null)
         {
-            m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
-            if (m_tpsCamera == null)
+            m_fpsCamera = FindObjectOfType<FirstPersonCamera>();
+            if (m_fpsCamera == null)
                 return;
-            if (m_tpsCamera)
+            if (m_fpsCamera)
             {
                 //m_fpsCamera.SetMainTarget(this.transform);
-                m_tpsCamera.Init();
+                m_fpsCamera.Init();
             }
         }
     }
@@ -175,5 +175,5 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     #endregion
-
 }
+
