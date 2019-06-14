@@ -28,20 +28,11 @@ public class ThirdPersonController : MonoBehaviour
 
     #endregion
 
+    #region MONOBEHAVIOUR METHODS
+
     protected virtual void Start()
     {
         CharacterInit();
-    }
-
-    protected virtual void CharacterInit()
-    {
-        m_character = GetComponent<ThirdPersonCharacter>();
-
-        m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
-        //if (m_fpsCamera) m_fpsCamera.SetMainTarget(this.transform);
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     protected virtual void LateUpdate()
@@ -52,15 +43,26 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         InputHandle();
-        UpdateCameraStates();
     }
 
     protected virtual void FixedUpdate()
     {
-        //m_cc.AirControl();
         CameraInput();
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected virtual void CharacterInit()
+    {
+        m_character = GetComponent<ThirdPersonCharacter>();
+
+        m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+    }
 
     protected virtual void InputHandle()
     {
@@ -73,7 +75,10 @@ public class ThirdPersonController : MonoBehaviour
             JumpInput();
             InteractInput();
         }
+        PauseInput();
     }
+
+    #region Character Methods
 
     protected virtual void MoveCharacter()
     {
@@ -101,8 +106,9 @@ public class ThirdPersonController : MonoBehaviour
     protected virtual void SprintInput()
     {
         if (Input.GetKeyDown(m_sprintInput))
-        {
+        {       
             m_character.Sprint(true);
+            Debug.Log("il sprint");
         }
         else if (Input.GetKeyUp(m_sprintInput))
         {
@@ -128,9 +134,10 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (Input.GetKeyDown(m_pauseInput))
         {
-
+            m_character.Pause();
         }
-    }
+    } 
+    #endregion
 
     #region Camera Methods
 
@@ -138,41 +145,25 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (m_tpsCamera == null)
             return;
-        var Y = Input.GetAxis(m_rotateCameraYInput);
-        var X = Input.GetAxis(m_rotateCameraXInput);
+        m_tpsCamera.TurnAroundY(Input.GetAxis("Mouse X"));
+        m_tpsCamera.TurnAroundX(-Input.GetAxis("Mouse Y"));
 
-        m_tpsCamera.RotateCamera(X, Y);
-
-        // tranform Character direction from camera if not KeepDirection
-        //if (!keepDirection)
-        //    m_cc.UpdateTargetDirection(m_fpsCamera != null ? m_fpsCamera.transform : null);
-        // rotate the character with the camera while strafing        
-        RotateWithCamera(m_tpsCamera != null ? m_tpsCamera.transform : null);
+        RotateWithCamera();
     }
 
-    protected virtual void UpdateCameraStates()
+    protected virtual void RotateWithCamera()
     {
-        // CAMERA STATE - you can change the CameraState here, the bool means if you want lerp of not, make sure to use the same CameraState String that you named on TPCameraListData
-        if (m_tpsCamera == null)
-        {
-            m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
-            if (m_tpsCamera == null)
-                return;
-            if (m_tpsCamera)
-            {
-                //m_fpsCamera.SetMainTarget(this.transform);
-                m_tpsCamera.Init();
-            }
-        }
+        m_tpsCamera.transform.parent = null;
+        float angle = Vector3.SignedAngle(m_character.transform.forward, m_tpsCamera.transform.forward, Vector3.up);
+        Quaternion finalRotation = m_character.transform.rotation * Quaternion.Euler(0, angle, 0);
+        //m_player.transform.Rotate(Vector3.up, angle);
+        m_character.transform.rotation = Quaternion.Lerp(m_character.transform.rotation, finalRotation, 5 * Time.deltaTime);
+
+
+        m_tpsCamera.transform.parent = m_character.transform;
     }
 
-    protected virtual void RotateWithCamera(Transform cameraTransform)
-    {
-        //if (m_cc.lockMovement)
-        //{
-        //    m_cc.RotateWithAnotherTransform(cameraTransform);
-        //}
-    }
+    #endregion
 
     #endregion
 

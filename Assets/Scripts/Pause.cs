@@ -19,7 +19,12 @@ public class Pause : MonoBehaviour
 
     #region MONOBEHAVIOUR METHODS
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     void Start()
     {
         m_ui.SetActive(false);

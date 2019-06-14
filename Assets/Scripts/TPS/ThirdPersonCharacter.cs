@@ -9,9 +9,9 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     #region ACTIONS
 
-    [SerializeField] private bool m_isGrounded = false;
-    [SerializeField] private bool m_isSprinting = false;
-    [SerializeField] private bool m_isJumping = false;
+    private bool m_isGrounded = false;
+    private bool m_isSprinting = false;
+    private bool m_isJumping = false;
 
     #endregion
 
@@ -32,6 +32,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     [HideInInspector]
     public float m_velocity = 0f;
 
+    [SerializeField] private float m_sprintValue = 0.5f;
     [SerializeField] private float m_jumpTimer = 0.3f;
     [SerializeField] private float m_jumpCounter = 0f;
 
@@ -49,7 +50,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(m_isSprinting);
     }
 
     #endregion
@@ -62,6 +63,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     }
     public void MoveFront()
     {
+        //if (m_isSprinting) m_speed += m_sprintValue;
         transform.position += transform.forward * m_speed * Time.deltaTime;
     }
     public void MoveBack()
@@ -77,12 +79,12 @@ public class ThirdPersonCharacter : MonoBehaviour
         transform.position += -transform.right * m_speed * Time.deltaTime;
     }
 
-    public virtual void Sprint(bool value)
+    public void Sprint(bool value)
     {
         m_isSprinting = value;
     }
 
-    public virtual void Jump()
+    public void Jump()
     {
         bool jumpConditions = m_isGrounded && !m_isJumping;
 
