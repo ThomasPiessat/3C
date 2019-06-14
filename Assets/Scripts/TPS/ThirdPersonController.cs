@@ -108,7 +108,6 @@ public class ThirdPersonController : MonoBehaviour
         if (Input.GetKeyDown(m_sprintInput))
         {       
             m_character.Sprint(true);
-            Debug.Log("il sprint");
         }
         else if (Input.GetKeyUp(m_sprintInput))
         {
