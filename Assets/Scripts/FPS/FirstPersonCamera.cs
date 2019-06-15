@@ -84,8 +84,6 @@ public class FirstPersonCamera : MonoBehaviour
         m_mouseY = m_target.eulerAngles.y;
     }
 
-
-
     public void RotateCamera(float _x, float _y)
     {
         m_mouseX += _x * m_mouseSensitivityX;

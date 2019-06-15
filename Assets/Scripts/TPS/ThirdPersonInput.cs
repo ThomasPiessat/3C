@@ -73,7 +73,7 @@ public class ThirdPersonInput : MonoBehaviour
     //{
     //    CameraInput();
 
-    //    if (!m_controller.lockMovement)
+    //    if (!m_controller.m_lockMovement)
     //    {
     //        MoveCharacter();
     //        SprintInput();
@@ -175,7 +175,7 @@ public class ThirdPersonInput : MonoBehaviour
 
     //protected virtual void RotateWithCamera(Transform cameraTransform)
     //{
-    //    //if (m_cc.lockMovement)
+    //    //if (m_cc.m_lockMovement)
     //    //{
     //    //    m_cc.RotateWithAnotherTransform(cameraTransform);
     //    //}

@@ -36,6 +36,9 @@ public class Pause : MonoBehaviour
 
     public void ToggleMenuPause()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         m_ui.SetActive(true);
 
         if (m_ui.activeSelf)
@@ -46,6 +49,15 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+    }
+
+    public void ReturnToGame()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        m_ui.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void Menu(string _sceneName)

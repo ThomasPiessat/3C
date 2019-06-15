@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class Controller : MonoBehaviour
 {
     #region ATTRIBUTES
 
@@ -14,34 +14,31 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private KeyCode m_leftInput = KeyCode.Q;
     [SerializeField] private KeyCode m_rightInput = KeyCode.D;
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
-    [SerializeField] private KeyCode m_strafeInput = KeyCode.Tab;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
     [SerializeField] private KeyCode m_interactInput = KeyCode.E;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
 
-    [Header("Camera Settings")]
-    [SerializeField] private string m_rotateCameraXInput = "Mouse X";
-    [SerializeField] private string m_rotateCameraYInput = "Mouse Y";
-
-    protected FirstPersonCharacter m_character;
-    protected FirstPersonCamera m_fpsCamera;
+    protected Character m_character;
+    protected Camera m_camera;
 
     #endregion
+
+    #region PROPERTIES
+
+
+
+    #endregion
+    
+    #region MONOBEHAVIOUR METHODS
 
     protected virtual void Start()
     {
         CharacterInit();
     }
 
-    protected virtual void CharacterInit()
+    protected virtual void Update()
     {
-        m_character = GetComponent<FirstPersonCharacter>();
 
-        m_fpsCamera = FindObjectOfType<FirstPersonCamera>();
-        //if (m_fpsCamera) m_fpsCamera.SetMainTarget(this.transform);
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     protected virtual void LateUpdate()
@@ -52,28 +49,55 @@ public class FirstPersonController : MonoBehaviour
         }
 
         InputHandle();
-        UpdateCameraStates();
     }
 
     protected virtual void FixedUpdate()
     {
-        //m_cc.AirControl();
-        CameraInput();
+        
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected virtual void CharacterInit()
+    {
+        m_character = GetComponent<Character>();
+        m_camera = FindObjectOfType<Camera>();
+
+        if (m_character != null)
+        {
+            m_character.Init();
+        }
+
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     protected virtual void InputHandle()
     {
-        CameraInput();
+        ZoomCam();
+        if (m_camera.m_fpsCamera)
+        {
+            m_camera.CameraFPS(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
+        }
 
-        if (!m_character.lockMovement)
+        else if (!m_camera.m_fpsCamera)
+        {
+            CameraInput();
+        }
+
+        if (!m_character.m_lockMovement)
         {
             MoveCharacter();
             SprintInput();
             JumpInput();
             InteractInput();
         }
+        PauseInput();
     }
+
+    #region Character Methods
 
     protected virtual void MoveCharacter()
     {
@@ -128,52 +152,52 @@ public class FirstPersonController : MonoBehaviour
     {
         if (Input.GetKeyDown(m_pauseInput))
         {
-
+            m_character.Pause();
         }
     }
+    #endregion
 
     #region Camera Methods
 
     protected virtual void CameraInput()
     {
-        if (m_fpsCamera == null)
-            return;
-        var Y = Input.GetAxis(m_rotateCameraYInput);
-        var X = Input.GetAxis(m_rotateCameraXInput);
-
-        m_fpsCamera.RotateCamera(X, Y);
-
-        // tranform Character direction from camera if not KeepDirection
-        //if (!keepDirection)
-        //    m_cc.UpdateTargetDirection(m_fpsCamera != null ? m_fpsCamera.transform : null);
-        // rotate the character with the camera while strafing        
-        RotateWithCamera(m_fpsCamera != null ? m_fpsCamera.transform : null);
+        m_camera.TurnAroundY(Input.GetAxis("Mouse X"));
+        m_camera.TurnAroundX(-Input.GetAxis("Mouse Y"));
+        m_camera.RotateWithCamera();
     }
 
-    protected virtual void UpdateCameraStates()
+    protected virtual void ChangePOV()
     {
-        // CAMERA STATE - you can change the CameraState here, the bool means if you want lerp of not, make sure to use the same CameraState String that you named on TPCameraListData
-        if (m_fpsCamera == null)
+        //Zoom in
+        if (Input.mouseScrollDelta.y > 0)
         {
-            m_fpsCamera = FindObjectOfType<FirstPersonCamera>();
-            if (m_fpsCamera == null)
-                return;
-            if (m_fpsCamera)
-            {
-                //m_fpsCamera.SetMainTarget(this.transform);
-                m_fpsCamera.Init();
-            }
+            m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+        }
+
+        //Zoom Out
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 
-    protected virtual void RotateWithCamera(Transform cameraTransform)
+    protected virtual void ZoomCam()
     {
-        //if (m_cc.m_lockMovement)
-        //{
-        //    m_cc.RotateWithAnotherTransform(cameraTransform);
-        //}
+        //Zoom in
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            m_camera.CameraMin();
+        }
+
+        //Zoom Out
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            m_camera.CameraMax();
+        }
     }
 
     #endregion
-}
 
+    #endregion
+
+}
