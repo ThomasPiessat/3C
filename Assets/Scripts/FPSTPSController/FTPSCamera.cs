@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FTPSCamera : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class FTPSCamera : MonoBehaviour
 
     #region PROPERTIES
 
+    [Header("Camera Properties")]
     [SerializeField] private float m_defaultDistanceToPlayer = 0f;
     [SerializeField] private float m_sensitivityX = 0f;
     [SerializeField] private float m_sensitivityY = 0f;
@@ -20,6 +23,8 @@ public class FTPSCamera : MonoBehaviour
     [SerializeField] private float m_maxX = 360f;
     [SerializeField] private float m_minY = 90f;
     [SerializeField] private float m_maxY = -90f;
+    private float m_mouseX = 0f;
+    private float m_mouseY = 0f;
 
     //FPS Camera
     [SerializeField] private float m_cameraZoomMin = 0f;
@@ -30,10 +35,10 @@ public class FTPSCamera : MonoBehaviour
     [SerializeField] private float m_zoomAmount = 0f;
 
     [SerializeField] private float m_xAxisClamp = 0f;
-    private float m_mouseX = 0f;
-    private float m_mouseY = 0f;
-    private float m_rotationX = 0f;
-    private float m_rotationY = 0f;
+
+    [Header("Camera UI")]
+    [SerializeField] private Image m_aimPoint = null;
+    [SerializeField] private float m_interactableDistance = 50f;
 
     public bool m_fpsCamera = true;
     #endregion
@@ -104,7 +109,6 @@ public class FTPSCamera : MonoBehaviour
         transform.parent = m_character.transform;
     }
 
-
     public bool CheckClampTranslation()
     {
         float distance = transform.position.z - m_character.transform.position.z;
@@ -156,6 +160,32 @@ public class FTPSCamera : MonoBehaviour
         return true;
     }
 
+    public void CameraFPS(float _mouseY, float _mouseX)
+    {
+        m_mouseY = _mouseY * m_sensitivityY * Time.deltaTime;
+        m_mouseX = _mouseX * m_sensitivityX * Time.deltaTime;
+
+        m_xAxisClamp += m_mouseY;
+
+        if (m_xAxisClamp > m_minY)
+        {
+            m_xAxisClamp = m_minY;
+            m_mouseY = 0.0f;
+        }
+        else if (m_xAxisClamp < m_maxY)
+        {
+            m_xAxisClamp = m_maxY;
+            m_mouseY = 0.0f;
+        }
+
+        transform.Rotate(Vector3.left * m_mouseY);
+        m_character.transform.Rotate(Vector3.up * m_mouseX);
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
     private void DetectWallCollisions()
     {
         Vector3 direction = (transform.position - m_character.transform.position);
@@ -181,32 +211,17 @@ public class FTPSCamera : MonoBehaviour
         transform.position += _direction.normalized * m_defaultDistanceToPlayer * Time.deltaTime;
     }
 
-    public void CameraTPS()
+    private void InteractableUpdate()
     {
+        RaycastHit hit;
+        int layerMask = 1 << 9;
+        layerMask = ~layerMask;
 
-    }
-
-    public void CameraFPS(float _mouseY, float _mouseX)
-    {
-        Debug.Log("FPSCamera");
-        m_mouseY = _mouseY * m_sensitivityY * Time.deltaTime;
-        m_mouseX = _mouseX * m_sensitivityX * Time.deltaTime;
-
-        m_xAxisClamp += m_mouseY;
-
-        if (m_xAxisClamp > m_minY)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, m_interactableDistance, layerMask))
         {
-            m_xAxisClamp = m_minY;
-            m_mouseY = 0.0f;
-        }
-        else if (m_xAxisClamp < m_maxY)
-        {
-            m_xAxisClamp = m_maxY;
-            m_mouseY = 0.0f;
+
         }
 
-        transform.Rotate(Vector3.left * m_mouseY);
-        m_character.transform.Rotate(Vector3.up * m_mouseX);
     }
 
     #endregion

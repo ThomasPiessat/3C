@@ -43,7 +43,7 @@ public class PickUpManager : MonoBehaviour
         }
 
         PickUpWeapon();
-        DropWeaopn();
+        DropWeapon();
     }
 
     #endregion
@@ -57,7 +57,6 @@ public class PickUpManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("PressE");
             if (hit.transform.CompareTag(m_weaponsTag) && m_listWeapons.Count < m_maxWeapons && Input.GetKeyDown(KeyCode.E))
             {
                 m_listWeapons.Add(hit.collider.gameObject);
@@ -70,9 +69,9 @@ public class PickUpManager : MonoBehaviour
         }
     }
 
-    private void DropWeaopn()
+    private void DropWeapon()
     {
-        if (m_currentWeapon != null && Input.GetKeyDown(KeyCode.E))
+        if (m_currentWeapon != null && Input.GetKeyDown(KeyCode.F))
         {
             m_currentWeapon.transform.parent = null;
             m_currentWeapon.transform.position = m_dropPoint.position;
