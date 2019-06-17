@@ -15,11 +15,14 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode m_rightInput = KeyCode.D;
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
+    [Tooltip("InteractionInput/PickUpInput")]
     [SerializeField] private KeyCode m_interactInput = KeyCode.E;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
+    [SerializeField] private KeyCode m_item1 = KeyCode.Alpha1;
+    [SerializeField] private KeyCode m_item2 = KeyCode.Alpha2;
 
     protected Character m_character;
-    protected Camera m_camera;
+    protected FTPSCamera m_camera;
 
     #endregion
 
@@ -63,7 +66,7 @@ public class Controller : MonoBehaviour
     protected virtual void CharacterInit()
     {
         m_character = GetComponent<Character>();
-        m_camera = FindObjectOfType<Camera>();
+        m_camera = FindObjectOfType<FTPSCamera>();
 
         if (m_character != null)
         {

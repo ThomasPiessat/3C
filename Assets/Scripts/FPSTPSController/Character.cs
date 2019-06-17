@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected float m_groundMinDistance = 0.2f;
     [SerializeField] protected float m_groundMaxDistance = 0.5f;
 
-    public float m_colliderHeight;
+    public float m_colliderHeight = 0f;
     public RaycastHit m_groundHit;
 
     [HideInInspector]
@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     private Rigidbody m_rigidbody;
     private CapsuleCollider m_capsuleCollider;
     private SphereCollider m_playerFeet;
+    private Transform m_playerHand;
     [HideInInspector] public PhysicMaterial m_maxFrictionPhysics, m_frictionPhysics, m_slippyPhysics;
 
     #endregion
@@ -82,6 +83,7 @@ public class Character : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_capsuleCollider = GetComponent<CapsuleCollider>();
         m_playerFeet = GetComponent<SphereCollider>();
+        m_playerHand = GetComponent<Transform>();
     }
 
     public void MoveFront()
@@ -211,4 +213,5 @@ public class Character : MonoBehaviour
         GameMediator.Instance.PauseUI.ToggleMenuPause();
     }
     #endregion
+
 }
