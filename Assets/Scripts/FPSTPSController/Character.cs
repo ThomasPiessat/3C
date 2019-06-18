@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IPickable
 {
+    #region ATTRIBUTES
+
     [Header("Layer")]
     public LayerMask m_groundLayer = 1 << 0;
     [SerializeField] protected float m_groundMinDistance = 0.2f;
@@ -12,8 +14,20 @@ public class Character : MonoBehaviour
     public float m_colliderHeight = 0f;
     public RaycastHit m_groundHit;
 
+    [Header("ItemManager")]
+    [SerializeField] private string m_weaponsTag = "Weapon";
+    [SerializeField] private List<GameObject> m_listWeapons = null;
+    [SerializeField] private int m_maxWeapons = 2;
+    private GameObject m_currentWeapon = null;
+    [SerializeField] private Transform m_characterHand = null;
+    [SerializeField] private Transform m_dropPoint = null;
+    [SerializeField] private FTPSCamera m_FTPSCamera = null;
+
     [HideInInspector]
     public Vector2 m_input;
+
+    #endregion    
+
     #region ACTIONS
 
     private bool m_isGrounded = false;
@@ -103,6 +117,60 @@ public class Character : MonoBehaviour
     {
         transform.position += -transform.right * m_speed * Time.deltaTime;
     }
+
+    public void PickUp()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, m_FTPSCamera.transform.forward);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.CompareTag(m_weaponsTag) && m_listWeapons.Count < m_maxWeapons)
+            {
+                m_listWeapons.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+
+                hit.transform.parent = m_characterHand;
+                hit.transform.localPosition = Vector3.zero;
+            }
+        }
+    }
+
+    public void Drop()
+    {
+        if (m_currentWeapon != null)
+        {
+            m_currentWeapon.transform.parent = null;
+            m_currentWeapon.transform.position = m_dropPoint.position;
+
+            var weaponID = m_currentWeapon.GetInstanceID();
+
+            for (int i = 0; i < m_listWeapons.Count; i++)
+            {
+                if (m_listWeapons[i].GetInstanceID() == weaponID)
+                {
+                    m_listWeapons.RemoveAt(i);
+                    break;
+                }
+            }
+            m_currentWeapon = null;
+        }       
+    }
+
+    public void Select(int _index)
+    {
+        if (m_listWeapons.Count > _index && m_listWeapons[_index] != null)
+        {
+            if (m_currentWeapon != null)
+            {
+                m_currentWeapon.gameObject.SetActive(false);
+            }
+
+            m_currentWeapon = m_listWeapons[_index];
+            m_currentWeapon.SetActive(true);
+        }
+    }
+
 
     #region CheckGroundMethods
 
@@ -212,6 +280,7 @@ public class Character : MonoBehaviour
     {
         GameMediator.Instance.PauseUI.ToggleMenuPause();
     }
+
     #endregion
 
 }

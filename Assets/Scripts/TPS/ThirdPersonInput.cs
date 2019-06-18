@@ -78,7 +78,7 @@ public class ThirdPersonInput : MonoBehaviour
     //        MoveCharacter();
     //        SprintInput();
     //        JumpInput();
-    //        InteractInput();
+    //        PickupInput();
     //    }
     //}
 
@@ -123,7 +123,7 @@ public class ThirdPersonInput : MonoBehaviour
     //        m_controller.Jump();
     //}
 
-    //protected virtual void InteractInput()
+    //protected virtual void PickupInput()
     //{
     //    if (Input.GetKeyDown(m_interactInput))
     //    {

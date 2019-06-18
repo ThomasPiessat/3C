@@ -13,7 +13,7 @@ public class Pause : MonoBehaviour
 
     #region PROPERTIES
 
-    [SerializeField] private GameObject m_ui = null;
+    [SerializeField] private GameObject m_pauseUI = null;
 
     #endregion
 
@@ -27,7 +27,7 @@ public class Pause : MonoBehaviour
 
     void Start()
     {
-        m_ui.SetActive(false);
+        m_pauseUI.SetActive(false);
     }
 
     #endregion
@@ -39,9 +39,9 @@ public class Pause : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        m_ui.SetActive(true);
+        m_pauseUI.SetActive(true);
 
-        if (m_ui.activeSelf)
+        if (m_pauseUI.activeSelf)
         {
             Time.timeScale = 0f;
         }
@@ -56,7 +56,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        m_ui.SetActive(false);
+        m_pauseUI.SetActive(false);
         Time.timeScale = 1f;
     }
 

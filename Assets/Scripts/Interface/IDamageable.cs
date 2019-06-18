@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Item
+public class IDamageable : MonoBehaviour
 {
     #region ATTRIBUTES
 
@@ -11,8 +11,8 @@ public class Weapon : Item
     #endregion
 	
 	#region PROPERTIES
-
-    [SerializeField] private int m_damage = 0;
+	
+	
 
 	#endregion
 	
@@ -33,11 +33,8 @@ public class Weapon : Item
 	#endregion
 	
 	#region PRIVATE METHODS
-
-    protected override void DisplayCaractOnPickUp()
-    {
-
-    }
+	 
+	 
 	 
 	#endregion
 }

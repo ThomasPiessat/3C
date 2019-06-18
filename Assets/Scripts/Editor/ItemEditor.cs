@@ -8,6 +8,10 @@ using UnityEditor;
 [CustomEditor(typeof(Item))]
 public class ItemEditor : Editor
 {
+    private Object editorfield;
+
+    private Material material;
+
     private SerializedObject soTarget;
 
     private SerializedProperty stringVar1;
@@ -27,7 +31,7 @@ public class ItemEditor : Editor
 
         GUILayout.Label("ItemSpec", EditorStyles.boldLabel);
         EditorGUILayout.Space();
-        //GUILayout.Label("Test", EditorStyles.colorField);
+
         if (GUILayout.Button("Inc"))
         {
             stringVar1.intValue++;
@@ -35,6 +39,7 @@ public class ItemEditor : Editor
 
         EditorGUILayout.PropertyField(stringVar1);
 
+        editorfield = EditorGUILayout.ObjectField(editorfield, typeof(Object), false);
         foldout = EditorGUILayout.Foldout(foldout, new GUIContent("List"), true);
 
         GUILayout.EndVertical();

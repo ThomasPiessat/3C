@@ -12,7 +12,7 @@ public class Armor : Item
 	
 	#region PROPERTIES
 
-    [SerializeField] private int m_armar = 0;
+    [SerializeField] private int m_armor = 0;
 
 	#endregion
 	

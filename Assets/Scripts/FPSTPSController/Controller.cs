@@ -6,7 +6,7 @@ public class Controller : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    [Header("Default Inputs")]
+    [Header("Movement Inputs")]
     [SerializeField] private string m_horizontalInput = "Horizontal";
     [SerializeField] private string m_verticalInput = "Vertical";
     [SerializeField] private KeyCode m_fwdInput = KeyCode.Z;
@@ -16,10 +16,13 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
     [Tooltip("InteractionInput/PickUpInput")]
-    [SerializeField] private KeyCode m_interactInput = KeyCode.E;
+    [SerializeField] private KeyCode m_pickupInput = KeyCode.E;
+    [SerializeField] private KeyCode m_dropInput = KeyCode.F;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
     [SerializeField] private KeyCode m_item1 = KeyCode.Alpha1;
     [SerializeField] private KeyCode m_item2 = KeyCode.Alpha2;
+    [SerializeField] private KeyCode m_leftHandInput = KeyCode.Mouse0;
+    [SerializeField] private KeyCode m_rightHandInput = KeyCode.Mouse1;
 
     protected Character m_character;
     protected FTPSCamera m_camera;
@@ -31,7 +34,7 @@ public class Controller : MonoBehaviour
 
 
     #endregion
-    
+
     #region MONOBEHAVIOUR METHODS
 
     protected virtual void Start()
@@ -56,7 +59,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        
+
     }
 
     #endregion
@@ -95,8 +98,11 @@ public class Controller : MonoBehaviour
             MoveCharacter();
             SprintInput();
             JumpInput();
-            InteractInput();
+
         }
+        PickupInput();
+        DropInput();
+
         PauseInput();
     }
 
@@ -143,11 +149,32 @@ public class Controller : MonoBehaviour
             m_character.Jump();
     }
 
-    protected virtual void InteractInput()
+    protected virtual void PickupInput()
     {
-        if (Input.GetKeyDown(m_interactInput))
+        if (Input.GetKeyDown(m_pickupInput))
         {
-            //m_fpsCamera.Interact();
+            m_character.PickUp();
+        }
+    }
+
+    protected virtual void DropInput()
+    {
+        if (Input.GetKeyDown(m_dropInput))
+        {
+            m_character.Drop();
+        }
+    }
+
+    protected virtual void SelectWeapon()
+    {
+        if (Input.GetKeyDown(m_item1))
+        {
+            m_character.Select(0);
+        }
+
+        if (Input.GetKeyDown(m_item2))
+        {
+            m_character.Select(1);
         }
     }
 

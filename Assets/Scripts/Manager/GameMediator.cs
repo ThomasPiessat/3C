@@ -15,7 +15,6 @@ public class GameMediator : MySingleton<GameMediator>
 
     #region PROPERTIES
 
-
     public ThirdPersonController TPSCharacter
     {
         get

@@ -6,14 +6,14 @@ public class Item : MonoBehaviour
 {
     #region ATTRIBUTES
 
-	
+    [SerializeField] private UIManager m_uiManager = null;
 	
     #endregion
 	
 	#region PROPERTIES
 
     [SerializeField] private string m_itemName = "";
-    [SerializeField] private int m_values = 0;   
+    [SerializeField] private int m_value = 0;   
 
 	#endregion
 	
@@ -33,9 +33,17 @@ public class Item : MonoBehaviour
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
+    protected virtual void DisplayCaractOnPickUp()
+    {
 
+    }
+
+    protected virtual void DisplayCaractOnInventory()
+    {
+
+    }
 
     #endregion
 
