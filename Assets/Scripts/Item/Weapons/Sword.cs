@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Item
+public class Sword : Weapon
 {
     #region ATTRIBUTES
 
-	
+    [SerializeField] protected float m_attackSpeedNeeded = 0f;
 	
     #endregion
 	
 	#region PROPERTIES
-
-    [SerializeField] private int m_damage = 0;
+	
+	
 
 	#endregion
 	
@@ -36,7 +36,7 @@ public class Weapon : Item
 
     protected override void DisplayCaractOnPickUp()
     {
-
+        
     }
 	 
 	#endregion

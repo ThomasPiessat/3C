@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    #region ATTRIBUTES
+
+    private static UIManager m_instanceUiManager = null;
     [SerializeField] private GameObject m_PickUpCaract = null;
     [SerializeField] private GameObject m_Inventory = null;
 
@@ -14,13 +17,38 @@ public class UIManager : MonoBehaviour
     //Damage/Armor
     [SerializeField] private TextMeshProUGUI m_itemSpecTMP = null;
 
+    [SerializeField] private TextMeshProUGUI m_tooManyItemsTMP = null;
+
+    #endregion
+
+    #region PROPERTIES
+
+
+
+    #endregion
+
+    #region MONOBEHAVIOUR METHODS
+
+    private void Awake()
+    {
+        m_PickUpCaract.SetActive(false);
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
-    public void SetItemSpec(string _itemName, int _itemValue, int _itemSpec)
+    public void SetItemSpec(string _itemName, string[] _itemValue, string[] _itemSpec)
     {
+        m_PickUpCaract.SetActive(true);
         m_itemNameTMP.text = _itemName.ToString();
         m_itemValueTMP.text = _itemValue.ToString();
         m_itemSpecTMP.text = _itemSpec.ToString();
+    }
+
+    public void SetItemName(string _itemName)
+    {
+        m_itemNameTMP.text = _itemName.ToString();  
     }
 
     public void EnablePickUpUI(bool _value)
@@ -31,6 +59,11 @@ public class UIManager : MonoBehaviour
     public void EnableInventoryUI()
     {
 
+    }
+
+    public void TooManyItems()
+    {
+        
     }
 
     #endregion

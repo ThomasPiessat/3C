@@ -56,6 +56,11 @@ public class FTPSCamera : MonoBehaviour
         DetectWallCollisions();
     }
 
+    private void FixedUpdate()
+    {
+        InteractableUpdate();
+    }
+
     #endregion
 
     #region PUBLIC METHODS
@@ -203,7 +208,6 @@ public class FTPSCamera : MonoBehaviour
         {
             ReturnToInitialOffset(direction);
         }
-
     }
 
     private void ReturnToInitialOffset(Vector3 _direction)
@@ -219,7 +223,23 @@ public class FTPSCamera : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, m_interactableDistance, layerMask))
         {
+            Item item = hit.collider.gameObject.GetComponent<Item>();
+            if (item && item.CanSeeSpec())
+            {
+                Color cl = m_aimPoint.color;
+                cl.r = 0;
+                cl.g = 255;
+                m_aimPoint.color = cl;
 
+
+            }
+            else
+            {
+                Color cl = m_aimPoint.color;
+                cl.r = 255;
+                cl.g = 0;
+                m_aimPoint.color = cl;
+            }
         }
 
     }

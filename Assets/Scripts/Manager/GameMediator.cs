@@ -7,9 +7,11 @@ public class GameMediator : MySingleton<GameMediator>
 {
     #region ATTRIBUTES
 
-    private Pause m_pause = null;
-    private ThirdPersonController m_thirdPersonCharacter = null;
-    private FirstPersonController m_firstPersonCharcater = null;
+    private static ThirdPersonController m_thirdPersonCharacter = null;
+    private static FirstPersonController m_firstPersonCharcater = null;
+    private static Pause m_pause = null;
+    private static UIManager m_uiManager = null;
+
 
     #endregion
 
@@ -49,6 +51,19 @@ public class GameMediator : MySingleton<GameMediator>
             }
 
             return m_pause;
+        }
+    }
+
+    public UIManager UIManager
+    {
+        get
+        {
+            if (!m_uiManager)
+            {
+                m_uiManager = GameObject.FindObjectOfType<UIManager>();
+            }
+
+            return m_uiManager;
         }
     }
 

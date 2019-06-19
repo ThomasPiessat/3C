@@ -15,11 +15,11 @@ public class Character : MonoBehaviour, IPickable
     public RaycastHit m_groundHit;
 
     [Header("ItemManager")]
-    [SerializeField] private string m_weaponsTag = "Weapon";
-    [SerializeField] private List<GameObject> m_listWeapons = null;
-    [SerializeField] private int m_maxWeapons = 2;
+    //see in inspector (=> to remove)
+    [SerializeField] private List<GameObject> m_listItems = null;
+    [SerializeField] private int m_maxItemsToHold = 2;
     private GameObject m_currentWeapon = null;
-    [SerializeField] private Transform m_characterHand = null;
+    [SerializeField] private Transform m_characterRightHand = null;
     [SerializeField] private Transform m_dropPoint = null;
     [SerializeField] private FTPSCamera m_FTPSCamera = null;
 
@@ -85,7 +85,7 @@ public class Character : MonoBehaviour, IPickable
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     #endregion
@@ -99,6 +99,8 @@ public class Character : MonoBehaviour, IPickable
         m_playerFeet = GetComponent<SphereCollider>();
         m_playerHand = GetComponent<Transform>();
     }
+
+    #region MovementMethods
 
     public void MoveFront()
     {
@@ -118,24 +120,28 @@ public class Character : MonoBehaviour, IPickable
         transform.position += -transform.right * m_speed * Time.deltaTime;
     }
 
+    #endregion
+
+    #region PickupMethods
+
     public void PickUp()
     {
+        DetectWeaponMax();
         RaycastHit hit;
         Ray ray = new Ray(transform.position, m_FTPSCamera.transform.forward);
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.CompareTag(m_weaponsTag) && m_listWeapons.Count < m_maxWeapons)
+            if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {
-                m_listWeapons.Add(hit.collider.gameObject);
+                m_listItems.Add(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
 
-                hit.transform.parent = m_characterHand;
+                hit.transform.parent = m_characterRightHand;
                 hit.transform.localPosition = Vector3.zero;
             }
         }
     }
-
     public void Drop()
     {
         if (m_currentWeapon != null)
@@ -145,32 +151,32 @@ public class Character : MonoBehaviour, IPickable
 
             var weaponID = m_currentWeapon.GetInstanceID();
 
-            for (int i = 0; i < m_listWeapons.Count; i++)
+            for (int i = 0; i < m_listItems.Count; i++)
             {
-                if (m_listWeapons[i].GetInstanceID() == weaponID)
+                if (m_listItems[i].GetInstanceID() == weaponID)
                 {
-                    m_listWeapons.RemoveAt(i);
+                    m_listItems.RemoveAt(i);
                     break;
                 }
             }
             m_currentWeapon = null;
-        }       
+        }
     }
-
     public void Select(int _index)
     {
-        if (m_listWeapons.Count > _index && m_listWeapons[_index] != null)
+        if (m_listItems.Count > _index && m_listItems[_index] != null)
         {
             if (m_currentWeapon != null)
             {
                 m_currentWeapon.gameObject.SetActive(false);
             }
 
-            m_currentWeapon = m_listWeapons[_index];
+            m_currentWeapon = m_listItems[_index];
             m_currentWeapon.SetActive(true);
         }
     }
 
+    #endregion
 
     #region CheckGroundMethods
 
@@ -276,9 +282,29 @@ public class Character : MonoBehaviour, IPickable
         m_isSprinting = value;
     }
 
+    public void Attack(int _index)
+    {
+        if (m_listItems.Count > _index && m_listItems[_index] != null)
+        {
+
+        }
+    }
+
     public void Pause()
     {
         GameMediator.Instance.PauseUI.ToggleMenuPause();
+    }
+
+    #endregion
+
+    #region UI METHODS
+
+    private void DetectWeaponMax()
+    {
+        if (m_listItems.Count == m_maxItemsToHold)
+        {
+            GameMediator.Instance.UIManager.TooManyItems();
+        }
     }
 
     #endregion

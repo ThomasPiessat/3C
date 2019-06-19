@@ -6,14 +6,15 @@ public class Item : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    [SerializeField] private UIManager m_uiManager = null;
 	
     #endregion
 	
 	#region PROPERTIES
 
-    [SerializeField] private string m_itemName = "";
-    [SerializeField] private int m_value = 0;   
+    [SerializeField] public string m_itemName { get; set; }
+    [SerializeField] protected int m_value = 0;   
+
+
 
 	#endregion
 	
@@ -37,7 +38,7 @@ public class Item : MonoBehaviour
 
     protected virtual void DisplayCaractOnPickUp()
     {
-
+        
     }
 
     protected virtual void DisplayCaractOnInventory()
@@ -46,5 +47,10 @@ public class Item : MonoBehaviour
     }
 
     #endregion
+
+    public virtual bool CanSeeSpec()
+    {
+        return true;
+    }
 
 }

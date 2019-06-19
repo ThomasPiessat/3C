@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface IUsable
 {
-    void TakeDamage(float _damageTaken);
-    void Die();
+    void Use();
+    bool CanUse();
 }

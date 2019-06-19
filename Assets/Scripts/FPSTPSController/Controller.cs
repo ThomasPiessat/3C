@@ -102,6 +102,7 @@ public class Controller : MonoBehaviour
         }
         PickupInput();
         DropInput();
+        SelectWeapon();
 
         PauseInput();
     }
