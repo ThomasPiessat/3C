@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
 	
 	#region PROPERTIES
 
-    [SerializeField] protected string m_itemName = "";
+    [SerializeField] protected string m_name = "";
     [SerializeField] protected int m_value = 0;   
 
 
@@ -38,8 +38,7 @@ public class Item : MonoBehaviour
 
     public virtual void DisplayCaractOnPickUp()
     {
-        GameMediator.Instance.UIManager.EnablePickUpUI(true);
-        GameMediator.Instance.UIManager.SetItemName(m_itemName);
+
     }
 
     protected virtual void DisplayCaractOnInventory()

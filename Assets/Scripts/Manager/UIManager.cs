@@ -46,11 +46,10 @@ public class UIManager : MonoBehaviour
 
     #region PUBLIC METHODS
 
-    public void SetItemSpec(string _itemName, string[] _itemValue, string[] _itemSpec)
+    public void SetItemSpec(string _itemName, int _itemValue)
     {
         m_itemNameTMP.text = _itemName.ToString();
-        m_itemValueTMP.text = _itemValue.ToString();
-        m_itemSpecTMP.text = _itemSpec.ToString();
+        m_itemValueTMP.text = "Value : " + _itemValue.ToString();
     }
 
     public void SetItemName(string _itemName)

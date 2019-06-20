@@ -28,6 +28,10 @@ public class Character : MonoBehaviour, IPickable
     [HideInInspector]
     public Vector2 m_input;
 
+
+    /*DEBUG*/
+    [SerializeField] private Sword m_sword = null;
+
     #endregion    
 
     #region ACTIONS
@@ -289,13 +293,12 @@ public class Character : MonoBehaviour, IPickable
 
     public void Attack(int _index)
     {
-        Quaternion rot = new Quaternion(70,0,0,0);
         if (m_listItems.Count > _index && m_listItems[_index] != null)
         {
             Debug.Log("attack");
             if (m_currentWeapon != null)
             {
-                
+                m_sword.Attack(40);
             }
         }
     }

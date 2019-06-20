@@ -7,6 +7,7 @@ public class Sword : Item, IWeapon
     #region ATTRIBUTES
 
     [SerializeField] protected float m_attackSpeedNeeded = 0f;
+    private Animator m_animator = null;
 
     #endregion
 
@@ -21,7 +22,7 @@ public class Sword : Item, IWeapon
     // Start is called before the first frame update
     void Start()
     {
-
+        m_animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,12 +38,14 @@ public class Sword : Item, IWeapon
 
     public void Attack(int _damage)
     {
-
+        m_animator.SetTrigger("IsAttacking");
     }
 
     public override void DisplayCaractOnPickUp()
     {
-
+        base.DisplayCaractOnPickUp();
+        GameMediator.Instance.UIManager.EnablePickUpUI(true);
+        GameMediator.Instance.UIManager.SetItemSpec(m_name, m_value);
     }
 
     #endregion

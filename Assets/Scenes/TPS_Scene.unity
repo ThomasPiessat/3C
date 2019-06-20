@@ -278,12 +278,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63313536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.18500002, z: 0}
-  m_LocalScale: {x: 0.53373, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.0178691, z: 0}
+  m_LocalScale: {x: 4.024202, y: 0.3769886, z: 0.3769886}
   m_Children: []
-  m_Father: {fileID: 936761718}
-  m_RootOrder: 1
+  m_Father: {fileID: 401902814}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &63313538
 BoxCollider:
@@ -612,8 +612,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.000072479, y: 30.714996}
+  m_SizeDelta: {x: 400, y: 61.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195063607
 MonoBehaviour:
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -764,12 +764,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 209589414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6362f39b233d92445b03433eb17ca704, type: 3}
+  m_Script: {fileID: 11500000, guid: 15aab778e1d4cd14580de41751a91856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: GreenItem
-  m_value: 0
-  m_damage: 0
+  m_name: GreenSword
+  m_value: 50
+  m_attackSpeedNeeded: 0
 --- !u!65 &209589416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1574,12 +1574,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375373875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.592, z: 0}
-  m_LocalScale: {x: 0.055297, y: 0.80651, z: 0.040162}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.0865564, z: 0}
+  m_LocalScale: {x: 0.41692674, y: 6.080901, z: 0.3028123}
   m_Children: []
-  m_Father: {fileID: 936761718}
-  m_RootOrder: 2
+  m_Father: {fileID: 401902814}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &375373877
 BoxCollider:
@@ -1651,6 +1651,7 @@ GameObject:
   - component: {fileID: 401902817}
   - component: {fileID: 401902816}
   - component: {fileID: 401902815}
+  - component: {fileID: 401902818}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1668,7 +1669,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.050000012, z: 0}
   m_LocalScale: {x: 0.13263, y: 0.13263, z: 0.13263}
-  m_Children: []
+  m_Children:
+  - {fileID: 63313537}
+  - {fileID: 375373876}
   m_Father: {fileID: 936761718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1731,6 +1734,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401902813}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &401902818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401902813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5470574, y: 1.0765924, z: 0.17940521}
+  m_Center: {x: -0.007874608, y: 0.45847493, z: -0.003376007}
 --- !u!1 &655991076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2201,7 @@ MonoBehaviour:
   m_FTPSCamera: {fileID: 1966720934}
   m_pickUpDistance: 50
   m_input: {x: 0, y: 0}
+  m_sword: {fileID: 936761719}
   m_maxFrictionPhysics: {fileID: 0}
   m_frictionPhysics: {fileID: 0}
   m_slippyPhysics: {fileID: 0}
@@ -2547,6 +2564,7 @@ GameObject:
   - component: {fileID: 936761718}
   - component: {fileID: 936761720}
   - component: {fileID: 936761719}
+  - component: {fileID: 936761721}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -2566,8 +2584,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 401902814}
-  - {fileID: 63313537}
-  - {fileID: 375373876}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2583,9 +2599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15aab778e1d4cd14580de41751a91856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: Sword FlameOfTheWest
-  m_value: 0
-  m_damage: 0
+  m_name: Sword Flame Of The West
+  m_value: 457
   m_attackSpeedNeeded: 0
 --- !u!65 &936761720
 BoxCollider:
@@ -2600,6 +2615,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5470574, y: 1.0765924, z: 0.17940521}
   m_Center: {x: -0.007874608, y: 0.45847493, z: -0.003376007}
+--- !u!95 &936761721
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936761717}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21f86a9f7cb4bb64dbf713f087a8024b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &944088414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,7 +3275,6 @@ GameObject:
   - component: {fileID: 1196526960}
   - component: {fileID: 1196526959}
   - component: {fileID: 1196526958}
-  - component: {fileID: 1196526962}
   - component: {fileID: 1196526963}
   m_Layer: 0
   m_Name: BlueItem
@@ -3322,21 +3355,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1196526962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196526957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6362f39b233d92445b03433eb17ca704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_itemName: BlueItem
-  m_value: 0
-  m_damage: 0
 --- !u!114 &1196526963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3349,9 +3367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15aab778e1d4cd14580de41751a91856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: SwordSamer
-  m_value: 0
-  m_damage: 0
+  m_name: BlueSword
+  m_value: 98
   m_attackSpeedNeeded: 0
 --- !u!1 &1201768720
 GameObject:
@@ -3534,7 +3551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319282537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.924, y: 0.29, z: 0.734}
+  m_LocalPosition: {x: 0.62, y: 0.29, z: 0.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 821637861}
@@ -3885,12 +3902,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624105705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b872c7720d06dd498a68b555147999b, type: 3}
+  m_Script: {fileID: 11500000, guid: 15aab778e1d4cd14580de41751a91856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: RedItem
-  m_value: 0
-  m_armor: 0
+  m_name: RedSwoed
+  m_value: 74
+  m_attackSpeedNeeded: 0
 --- !u!65 &1624105707
 BoxCollider:
   m_ObjectHideFlags: 0
