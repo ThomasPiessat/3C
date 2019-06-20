@@ -32,9 +32,9 @@ public class Sword : Weapon
 	
 	#endregion
 	
-	#region PRIVATE METHODS
+	#region PROTECTED METHODS
 
-    protected override void DisplayCaractOnPickUp()
+    public override void DisplayCaractOnPickUp()
     {
         
     }

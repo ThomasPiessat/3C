@@ -34,13 +34,17 @@ public class UIManager : MonoBehaviour
         m_PickUpCaract.SetActive(false);
     }
 
+    private void Start()
+    {
+        m_PickUpCaract.SetActive(false);
+    }
+
     #endregion
 
     #region PUBLIC METHODS
 
     public void SetItemSpec(string _itemName, string[] _itemValue, string[] _itemSpec)
     {
-        m_PickUpCaract.SetActive(true);
         m_itemNameTMP.text = _itemName.ToString();
         m_itemValueTMP.text = _itemValue.ToString();
         m_itemSpecTMP.text = _itemSpec.ToString();

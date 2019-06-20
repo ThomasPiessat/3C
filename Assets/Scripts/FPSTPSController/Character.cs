@@ -22,6 +22,7 @@ public class Character : MonoBehaviour, IPickable
     [SerializeField] private Transform m_characterRightHand = null;
     [SerializeField] private Transform m_dropPoint = null;
     [SerializeField] private FTPSCamera m_FTPSCamera = null;
+    [SerializeField] private float m_pickUpDistance = 50f;
 
     [HideInInspector]
     public Vector2 m_input;
@@ -130,7 +131,7 @@ public class Character : MonoBehaviour, IPickable
         RaycastHit hit;
         Ray ray = new Ray(transform.position, m_FTPSCamera.transform.forward);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, m_pickUpDistance))
         {
             if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {
@@ -142,6 +143,7 @@ public class Character : MonoBehaviour, IPickable
             }
         }
     }
+
     public void Drop()
     {
         if (m_currentWeapon != null)
@@ -162,6 +164,7 @@ public class Character : MonoBehaviour, IPickable
             m_currentWeapon = null;
         }
     }
+
     public void Select(int _index)
     {
         if (m_listItems.Count > _index && m_listItems[_index] != null)

@@ -218,7 +218,7 @@ public class FTPSCamera : MonoBehaviour
     private void InteractableUpdate()
     {
         RaycastHit hit;
-        int layerMask = 1 << 9;
+        int layerMask = 0;
         layerMask = ~layerMask;
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, m_interactableDistance, layerMask))
@@ -231,16 +231,27 @@ public class FTPSCamera : MonoBehaviour
                 cl.g = 255;
                 m_aimPoint.color = cl;
 
-
+                item.DisplayCaractOnPickUp();
             }
             else
             {
-                Color cl = m_aimPoint.color;
-                cl.r = 255;
-                cl.g = 0;
-                m_aimPoint.color = cl;
+                ResetInteractable();
             }
         }
+        else
+        {
+            ResetInteractable();
+        }
+    }
+
+    private void ResetInteractable()
+    {
+        Color cl = m_aimPoint.color;
+        cl.r = 255;
+        cl.g = 0;
+        m_aimPoint.color = cl;
+
+        GameMediator.Instance.UIManager.EnablePickUpUI(false);
 
     }
 

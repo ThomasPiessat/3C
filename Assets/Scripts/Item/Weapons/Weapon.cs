@@ -27,16 +27,17 @@ public class Weapon : Item
     // Update is called once per frame
     void Update()
     {
-        DisplayCaractOnPickUp();
+        
     }
 	    
 	#endregion
 	
-	#region PRIVATE METHODS
+	#region PUBLIC METHODS
 
-    protected override void DisplayCaractOnPickUp()
+    public override void DisplayCaractOnPickUp()
     {
-        GameMediator.Instance.UIManager.SetItemName(m_itemName);
+        base.DisplayCaractOnPickUp();
+        
     }
 	 
 	#endregion
