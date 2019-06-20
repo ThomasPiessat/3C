@@ -104,6 +104,9 @@ public class Controller : MonoBehaviour
         DropInput();
         SelectWeapon();
 
+        LeftHandInput();
+        RightHandInput();
+
         PauseInput();
     }
 
@@ -179,6 +182,22 @@ public class Controller : MonoBehaviour
         }
     }
 
+    protected virtual void LeftHandInput()
+    {
+        if (Input.GetKeyDown(m_leftHandInput))
+        {
+            m_character.Attack(0);
+        }
+    }
+
+    protected virtual void RightHandInput()
+    {
+        if(Input.GetKeyDown(m_rightHandInput))
+        {
+            m_character.Attack(1);
+        }
+    }
+
     protected virtual void PauseInput()
     {
         if (Input.GetKeyDown(m_pauseInput))
@@ -186,6 +205,7 @@ public class Controller : MonoBehaviour
             m_character.Pause();
         }
     }
+
     #endregion
 
     #region Camera Methods

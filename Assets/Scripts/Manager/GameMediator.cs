@@ -12,7 +12,6 @@ public class GameMediator : MySingleton<GameMediator>
     private static Pause m_pause = null;
     private static UIManager m_uiManager = null;
 
-
     #endregion
 
     #region PROPERTIES

@@ -18,7 +18,8 @@ public class Character : MonoBehaviour, IPickable
     //see in inspector (=> to remove)
     [SerializeField] private List<GameObject> m_listItems = null;
     [SerializeField] private int m_maxItemsToHold = 2;
-    private GameObject m_currentWeapon = null;
+    //see in inspector (=> to remove)
+    [SerializeField] private GameObject m_currentWeapon = null;
     [SerializeField] private Transform m_characterRightHand = null;
     [SerializeField] private Transform m_dropPoint = null;
     [SerializeField] private FTPSCamera m_FTPSCamera = null;
@@ -288,9 +289,14 @@ public class Character : MonoBehaviour, IPickable
 
     public void Attack(int _index)
     {
+        Quaternion rot = new Quaternion(70,0,0,0);
         if (m_listItems.Count > _index && m_listItems[_index] != null)
         {
-
+            Debug.Log("attack");
+            if (m_currentWeapon != null)
+            {
+                
+            }
         }
     }
 
