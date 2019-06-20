@@ -129,9 +129,10 @@ public class Character : MonoBehaviour, IPickable
     {
         DetectWeaponMax();
         RaycastHit hit;
-        Ray ray = new Ray(transform.position, m_FTPSCamera.transform.forward);
+        int layerMask = 0;
+        layerMask = ~layerMask;
 
-        if (Physics.Raycast(ray, out hit, m_pickUpDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, m_pickUpDistance, layerMask))
         {
             if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {
@@ -306,7 +307,11 @@ public class Character : MonoBehaviour, IPickable
     {
         if (m_listItems.Count == m_maxItemsToHold)
         {
-            GameMediator.Instance.UIManager.TooManyItems();
+            GameMediator.Instance.UIManager.EnableTooManyItemsUI(true);
+        }
+        else
+        {
+            GameMediator.Instance.UIManager.EnableTooManyItemsUI(false);
         }
     }
 

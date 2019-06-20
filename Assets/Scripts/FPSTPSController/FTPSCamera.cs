@@ -252,7 +252,7 @@ public class FTPSCamera : MonoBehaviour
         m_aimPoint.color = cl;
 
         GameMediator.Instance.UIManager.EnablePickUpUI(false);
-
+        GameMediator.Instance.UIManager.EnableTooManyItemsUI(false);
     }
 
     #endregion

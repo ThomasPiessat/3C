@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     #region ATTRIBUTES
 
     private static UIManager m_instanceUiManager = null;
+
+    [Header("UIPanel")]
+    [SerializeField] private GameObject m_tooManyItems = null;
     [SerializeField] private GameObject m_PickUpCaract = null;
     [SerializeField] private GameObject m_Inventory = null;
 
@@ -16,8 +19,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_itemValueTMP = null;
     //Damage/Armor
     [SerializeField] private TextMeshProUGUI m_itemSpecTMP = null;
-
-    [SerializeField] private TextMeshProUGUI m_tooManyItemsTMP = null;
 
     #endregion
 
@@ -31,12 +32,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        m_PickUpCaract.SetActive(false);
+        EnablePickUpUI(false);
+        EnableTooManyItemsUI(false);
+        EnableInventoryUI(false);
     }
 
     private void Start()
     {
-        m_PickUpCaract.SetActive(false);
+        
     }
 
     #endregion
@@ -55,20 +58,24 @@ public class UIManager : MonoBehaviour
         m_itemNameTMP.text = _itemName.ToString();  
     }
 
+    #region EnableUIMethods
+
     public void EnablePickUpUI(bool _value)
     {
         m_PickUpCaract.SetActive(_value);
     }
 
-    public void EnableInventoryUI()
+    public void EnableInventoryUI(bool _value)
     {
-
+        m_Inventory.SetActive(_value);
     }
 
-    public void TooManyItems()
+    public void EnableTooManyItemsUI(bool _value)
     {
-        
+        m_tooManyItems.SetActive(_value);
     }
+
+    #endregion   
 
     #endregion
 }
