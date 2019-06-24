@@ -11,8 +11,8 @@ public class Item : MonoBehaviour
 	
 	#region PROPERTIES
 
-    [SerializeField] protected string m_name = "";
-    [SerializeField] protected int m_value = 0;   
+    [SerializeField] public string m_name = "";
+    [SerializeField] public int m_value = 0;   
 
 
 
@@ -33,6 +33,12 @@ public class Item : MonoBehaviour
     }
 
     #endregion
+
+    public Item(string _name, int _value)
+    {
+        m_name = _name;
+        m_value = _value;
+    }
 
     #region PROTECTED METHODS
 

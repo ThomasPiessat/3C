@@ -35,6 +35,11 @@ public class Sword : Item, IWeapon
 
     #region PUBLIC METHODS
 
+    public Sword(string _name, int _value) : base(_name, _value)
+    {
+        m_name = _name;
+        m_value = _value;
+    }
 
     public void Attack(int _damage)
     {

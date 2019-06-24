@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -231,8 +231,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 8672904647557908198}
   - component: {fileID: 8672904647557908200}
   - component: {fileID: 8672904647557908199}
+  - component: {fileID: 5400672518652074461}
   m_Layer: 5
   m_Name: ItemsSpect_Img
   m_TagString: Untagged
@@ -390,3 +391,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &5400672518652074461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672904647557908197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29b7a84fd5eadc49a01c11cf2881474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemNameTMP: {fileID: 8672904646840798406}
+  m_itemValueTMP: {fileID: 8672904647431137201}
+  test: 0

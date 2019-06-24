@@ -29,8 +29,9 @@ public class Character : MonoBehaviour, IPickable
     public Vector2 m_input;
 
 
-    /*DEBUG*/
+    /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
+    [SerializeField] public List<Item> m_items = null;
 
     #endregion    
 
@@ -85,7 +86,8 @@ public class Character : MonoBehaviour, IPickable
     // Start is called before the first frame update
     void Start()
     {
-
+        m_listItems = new List<GameObject>();
+        m_items = new List<Item>();
     }
 
     // Update is called once per frame
@@ -142,6 +144,7 @@ public class Character : MonoBehaviour, IPickable
             if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {
                 m_listItems.Add(hit.collider.gameObject);
+                m_items.Add(hit.transform.GetComponent<Item>());
                 hit.collider.gameObject.SetActive(false);
 
                 hit.transform.parent = m_characterRightHand;
@@ -302,7 +305,6 @@ public class Character : MonoBehaviour, IPickable
             }
         }
     }
-
 
     #endregion
 

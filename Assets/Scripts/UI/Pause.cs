@@ -21,8 +21,7 @@ public class Pause : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+
     }
 
     void Start()
@@ -36,18 +35,19 @@ public class Pause : MonoBehaviour
 
     public void ToggleMenuPause()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
         if (m_pauseUI.activeSelf)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             m_pauseUI.SetActive(false);
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
         }
         else
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             m_pauseUI.SetActive(true);
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
         }
     }
 

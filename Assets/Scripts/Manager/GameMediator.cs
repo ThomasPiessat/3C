@@ -7,6 +7,7 @@ public class GameMediator : MySingleton<GameMediator>
 {
     #region ATTRIBUTES
 
+    private static Character m_character = null;
     private static ThirdPersonController m_thirdPersonCharacter = null;
     private static FirstPersonController m_firstPersonCharcater = null;
     private static Pause m_pause = null;
@@ -16,6 +17,19 @@ public class GameMediator : MySingleton<GameMediator>
     #endregion
 
     #region PROPERTIES
+
+    public Character MainCharacter
+    {
+        get
+        {
+            if (!m_character)
+            {
+                m_character = GameObject.FindObjectOfType<Character>();
+            }
+
+            return m_character;
+        }
+    }
 
     public ThirdPersonController TPSCharacter
     {
