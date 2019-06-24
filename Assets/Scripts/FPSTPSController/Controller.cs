@@ -15,14 +15,18 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode m_rightInput = KeyCode.D;
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
+    [Header("Action Imputs")]
     [Tooltip("InteractionInput/PickUpInput")]
     [SerializeField] private KeyCode m_pickupInput = KeyCode.E;
     [SerializeField] private KeyCode m_dropInput = KeyCode.F;
-    [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
     [SerializeField] private KeyCode m_item1 = KeyCode.Alpha1;
     [SerializeField] private KeyCode m_item2 = KeyCode.Alpha2;
     [SerializeField] private KeyCode m_leftHandInput = KeyCode.Mouse0;
     [SerializeField] private KeyCode m_rightHandInput = KeyCode.Mouse1;
+    [Header("UI Inputs")]
+    [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
+    [SerializeField] private KeyCode m_inventoryInput = KeyCode.I;
+
 
     protected Character m_character;
     protected FTPSCamera m_camera;
@@ -108,6 +112,7 @@ public class Controller : MonoBehaviour
         RightHandInput();
 
         PauseInput();
+        InventoryInput();
     }
 
     #region Character Methods
@@ -198,6 +203,8 @@ public class Controller : MonoBehaviour
         }
     }
 
+    #region UI Methods
+
     protected virtual void PauseInput()
     {
         if (Input.GetKeyDown(m_pauseInput))
@@ -205,6 +212,16 @@ public class Controller : MonoBehaviour
             m_character.Pause();
         }
     }
+
+    protected virtual void InventoryInput()
+    {
+        if (Input.GetKeyDown(m_inventoryInput))
+        {
+            m_character.Inventory();
+        }
+    }
+
+    #endregion
 
     #endregion
 

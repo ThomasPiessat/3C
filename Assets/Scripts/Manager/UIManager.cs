@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     [Header("UIPanel")]
     [SerializeField] private GameObject m_tooManyItems = null;
     [SerializeField] private GameObject m_PickUpCaract = null;
-    [SerializeField] private GameObject m_Inventory = null;
 
     [Header("CaractItemUI")]
     [SerializeField] private TextMeshProUGUI m_itemNameTMP = null;
@@ -34,7 +33,6 @@ public class UIManager : MonoBehaviour
     {
         EnablePickUpUI(false);
         EnableTooManyItemsUI(false);
-        EnableInventoryUI(false);
     }
 
     private void Start()
@@ -62,11 +60,6 @@ public class UIManager : MonoBehaviour
     public void EnablePickUpUI(bool _value)
     {
         m_PickUpCaract.SetActive(_value);
-    }
-
-    public void EnableInventoryUI(bool _value)
-    {
-        m_Inventory.SetActive(_value);
     }
 
     public void EnableTooManyItemsUI(bool _value)

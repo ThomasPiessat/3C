@@ -62,7 +62,7 @@ public class Character : MonoBehaviour, IPickable
     [HideInInspector] public float m_direction = 0f;
     [HideInInspector] public float m_verticalVelocity = 0f;
     [HideInInspector] public float m_velocity = 0f;
-    
+
     #endregion
 
     #region Jump
@@ -91,7 +91,7 @@ public class Character : MonoBehaviour, IPickable
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     #endregion
@@ -303,10 +303,6 @@ public class Character : MonoBehaviour, IPickable
         }
     }
 
-    public void Pause()
-    {
-        GameMediator.Instance.PauseUI.ToggleMenuPause();
-    }
 
     #endregion
 
@@ -322,6 +318,16 @@ public class Character : MonoBehaviour, IPickable
         {
             GameMediator.Instance.UIManager.EnableTooManyItemsUI(false);
         }
+    }
+
+    public void Pause()
+    {
+        GameMediator.Instance.PauseUI.ToggleMenuPause();
+    }
+
+    public void Inventory()
+    {
+        GameMediator.Instance.InventoryUI.ToggleInventory();
     }
 
     #endregion

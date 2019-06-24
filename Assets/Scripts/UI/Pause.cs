@@ -39,14 +39,14 @@ public class Pause : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        m_pauseUI.SetActive(true);
-
         if (m_pauseUI.activeSelf)
         {
+            m_pauseUI.SetActive(false);
             Time.timeScale = 0f;
         }
         else
         {
+            m_pauseUI.SetActive(true);
             Time.timeScale = 1f;
         }
     }
