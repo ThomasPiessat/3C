@@ -36,7 +36,7 @@ public class ItemInfo : MonoBehaviour
 
     public void SetItemInfo(string _itemName, int _itemValue)
     {
-        m_itemNameTMP.text = _itemName.ToString();
+        GetComponentInChildren<TextMeshProUGUI>().text = _itemName;
         m_itemValueTMP.text = "Value : " + _itemValue.ToString();
     }
 	 

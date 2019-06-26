@@ -50,11 +50,6 @@ public class UIManager : MonoBehaviour
         m_itemValueTMP.text = "Value : " + _itemValue.ToString();
     }
 
-    public void SetItemName(string _itemName)
-    {
-        m_itemNameTMP.text = _itemName.ToString();  
-    }
-
     #region EnableUIMethods
 
     public void EnablePickUpUI(bool _value)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IPickable
+public class Character : MonoBehaviour
 {
     #region ATTRIBUTES
 

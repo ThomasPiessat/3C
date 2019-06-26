@@ -11,7 +11,7 @@ public class GameMediator : MySingleton<GameMediator>
     private static ThirdPersonController m_thirdPersonCharacter = null;
     private static FirstPersonController m_firstPersonCharcater = null;
     private static Pause m_pause = null;
-    private static Inventory m_inventory = null;
+    private static InventoryUI m_inventory = null;
     private static UIManager m_uiManager = null;
 
     #endregion
@@ -68,13 +68,13 @@ public class GameMediator : MySingleton<GameMediator>
         }
     }
 
-    public Inventory InventoryUI
+    public InventoryUI InventoryUI
     {
         get
         {
             if (!m_inventory)
             {
-                m_inventory = GameObject.FindObjectOfType<Inventory>();
+                m_inventory = GameObject.FindObjectOfType<InventoryUI>();
             }
 
             return m_inventory;
