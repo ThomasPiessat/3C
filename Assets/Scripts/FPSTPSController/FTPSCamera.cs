@@ -41,6 +41,7 @@ public class FTPSCamera : MonoBehaviour
     [SerializeField] private float m_interactableDistance = 50f;
 
     public bool m_fpsCamera = true;
+
     #endregion
 
     #region MONOBEHAVIOUR METHODS
@@ -49,7 +50,6 @@ public class FTPSCamera : MonoBehaviour
     {
 
     }
-
 
     private void Update()
     {
@@ -133,10 +133,10 @@ public class FTPSCamera : MonoBehaviour
 
     public void TranslateCamera(float _wheelSpeedValue)
     {
-        Vector3 dir = m_character.transform.position - transform.position;
-
-        transform.Translate(dir.normalized * _wheelSpeedValue * m_scrollSpeed, Space.World);
-
+        if (Vector3.Distance(transform.position, m_character.transform.position) <= 10f)
+        {
+            transform.Translate(Vector3.forward * _wheelSpeedValue * m_scrollSpeed);
+        }
     }
 
     public void Test(float _mouseWheelValue)
@@ -148,7 +148,6 @@ public class FTPSCamera : MonoBehaviour
     {
         Vector3 dir = m_character.transform.position - transform.position;
         transform.Translate(dir.normalized * _mouseWheelValue * m_scrollSpeed, Space.World);
-        Debug.Log(transform.position.z);
     }
 
     public bool CameraMax()
@@ -215,6 +214,14 @@ public class FTPSCamera : MonoBehaviour
         transform.position += _direction.normalized * m_defaultDistanceToPlayer * Time.deltaTime;
     }
 
+    private void DetectCollision()
+    {
+        RaycastHit[] hits;
+
+    }
+
+    #region Interactable Methods
+
     private void InteractableUpdate()
     {
         RaycastHit hit;
@@ -254,6 +261,8 @@ public class FTPSCamera : MonoBehaviour
         GameMediator.Instance.UIManager.EnablePickUpUI(false);
         GameMediator.Instance.UIManager.EnableTooManyItemsUI(false);
     }
+
+    #endregion
 
     #endregion
 }

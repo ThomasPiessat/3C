@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    private RectTransform m_rectTransform = null;
+
 
     #endregion
 
@@ -20,7 +20,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private List<Button> m_listInventoryButton = null;
 
     [SerializeField] private ItemInfo m_itemInfo = null;
-    [SerializeField] private SetInfo m_info = null;
 
     [SerializeField] private Character m_character = null;
 
@@ -31,9 +30,6 @@ public class InventoryUI : MonoBehaviour
     void Awake()
     {
         m_inventoryUI.SetActive(false);
-        var rectTransform = m_inventoryUI.GetComponent<RectTransform>();
-        m_rectTransform = m_info.GetComponent<RectTransform>();
-        m_rectTransform.localPosition = new Vector3(0,0,0);
     }
 
     #endregion
@@ -97,9 +93,6 @@ public class InventoryUI : MonoBehaviour
         {
             Instantiate(m_itemInfo, m_listInventoryPanel[i].transform);
             m_itemInfo.SetItemInfo(GameMediator.Instance.MainCharacter.m_items[0].m_name, GameMediator.Instance.MainCharacter.m_items[0].m_value);
-
-            //Instantiate(m_info, m_listInventoryPanel[0].transform);
-            //m_info.SetInfoItem(GameMediator.Instance.MainCharacter.m_items[0].m_name);
         }
     }
 

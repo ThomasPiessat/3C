@@ -86,7 +86,8 @@ public class Controller : MonoBehaviour
 
     protected virtual void InputHandle()
     {
-        ZoomCam();
+        //ZoomCam();
+        ChangePOV();
         if (m_camera.m_fpsCamera)
         {
             m_camera.CameraFPS(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
@@ -239,13 +240,15 @@ public class Controller : MonoBehaviour
         //Zoom in
         if (Input.mouseScrollDelta.y > 0)
         {
-            m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            m_camera.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
 
         //Zoom Out
         if (Input.mouseScrollDelta.y < 0)
         {
-            m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            m_camera.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 
