@@ -8,7 +8,7 @@ public class FTPSCamera : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    [SerializeField] private Character m_character = null;
+    [SerializeField] private readonly Character m_character = null;
 
     #endregion
 
@@ -137,11 +137,6 @@ public class FTPSCamera : MonoBehaviour
         {
             transform.Translate(Vector3.forward * _wheelSpeedValue * m_scrollSpeed);
         }
-    }
-
-    public void Test(float _mouseWheelValue)
-    {
-        transform.Translate(m_character.cameraMax.position.normalized * _mouseWheelValue * m_scrollSpeed, Space.World);
     }
 
     public void ChangeCamera(float _mouseWheelValue)

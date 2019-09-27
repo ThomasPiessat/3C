@@ -115,6 +115,8 @@ public class ThirdPersonCamera : MonoBehaviour
         transform.position += _direction.normalized * m_defaultDistanceToPlayer * Time.deltaTime;
     }
 
+
+
     #endregion
 
 }

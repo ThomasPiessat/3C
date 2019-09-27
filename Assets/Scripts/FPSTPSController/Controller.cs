@@ -252,21 +252,6 @@ public class Controller : MonoBehaviour
         }
     }
 
-    protected virtual void ZoomCam()
-    {
-        //Zoom in
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {
-            m_camera.CameraMin();
-        }
-
-        //Zoom Out
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            m_camera.CameraMax();
-        }
-    }
-
     #endregion
 
     #endregion
