@@ -14,6 +14,7 @@ public class Pause : MonoBehaviour
     #region PROPERTIES
 
     [SerializeField] private GameObject m_pauseUI = null;
+    [SerializeField] private GameObject m_optionUI = null;
 
     #endregion
 
@@ -58,6 +59,12 @@ public class Pause : MonoBehaviour
 
         m_pauseUI.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    public void Option()
+    {
+        m_pauseUI.SetActive(false);
+        m_optionUI.SetActive(true);
     }
 
     public void Menu(string _sceneName)

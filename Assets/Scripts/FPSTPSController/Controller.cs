@@ -80,8 +80,8 @@ public class Controller : MonoBehaviour
             m_character.Init();
         }
 
-        //Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     protected virtual void InputHandle()
