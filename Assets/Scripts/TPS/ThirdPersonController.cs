@@ -25,6 +25,7 @@ public class ThirdPersonController : MonoBehaviour
 
     protected ThirdPersonCharacter m_character;
     protected ThirdPersonCamera m_tpsCamera;
+    protected CameraTest m_cameraTest;
 
     #endregion
 
@@ -66,7 +67,8 @@ public class ThirdPersonController : MonoBehaviour
 
     protected virtual void InputHandle()
     {
-        CameraInput();
+        //CameraInput();
+        CameraTestInput();
 
         if (!m_character.lockMovement)
         {
@@ -148,6 +150,31 @@ public class ThirdPersonController : MonoBehaviour
         m_tpsCamera.TurnAroundX(-Input.GetAxis("Mouse Y"));
 
         RotateWithCamera();
+    }
+
+    protected virtual void CameraTestInput()
+    {
+        if (m_cameraTest != null)
+        {
+            m_cameraTest.TurnAroundY(Input.GetAxis("Mouse X"));
+        }
+    }
+
+    protected virtual void ChangePOV()
+    {
+        //Zoom in
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
+        }
+
+        //Zoom Out
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
+        }
     }
 
     protected virtual void RotateWithCamera()

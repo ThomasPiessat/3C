@@ -80,8 +80,8 @@ public class Controller : MonoBehaviour
             m_character.Init();
         }
 
-        //Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     protected virtual void InputHandle()
@@ -249,21 +249,6 @@ public class Controller : MonoBehaviour
         {
             //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_camera.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
-        }
-    }
-
-    protected virtual void ZoomCam()
-    {
-        //Zoom in
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {
-            m_camera.CameraMin();
-        }
-
-        //Zoom Out
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            m_camera.CameraMax();
         }
     }
 

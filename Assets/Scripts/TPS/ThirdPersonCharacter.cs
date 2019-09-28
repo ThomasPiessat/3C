@@ -50,7 +50,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_isSprinting);
+
     }
 
     #endregion
