@@ -28,7 +28,6 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Vector2 m_input;
 
-
     /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
     [SerializeField] public List<Item> m_items = null;
@@ -76,16 +75,45 @@ public class Character : MonoBehaviour
     protected float m_groundDistance;
 
     public bool m_lockMovement = false;
+
+    #region Health
+
+    private float m_maxHealth = 100f;
+    private float m_currentHealth = 0f;
+    private bool m_isDead = false;
+
+    #endregion
+
     #endregion
 
     public Transform cameraMax;
     public Transform cameraMin;
+
+    #region GET/SET
+
+    public float GetCurrentHealth()
+    {
+        return m_currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return m_maxHealth;
+    }
+
+    public bool GetIsDead()
+    {
+        return m_isDead;
+    }
+
+    #endregion
 
     #region MONOBEHAVIOUR METHODS
 
     // Start is called before the first frame update
     void Start()
     {
+        m_currentHealth = m_maxHealth; 
         m_listItems = new List<GameObject>();
         m_items = new List<Item>();
     }
@@ -304,6 +332,26 @@ public class Character : MonoBehaviour
                 m_sword.Attack(40);
             }
         }
+    }
+
+    #endregion
+
+
+    #region PUBLIC METHODS
+
+    public void TakeDamage(float _damageTaken)
+    {
+        m_currentHealth -= _damageTaken;
+        if (m_currentHealth <= 0)
+        {
+            m_isDead = true;
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(this);
     }
 
     #endregion
