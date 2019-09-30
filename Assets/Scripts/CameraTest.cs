@@ -52,9 +52,24 @@ public class CameraTest : MonoBehaviour
 
     public void TranslateCamera(float _wheelSpeed)
     {
-        if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) <= 10f)
+        Debug.Log(Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position));
+
+        if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) <= 10.1f)
         {
-            transform.Translate(Vector3.forward * _wheelSpeed * 10 );
+            transform.Translate(Vector3.forward * _wheelSpeed * 100 * Time.deltaTime);
+        }
+    }
+
+    public void RaycastTest()
+    {
+        Vector3 direction = (transform.position - m_thirdPersonCharacter.transform.position);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, m_thirdPersonCharacter.transform.position,
+            out hit, 10f))
+        {
+            Debug.DrawRay(transform.position, m_thirdPersonCharacter.transform.position * hit.distance, Color.blue);
         }
     }
 }

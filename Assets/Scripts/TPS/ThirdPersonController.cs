@@ -61,6 +61,7 @@ public class ThirdPersonController : MonoBehaviour
 
         m_tpsCamera = FindObjectOfType<ThirdPersonCamera>();
 
+        m_cameraTest = FindObjectOfType<CameraTest>();
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -68,7 +69,8 @@ public class ThirdPersonController : MonoBehaviour
     protected virtual void InputHandle()
     {
         //CameraInput();
-        CameraTestInput();
+        ChangePOV();
+        //CameraTestInput();
 
         if (!m_character.lockMovement)
         {
@@ -162,15 +164,16 @@ public class ThirdPersonController : MonoBehaviour
 
     protected virtual void ChangePOV()
     {
+        m_cameraTest.RaycastTest();
         //Zoom in
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y >= 0)
         {
             //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
 
         //Zoom Out
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y <= 0)
         {
             //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
