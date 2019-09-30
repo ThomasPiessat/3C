@@ -52,7 +52,7 @@ public class CameraTest : MonoBehaviour
 
     public void TranslateCamera(float _wheelSpeed)
     {
-        Debug.Log(Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position));
 
         if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) <= 10.1f)
         {

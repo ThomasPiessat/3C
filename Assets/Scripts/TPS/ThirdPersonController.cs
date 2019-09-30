@@ -9,15 +9,13 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Default Inputs")]
     [SerializeField] private string m_horizontalInput = "Horizontal";
     [SerializeField] private string m_verticalInput = "Vertical";
-    [SerializeField] private KeyCode m_fwdInput = KeyCode.Z;
-    [SerializeField] private KeyCode m_bwdInput = KeyCode.S;
-    [SerializeField] private KeyCode m_leftInput = KeyCode.Q;
-    [SerializeField] private KeyCode m_rightInput = KeyCode.D;
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
     [SerializeField] private KeyCode m_strafeInput = KeyCode.Tab;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
     [SerializeField] private KeyCode m_interactInput = KeyCode.E;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
+    public KeyCode moveBwd = KeyCode.E;
+    public List<KeyCode> m_controlKey = null;
 
     [Header("Camera Settings")]
     [SerializeField] private string m_rotateCameraXInput = "Mouse X";
@@ -89,19 +87,19 @@ public class ThirdPersonController : MonoBehaviour
         m_character.m_input.x = Input.GetAxis(m_horizontalInput);
         m_character.m_input.y = Input.GetAxis(m_verticalInput);
 
-        if (Input.GetKey(m_fwdInput))
+        if (Input.GetKey(m_controlKey[0]))
         {
             m_character.MoveFront();
         }
-        if (Input.GetKey(m_bwdInput))
+        if (Input.GetKey(m_controlKey[1]))
         {
             m_character.MoveBack();
         }
-        if (Input.GetKey(m_leftInput))
+        if (Input.GetKey(m_controlKey[2]))
         {
             m_character.MoveLeft();
         }
-        if (Input.GetKey(m_rightInput))
+        if (Input.GetKey(m_controlKey[3]))
         {
             m_character.MoveRight();
         }

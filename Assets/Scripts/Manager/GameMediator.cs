@@ -8,11 +8,12 @@ public class GameMediator : MySingleton<GameMediator>
     #region ATTRIBUTES
 
     private static Character m_character = null;
-    private static ThirdPersonController m_thirdPersonCharacter = null;
+    private static ThirdPersonController m_thirdPersonController = null;
     private static FirstPersonController m_firstPersonCharcater = null;
     private static Pause m_pause = null;
     private static InventoryUI m_inventory = null;
     private static UIManager m_uiManager = null;
+    private static InputManager m_inputManager = null;
 
     #endregion
 
@@ -31,15 +32,15 @@ public class GameMediator : MySingleton<GameMediator>
         }
     }
 
-    public ThirdPersonController TPSCharacter
+    public ThirdPersonController TPSController
     {
         get
         {
-            if (!m_thirdPersonCharacter)
+            if (!m_thirdPersonController)
             {
-                m_thirdPersonCharacter = GameObject.FindObjectOfType<ThirdPersonController>();
+                m_thirdPersonController = GameObject.FindObjectOfType<ThirdPersonController>();
             }
-            return m_thirdPersonCharacter;
+            return m_thirdPersonController;
         }
     }
 
@@ -91,6 +92,19 @@ public class GameMediator : MySingleton<GameMediator>
             }
 
             return m_uiManager;
+        }
+    }
+
+    public InputManager InputManager
+    {
+        get
+        {
+            if (!m_inputManager)
+            {
+                m_inputManager = GameObject.FindObjectOfType<InputManager>();
+            }
+
+            return m_inputManager;
         }
     }
 
