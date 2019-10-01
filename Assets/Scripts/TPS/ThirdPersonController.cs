@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +13,9 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
     [SerializeField] private KeyCode m_strafeInput = KeyCode.Tab;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
-    [SerializeField] private KeyCode m_interactInput = KeyCode.E;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
-    public KeyCode moveBwd = KeyCode.E;
-    public List<KeyCode> m_controlKey = null;
+    public List<KeyCode> m_controlKey = new List<KeyCode>();
+    public DefautInputStruct m_struct;
 
     [Header("Camera Settings")]
     [SerializeField] private string m_rotateCameraXInput = "Mouse X";
@@ -29,9 +29,13 @@ public class ThirdPersonController : MonoBehaviour
 
     #region MONOBEHAVIOUR METHODS
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         CharacterInit();
+    }
+
+    protected virtual void Start()
+    {
     }
 
     protected virtual void LateUpdate()
@@ -125,7 +129,7 @@ public class ThirdPersonController : MonoBehaviour
 
     protected virtual void InteractInput()
     {
-        if (Input.GetKeyDown(m_interactInput))
+        if (Input.GetKeyDown(m_controlKey[5]))
         {
             //m_fpsCamera.Interact();
         }
@@ -193,5 +197,20 @@ public class ThirdPersonController : MonoBehaviour
     #endregion
 
     #endregion
+
+
+    [Serializable]
+    public struct DefautInputStruct
+    {
+        public KeyCode m_forward;
+        public KeyCode m_back;
+        public KeyCode m_left;
+        public KeyCode m_right;
+        public KeyCode m_jump;
+        public KeyCode m_sprint;
+        public KeyCode m_pickUP;
+        public KeyCode m_drop;
+        public KeyCode m_inventory;
+    }
 
 }

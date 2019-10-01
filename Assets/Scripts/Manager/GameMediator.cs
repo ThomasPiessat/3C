@@ -13,7 +13,7 @@ public class GameMediator : MySingleton<GameMediator>
     private static Pause m_pause = null;
     private static InventoryUI m_inventory = null;
     private static UIManager m_uiManager = null;
-    private static InputManager m_inputManager = null;
+    private static InputUI m_inputUI = null;
 
     #endregion
 
@@ -95,16 +95,16 @@ public class GameMediator : MySingleton<GameMediator>
         }
     }
 
-    public InputManager InputManager
+    public InputUI InputUI
     {
         get
         {
-            if (!m_inputManager)
+            if (!m_inputUI)
             {
-                m_inputManager = GameObject.FindObjectOfType<InputManager>();
+                m_inputUI = GameObject.FindObjectOfType<InputUI>();
             }
 
-            return m_inputManager;
+            return m_inputUI;
         }
     }
 
