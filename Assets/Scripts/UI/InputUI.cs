@@ -121,7 +121,6 @@ public class InputUI : MonoBehaviour
     private void SetPlayerInput(KeyCode _newKeyCode)
     {
         GameMediator.Instance.TPSController.m_controlKey[m_IndexToAssign] = _newKeyCode;
-
     }
 
     //reset player input by default (ZQSD)

@@ -11,7 +11,6 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private string m_horizontalInput = "Horizontal";
     [SerializeField] private string m_verticalInput = "Vertical";
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
-    [SerializeField] private KeyCode m_strafeInput = KeyCode.Tab;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
     public List<KeyCode> m_controlKey = new List<KeyCode>();
@@ -24,6 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     protected ThirdPersonCharacter m_character;
     protected ThirdPersonCamera m_tpsCamera;
     protected CameraTest m_cameraTest;
+    [SerializeField] private float m_mouthSpeed = 10f;
 
     #endregion
 
@@ -48,11 +48,6 @@ public class ThirdPersonController : MonoBehaviour
         InputHandle();
     }
 
-    protected virtual void FixedUpdate()
-    {
-        CameraInput();
-    }
-
     #endregion
 
     #region PROTECTED METHODS
@@ -72,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         //CameraInput();
         ChangePOV();
-        //CameraTestInput();
+        CameraTestInput();
 
         if (!m_character.lockMovement)
         {
@@ -160,7 +155,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (m_cameraTest != null)
         {
-            m_cameraTest.TurnAroundY(Input.GetAxis("Mouse X"));
+            m_cameraTest.TurnAroundY((Input.GetAxis("Mouse X") * m_mouthSpeed));
         }
     }
 
