@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// OBSOLETE
+/// </summary>
+
 public class FirstPersonInput : MonoBehaviour
 {
     //#region ATTRIBUTES

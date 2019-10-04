@@ -1,6 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
+/// <summary>
+/// OBSOLETE
+/// </summary>
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -9,15 +15,11 @@ public class FirstPersonController : MonoBehaviour
     [Header("Default Inputs")]
     [SerializeField] private string m_horizontalInput = "Horizontal";
     [SerializeField] private string m_verticalInput = "Vertical";
-    [SerializeField] private KeyCode m_fwdInput = KeyCode.Z;
-    [SerializeField] private KeyCode m_bwdInput = KeyCode.S;
-    [SerializeField] private KeyCode m_leftInput = KeyCode.Q;
-    [SerializeField] private KeyCode m_rightInput = KeyCode.D;
     [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
-    [SerializeField] private KeyCode m_strafeInput = KeyCode.Tab;
     [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
-    [SerializeField] private KeyCode m_interactInput = KeyCode.E;
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
+    public List<KeyCode> m_controlKey = new List<KeyCode>();
+    public DefautInputStruct m_struct;
 
     [Header("Camera Settings")]
     [SerializeField] private string m_rotateCameraXInput = "Mouse X";
@@ -25,6 +27,20 @@ public class FirstPersonController : MonoBehaviour
 
     protected FirstPersonCharacter m_character;
     protected FirstPersonCamera m_fpsCamera;
+
+    [Serializable]
+    public struct DefautInputStruct
+    {
+        public KeyCode m_forward;
+        public KeyCode m_back;
+        public KeyCode m_left;
+        public KeyCode m_right;
+        public KeyCode m_jump;
+        public KeyCode m_sprint;
+        public KeyCode m_pickUP;
+        public KeyCode m_drop;
+        public KeyCode m_inventory;
+    }
 
     #endregion
 
@@ -80,22 +96,23 @@ public class FirstPersonController : MonoBehaviour
         m_character.m_input.x = Input.GetAxis(m_horizontalInput);
         m_character.m_input.y = Input.GetAxis(m_verticalInput);
 
-        if (Input.GetKey(m_fwdInput))
+        if (Input.GetKey(m_controlKey[0]))
         {
             m_character.MoveFront();
         }
-        if (Input.GetKey(m_bwdInput))
+        if (Input.GetKey(m_controlKey[1]))
         {
             m_character.MoveBack();
         }
-        if (Input.GetKey(m_leftInput))
+        if (Input.GetKey(m_controlKey[2]))
         {
             m_character.MoveLeft();
         }
-        if (Input.GetKey(m_rightInput))
+        if (Input.GetKey(m_controlKey[3]))
         {
             m_character.MoveRight();
         }
+
     }
 
     protected virtual void SprintInput()
@@ -118,7 +135,7 @@ public class FirstPersonController : MonoBehaviour
 
     protected virtual void InteractInput()
     {
-        if (Input.GetKeyDown(m_interactInput))
+        if (Input.GetKeyDown(m_controlKey[5]))
         {
             //m_fpsCamera.Interact();
         }

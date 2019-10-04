@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// OBSOLETE
+/// </summary>
+
 public class FirstPersonCamera : MonoBehaviour
 {
     #region ATTRIBUTES

@@ -1,32 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     #region ATTRIBUTES
-
-    [Header("Movement Inputs")]
-    [SerializeField] private string m_horizontalInput = "Horizontal";
-    [SerializeField] private string m_verticalInput = "Vertical";
-    [SerializeField] private KeyCode m_fwdInput = KeyCode.Z;
-    [SerializeField] private KeyCode m_bwdInput = KeyCode.S;
-    [SerializeField] private KeyCode m_leftInput = KeyCode.Q;
-    [SerializeField] private KeyCode m_rightInput = KeyCode.D;
-    [SerializeField] private KeyCode m_jumpInput = KeyCode.Space;
-    [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
-    [Header("Action Imputs")]
-    [Tooltip("InteractionInput/PickUpInput")]
-    [SerializeField] private KeyCode m_pickupInput = KeyCode.E;
-    [SerializeField] private KeyCode m_dropInput = KeyCode.F;
-    [SerializeField] private KeyCode m_item1 = KeyCode.Alpha1;
-    [SerializeField] private KeyCode m_item2 = KeyCode.Alpha2;
-    [SerializeField] private KeyCode m_leftHandInput = KeyCode.Mouse0;
-    [SerializeField] private KeyCode m_rightHandInput = KeyCode.Mouse1;
-    [Header("UI Inputs")]
-    [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
-    [SerializeField] private KeyCode m_inventoryInput = KeyCode.I;
-
 
     protected Character m_character;
     protected FTPSCamera m_camera;
@@ -35,7 +14,36 @@ public class Controller : MonoBehaviour
 
     #region PROPERTIES
 
+    [Header("Movement Inputs")]
+    [SerializeField] private string m_horizontalInput = "Horizontal";
+    [SerializeField] private string m_verticalInput = "Vertical";
+    [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
+    public List<KeyCode> m_controlKey = new List<KeyCode>();
+    public DefautInputStruct m_struct;
+    [Header("Action Imputs")]
+    [Tooltip("InteractionInput/PickUpInput")]
 
+    [SerializeField] private KeyCode m_item1 = KeyCode.Alpha1;
+    [SerializeField] private KeyCode m_item2 = KeyCode.Alpha2;
+    [SerializeField] private KeyCode m_leftHandInput = KeyCode.Mouse0;
+    [SerializeField] private KeyCode m_rightHandInput = KeyCode.Mouse1;
+    [Header("UI Inputs")]
+    [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
+    [SerializeField] private KeyCode m_inventoryInput = KeyCode.I;
+
+    [Serializable]
+    public struct DefautInputStruct
+    {
+        public KeyCode m_forward;
+        public KeyCode m_back;
+        public KeyCode m_left;
+        public KeyCode m_right;
+        public KeyCode m_jump;
+        public KeyCode m_sprint;
+        public KeyCode m_pickUP;
+        public KeyCode m_drop;
+        public KeyCode m_inventory;
+    }
 
     #endregion
 
@@ -81,7 +89,7 @@ public class Controller : MonoBehaviour
         }
 
         Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     protected virtual void InputHandle()
@@ -123,19 +131,19 @@ public class Controller : MonoBehaviour
         m_character.m_input.x = Input.GetAxis(m_horizontalInput);
         m_character.m_input.y = Input.GetAxis(m_verticalInput);
 
-        if (Input.GetKey(m_fwdInput))
+        if (Input.GetKey(m_controlKey[0]))
         {
             m_character.MoveFront();
         }
-        if (Input.GetKey(m_bwdInput))
+        if (Input.GetKey(m_controlKey[1]))
         {
             m_character.MoveBack();
         }
-        if (Input.GetKey(m_leftInput))
+        if (Input.GetKey(m_controlKey[2]))
         {
             m_character.MoveLeft();
         }
-        if (Input.GetKey(m_rightInput))
+        if (Input.GetKey(m_controlKey[3]))
         {
             m_character.MoveRight();
         }
@@ -155,13 +163,13 @@ public class Controller : MonoBehaviour
 
     protected virtual void JumpInput()
     {
-        if (Input.GetKeyDown(m_jumpInput))
+        if (Input.GetKeyDown(m_controlKey[4]))
             m_character.Jump();
     }
 
     protected virtual void PickupInput()
     {
-        if (Input.GetKeyDown(m_pickupInput))
+        if (Input.GetKeyDown(m_controlKey[6]))
         {
             m_character.PickUp();
         }
@@ -169,7 +177,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void DropInput()
     {
-        if (Input.GetKeyDown(m_dropInput))
+        if (Input.GetKeyDown(m_controlKey[7]))
         {
             m_character.Drop();
         }
@@ -216,7 +224,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void InventoryInput()
     {
-        if (Input.GetKeyDown(m_inventoryInput))
+        if (Input.GetKeyDown(m_controlKey[8]))
         {
             m_character.Inventory();
         }

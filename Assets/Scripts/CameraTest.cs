@@ -12,7 +12,20 @@ public class CameraTest : MonoBehaviour
     [SerializeField] private float m_defaultDistanceToPlayer = 2.5f;
     [SerializeField] private float m_xClampValue = 35f;
 
-    [SerializeField] private float m_maxTranslate = 0f;
+    private float m_mouseX = 0f;
+    private float m_mouseY = 0f;
+
+    private float m_xAxisClamp = 0f;
+    private Vector2 m_movementSpeed = new Vector2();
+
+    [SerializeField] private float m_mouseSensitivityX = 3f;
+    [SerializeField] private float m_mouseSensitivityY = 3f;
+    [SerializeField] private float m_minX = 0f;
+    [SerializeField] private float m_maxX = 0f;
+    [SerializeField] private float m_minY = 0f;
+    [SerializeField] private float m_maxY = 0f;
+
+    public bool m_isTps = true;
 
     private static CameraTest m_instance;
 
@@ -33,12 +46,18 @@ public class CameraTest : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        SetDefaultPosition();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void SetDefaultPosition()
+    {
+        transform.position = m_tpsCameraPosition.transform.position;
     }
 
     public void CheckClampX()
@@ -56,85 +75,64 @@ public class CameraTest : MonoBehaviour
 
     public void TranslateCamera(float _wheelSpeed)
     {
-        if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) <= 10.1f)
-        {
-            transform.Translate(Vector3.forward * _wheelSpeed * 100 * Time.deltaTime);
-        }
-    }
-
-    public void TranslateCameraIn(float _wheelSpeed)
-    {
-        if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) <= 10.1f)
-        {
-            transform.Translate(Vector3.forward * _wheelSpeed * 100 * Time.deltaTime);
-        }
-    }
-
-    public void TranslateOutCamera(float _wheelSpeed)
-    {
-
-        if (transform.position == m_playerHead.transform.position)
-        {
-            transform.Translate(Vector3.forward * _wheelSpeed * 100 * Time.deltaTime);
-
-        }        
-        
-        //Make this test in the controller therewith switch camera
-        if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) < 1.5f)
-        {
-            Debug.Log($"Stop");
-        }
-
+        transform.Translate(Vector3.forward * _wheelSpeed * 100 * Time.deltaTime);
     }
 
     public void SetFpsPosition()
     {
-        //Make this test in the controller therewith switch camera
         if (Vector3.Distance(transform.position, m_thirdPersonCharacter.transform.position) < 1.5f)
         {
             transform.position = m_playerHead.transform.position;
+            //camera is Fps 
+            m_isTps = false;
         }
     }
 
     public void SetTpsPosition()
     {
+        if (Vector3.Distance(transform.position, m_tpsCameraPosition.transform.position) < 1.5f)
+        {
+            transform.position = m_tpsCameraPosition.transform.position;
+            //camera is tps
+            m_isTps = true;
+        }
     }
 
-    public bool IsFpsPosition()
+    public void CheckPositionDistance()
     {
-        transform.position = m_playerHead.transform.position;
-        return true;
+        if (Vector3.Distance(transform.position, m_tpsCameraPosition.transform.position) == 0)
+        {
+            m_isTps = true;
+        }
+        else if (Vector3.Distance(transform.position, m_playerHead.transform.position) == 0)
+        {
+            m_isTps = false;
+        }
     }
 
-    public bool IsTpsPosition()
+    public void CameraFPS(float _x, float _y)
     {
-        transform.position = m_tpsCameraPosition.transform.position;
-        return true;
-    }
+        m_mouseX += _x * m_mouseSensitivityX;
+        m_mouseY -= _y * m_mouseSensitivityY;
 
-    private void CameraFPS(float _x, float _y)
-    {
-        //m_mouseX += _x * m_mouseSensitivityX;
-        //m_mouseY -= _y * m_mouseSensitivityY;
+        m_movementSpeed.x = _x;
+        m_movementSpeed.y = -_y;
 
-        //m_movementSpeed.x = _x;
-        //m_movementSpeed.y = -_y;
+        m_xAxisClamp += m_mouseY;
 
-        //m_xAxisClamp += m_mouseY;
+        if (m_xAxisClamp > m_minY)
+        {
+            m_xAxisClamp = m_minY;
+            m_mouseY = 0.0f;
+        }
+        else if (m_xAxisClamp < m_maxY)
+        {
+            m_xAxisClamp = m_maxY;
+            m_mouseY = 0.0f;
+        }
 
-        //if (m_xAxisClamp > m_minY)
-        //{
-        //    m_xAxisClamp = m_minY;
-        //    m_mouseY = 0.0f;
-        //}
-        //else if (m_xAxisClamp < m_maxY)
-        //{
-        //    m_xAxisClamp = m_maxY;
-        //    m_mouseY = 0.0f;
-        //}
-
-        //m_mouseX = m_target.root.localEulerAngles.x;
-        //m_mouseY = m_target.root.localEulerAngles.y;
+        m_mouseX = m_thirdPersonCharacter.transform.root.localEulerAngles.x;
+        m_mouseY = m_thirdPersonCharacter.transform.root.localEulerAngles.y;
 
     }
 

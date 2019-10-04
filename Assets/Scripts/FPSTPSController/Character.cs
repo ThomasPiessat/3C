@@ -336,7 +336,6 @@ public class Character : MonoBehaviour
 
     #endregion
 
-
     #region PUBLIC METHODS
 
     public void TakeDamage(float _damageTaken)

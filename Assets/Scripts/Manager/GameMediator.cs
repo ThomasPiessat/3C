@@ -9,6 +9,7 @@ public class GameMediator : MySingleton<GameMediator>
 
     private static Character m_character = null;
     private static ThirdPersonController m_thirdPersonController = null;
+    private static Controller m_controller = null;
     private static FirstPersonController m_firstPersonCharcater = null;
     private static Pause m_pause = null;
     private static InventoryUI m_inventory = null;
@@ -41,6 +42,19 @@ public class GameMediator : MySingleton<GameMediator>
                 m_thirdPersonController = GameObject.FindObjectOfType<ThirdPersonController>();
             }
             return m_thirdPersonController;
+        }
+    }
+
+    public Controller Controller
+    {
+        get
+        {
+            if (!m_controller)
+            {
+                m_controller = GameObject.FindObjectOfType<Controller>();
+            }
+
+            return m_controller;
         }
     }
 

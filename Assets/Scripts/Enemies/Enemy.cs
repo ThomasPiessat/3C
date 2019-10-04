@@ -34,12 +34,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     #endregion
 
-    #region PRIVATE METHODS
-
-
-
-    #endregion
-
     #region PUBLIC METHODS
 
     public void TakeDamage(float _damageTaken)
@@ -60,5 +54,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     #endregion
 
+    #region PRIVATE METHODS
 
+
+
+    #endregion
 }

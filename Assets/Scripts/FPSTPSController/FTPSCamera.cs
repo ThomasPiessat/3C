@@ -8,7 +8,7 @@ public class FTPSCamera : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    [SerializeField] private readonly Character m_character = null;
+    [SerializeField] private Character m_character = null;
 
     #endregion
 

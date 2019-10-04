@@ -39,9 +39,9 @@ public class InputUI : MonoBehaviour
     private void SetInput()
     {
         Debug.Log(("SetInputs", gameObject));
-        for (int i = 0; i < GameMediator.Instance.TPSController.m_controlKey.Count; i++)
+        for (int i = 0; i < GameMediator.Instance.Controller.m_controlKey.Count; i++)
         {
-            Debug.Log(GameMediator.Instance.TPSController.m_controlKey[i]);
+            Debug.Log(GameMediator.Instance.Controller.m_controlKey[i]);
         }
 
         for (int k = 0; k < m_listInputDP.Count; k++)
@@ -54,7 +54,7 @@ public class InputUI : MonoBehaviour
             }
 
 
-            m_listInputDP[k].value = (int)GameMediator.Instance.TPSController.m_controlKey[k] - (int)KeyCode.A;
+            m_listInputDP[k].value = (int)GameMediator.Instance.Controller.m_controlKey[k] - (int)KeyCode.A;
         }
     }
 
@@ -71,7 +71,7 @@ public class InputUI : MonoBehaviour
     {
         for (int i = 0; i < m_listInputDP.Count; i++)
         {
-            GameMediator.Instance.TPSController.m_controlKey[i] = (KeyCode)(m_listInputDP[i].value + (int)KeyCode.A);
+            GameMediator.Instance.Controller.m_controlKey[i] = (KeyCode)(m_listInputDP[i].value + (int)KeyCode.A);
         }
     }
 
@@ -83,7 +83,7 @@ public class InputUI : MonoBehaviour
     {
         for (int i = 0; i < m_listInputButton.Count; i++)
         {
-            m_listInputButton[i].GetComponentInChildren<TMP_Text>().SetText(GameMediator.Instance.TPSController.m_controlKey[i].ToString());
+            m_listInputButton[i].GetComponentInChildren<TMP_Text>().SetText(GameMediator.Instance.Controller.m_controlKey[i].ToString());
         }
     }
 
@@ -120,7 +120,7 @@ public class InputUI : MonoBehaviour
 
     private void SetPlayerInput(KeyCode _newKeyCode)
     {
-        GameMediator.Instance.TPSController.m_controlKey[m_IndexToAssign] = _newKeyCode;
+        GameMediator.Instance.Controller.m_controlKey[m_IndexToAssign] = _newKeyCode;
     }
 
     //reset player input by default (ZQSD)

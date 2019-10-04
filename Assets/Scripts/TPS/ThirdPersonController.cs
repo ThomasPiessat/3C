@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -25,7 +26,7 @@ public class ThirdPersonController : MonoBehaviour
     protected CameraTest m_cameraTest;
     [SerializeField] private float m_mouthSpeed = 10f;
 
-    private bool m_isTps = true;
+    [SerializeField] private TextMeshProUGUI m_textCamera = null;
 
     #endregion
 
@@ -48,6 +49,8 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         InputHandle();
+
+        m_textCamera.SetText($"CameraIsTps {m_cameraTest.m_isTps.ToString()}");
     }
 
     #endregion
@@ -69,6 +72,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         //CameraInput();
         ChangePOV();
+        ChangeCameraProperties();
 
         if (!m_character.lockMovement)
         {
@@ -142,40 +146,36 @@ public class ThirdPersonController : MonoBehaviour
 
     #region Camera Methods
 
-    protected virtual void CameraInput()
-    {
-        if (m_tpsCamera == null)
-            return;
-        m_tpsCamera.TurnAroundY(Input.GetAxis("Mouse X"));
-        m_tpsCamera.TurnAroundX(-Input.GetAxis("Mouse Y"));
-
-        RotateWithCamera();
-    }
-
     protected virtual void ChangePOV()
     {
-        m_cameraTest.RaycastTest();
-        if (m_cameraTest != null && m_isTps)
-        {
-            m_cameraTest.TurnAroundY((Input.GetAxis("Mouse X") * m_mouthSpeed));
-        }
-
         //Zoom in
-        if (Input.mouseScrollDelta.y >= 0 && m_isTps)
+        if (Input.mouseScrollDelta.y >= 0)
         {
-            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.SetFpsPosition();
-            
         }
 
         //Zoom Out
-        if (Input.mouseScrollDelta.y <= 0 && !m_isTps)
+        if (Input.mouseScrollDelta.y <= 0)
         {
-            //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_cameraTest.SetTpsPosition();
-            
+        }
+    }
+
+    private void ChangeCameraProperties()
+    {
+        if (m_cameraTest.m_isTps)
+        {
+            m_cameraTest.TurnAroundY((Input.GetAxis("Mouse X") * m_mouthSpeed));
+        }
+        else
+        {
+            Debug.Log($"FPS");
+            var Y = Input.GetAxis(m_rotateCameraYInput);
+            var X = Input.GetAxis(m_rotateCameraXInput);
+
+            m_cameraTest.CameraFPS(X, Y);
         }
     }
 
