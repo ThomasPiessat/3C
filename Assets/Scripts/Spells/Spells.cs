@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
+    #region PROPERTIES
+
+
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
