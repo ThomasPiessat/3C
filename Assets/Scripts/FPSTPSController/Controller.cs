@@ -103,7 +103,7 @@ public class Controller : MonoBehaviour
 
         else if (!m_camera.m_fpsCamera)
         {
-            CameraInput();
+            //CameraInput();
         }
 
         if (!m_character.m_lockMovement)
@@ -240,7 +240,7 @@ public class Controller : MonoBehaviour
     {
         m_camera.TurnAroundY(Input.GetAxis("Mouse X"));
         m_camera.TurnAroundX(-Input.GetAxis("Mouse Y"));
-        m_camera.RotateWithCamera();
+        //m_camera.RotateWithCamera();
     }
 
     protected virtual void ChangePOV()
