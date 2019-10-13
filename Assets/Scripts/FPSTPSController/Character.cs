@@ -164,10 +164,8 @@ public class Character : MonoBehaviour
     {
         DetectWeaponMax();
         RaycastHit hit;
-        int layerMask = 0;
-        layerMask = ~layerMask;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, m_pickUpDistance, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, m_pickUpDistance))
         {
             if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {

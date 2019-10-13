@@ -6,7 +6,7 @@ public class Spells : MonoBehaviour
 {
     #region PROPERTIES
 
-
+    private float m_ManaCost = 0.0f;
 
     #endregion
 
