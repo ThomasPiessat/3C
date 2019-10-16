@@ -17,7 +17,6 @@ public class Controller : MonoBehaviour
     [Header("Movement Inputs")]
     [SerializeField] private string m_horizontalInput = "Horizontal";
     [SerializeField] private string m_verticalInput = "Vertical";
-    [SerializeField] private KeyCode m_sprintInput = KeyCode.LeftShift;
     public List<KeyCode> m_controlKey = new List<KeyCode>();
     public DefautInputStruct m_struct;
     [Header("Action Imputs")]
@@ -29,7 +28,6 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode m_rightHandInput = KeyCode.Mouse1;
     [Header("UI Inputs")]
     [SerializeField] private KeyCode m_pauseInput = KeyCode.Escape;
-    [SerializeField] private KeyCode m_inventoryInput = KeyCode.I;
 
     [Serializable]
     public struct DefautInputStruct
@@ -44,6 +42,8 @@ public class Controller : MonoBehaviour
         public KeyCode m_drop;
         public KeyCode m_inventory;
     }
+
+    private bool m_IsFpsCamera = true;
 
     #endregion
 
@@ -95,7 +95,8 @@ public class Controller : MonoBehaviour
     protected virtual void InputHandle()
     {
         //ZoomCam();
-        ChangePOV();
+        //ChangePOV();
+        TranslationCamTest();
         if (m_camera.m_fpsCamera)
         {
             m_camera.CameraFPS(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
@@ -151,11 +152,11 @@ public class Controller : MonoBehaviour
 
     protected virtual void SprintInput()
     {
-        if (Input.GetKeyDown(m_sprintInput))
+        if (Input.GetKeyDown(m_controlKey[5]))
         {
             m_character.Sprint(true);
         }
-        else if (Input.GetKeyUp(m_sprintInput))
+        else if (Input.GetKeyUp(m_controlKey[5]))
         {
             m_character.Sprint(false);
         }
@@ -206,7 +207,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void RightHandInput()
     {
-        if(Input.GetKeyDown(m_rightHandInput))
+        if (Input.GetKeyDown(m_rightHandInput))
         {
             m_character.Attack(1);
         }
@@ -257,6 +258,29 @@ public class Controller : MonoBehaviour
         {
             //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_camera.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
+        }
+    }
+
+    protected virtual void TranslationCamTest()
+    {
+
+        if (Vector3.Distance(m_camera.transform.position, m_character.transform.position) <= 0)
+        {
+            m_IsFpsCamera = true;
+
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            }
+
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
+            }
+        }
+        else
+        {
+            m_IsFpsCamera = false;
         }
     }
 

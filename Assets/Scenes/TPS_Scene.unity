@@ -10505,7 +10505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_horizontalInput: Horizontal
   m_verticalInput: Vertical
-  m_sprintInput: 304
   m_controlKey: 7a000000730000007100000064000000200000003001000065000000610000006900000000000000
   m_struct:
     m_forward: 122
@@ -10522,7 +10521,6 @@ MonoBehaviour:
   m_leftHandInput: 323
   m_rightHandInput: 324
   m_pauseInput: 27
-  m_inventoryInput: 105
 --- !u!114 &821637863
 MonoBehaviour:
   m_ObjectHideFlags: 0

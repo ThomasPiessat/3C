@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class FTPSCamera : MonoBehaviour
     [SerializeField] private float m_maxY = -90f;
     private float m_mouseX = 0f;
     private float m_mouseY = 0f;
+    private Vector3 newPos = new Vector3();
 
     //FPS Camera
     [SerializeField] private float m_cameraZoomMin = 0f;
@@ -114,23 +116,6 @@ public class FTPSCamera : MonoBehaviour
         transform.parent = m_character.transform;
     }
 
-    public bool CheckClampTranslation()
-    {
-        float distance = transform.position.z - m_character.transform.position.z;
-        Debug.Log(distance);
-        if (distance >= m_cameraZoomMin)
-        {
-            return true;
-        }
-
-        if (distance <= m_cameraZoomMax)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     public void TranslateCamera(float _wheelSpeedValue)
     {
         if (Vector3.Distance(transform.position, m_character.transform.position) <= 10f)
@@ -142,7 +127,7 @@ public class FTPSCamera : MonoBehaviour
     public void ChangeCamera(float _mouseWheelValue)
     {
         Vector3 dir = m_character.transform.position - transform.position;
-        transform.Translate(dir.normalized * _mouseWheelValue * m_scrollSpeed, Space.World);
+        transform.Translate(Vector3.forward * _mouseWheelValue * m_scrollSpeed * Time.deltaTime);
     }
 
     public bool CameraMax()
@@ -211,7 +196,7 @@ public class FTPSCamera : MonoBehaviour
 
     private void DetectCollision()
     {
-        RaycastHit[] hits;
+
 
     }
 
