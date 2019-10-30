@@ -95,7 +95,7 @@ public class Controller : MonoBehaviour
     protected virtual void InputHandle()
     {
         //ZoomCam();
-        ChangePOV();
+        //ChangePOV();
         if (m_camera.m_fpsCamera)
         {
             m_camera.CameraFPS(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
