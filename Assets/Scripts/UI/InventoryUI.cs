@@ -23,6 +23,8 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Character m_character = null;
 
+    [SerializeField] private Button m_ItemButton = null;
+
     #endregion
 
     #region MONOBEHAVIOUR METHODS
@@ -52,7 +54,7 @@ public class InventoryUI : MonoBehaviour
             m_inventoryUI.SetActive(true);
             Time.timeScale = 0f;
             ResetPanel();
-            DisplayItem();
+            //DisplayItem();           
         }
     }
 
@@ -93,6 +95,15 @@ public class InventoryUI : MonoBehaviour
         {
             Instantiate(m_itemInfo, m_listInventoryPanel[i].transform);
             m_itemInfo.SetItemInfo(GameMediator.Instance.MainCharacter.m_items[0].m_name, GameMediator.Instance.MainCharacter.m_items[0].m_value);
+        }
+    }
+
+    private void InstantiateItemButtonInventory()
+    {
+        for (int i = 0; i < GameMediator.Instance.MainCharacter.m_items.Count; i++)
+        {
+            Instantiate(m_ItemButton, m_listInventoryPanel[i].transform);
+            m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[0].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[0].m_value;
         }
     }
 

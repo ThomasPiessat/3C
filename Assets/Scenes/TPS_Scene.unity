@@ -11841,6 +11841,8 @@ MonoBehaviour:
   m_itemInfo: {fileID: 5400672518652074461, guid: bd0ffc162ddc9084a9d4e6facce42d6b,
     type: 3}
   m_character: {fileID: 821637863}
+  m_ItemButton: {fileID: 5130702743361778840, guid: 38c0a5113b4528a4d8cd6a896a59972e,
+    type: 3}
 --- !u!1 &880001504
 GameObject:
   m_ObjectHideFlags: 0
@@ -26945,7 +26947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1768741498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28994,7 +28996,7 @@ MonoBehaviour:
   m_Spacing: 17.04
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
