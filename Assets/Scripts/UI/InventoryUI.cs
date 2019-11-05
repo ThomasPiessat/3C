@@ -19,7 +19,7 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Button m_ItemButton = null;
 
-    [SerializeField] private TextMeshProUGUI m_CategoryWhereAreWe = null;
+    [SerializeField] private TextMeshProUGUI m_CategorySelected = null;
     [SerializeField] private TextMeshProUGUI m_CapacityOfInventory = null;
 
 
@@ -68,6 +68,7 @@ public class InventoryUI : MonoBehaviour
 
                 m_listInventoryPanel[_index].SetActive(true);
                 m_listInventoryButton[_index].GetComponent<Image>().color = Color.yellow;
+                //CategoryText(i);
             }
         }
     }
@@ -90,7 +91,12 @@ public class InventoryUI : MonoBehaviour
 
     private void CapacityText()
     {
-        m_CapacityOfInventory.text = GameMediator.Instance.MainCharacter.m_items.Count.ToString() + " / " + GameMediator.Instance.MainCharacter.m_maxItemsToHold.ToString();
+        m_CapacityOfInventory.text = "Capacity : " + GameMediator.Instance.MainCharacter.m_items.Count.ToString() + " / " + GameMediator.Instance.MainCharacter.m_maxItemsToHold.ToString();
+    }
+
+    private void CategoryText(int _Index)
+    {
+        m_CategorySelected.text = m_listInventoryPanel[_Index].ToString();
     }
 
     public void DisplayOnRightPanel()
@@ -99,18 +105,28 @@ public class InventoryUI : MonoBehaviour
         {
             if(GameMediator.Instance.MainCharacter.m_items[i].GetComponent<Sword>())
             {
-                Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
-                Instantiate(m_ItemButton, m_listInventoryPanel[1].transform);
-                m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[i].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[i].m_value;
-
+                InstantiateOnRightPanel(1, i);
             }
             else if(GameMediator.Instance.MainCharacter.m_items[i].GetComponent(typeof(IArmor)))
             {
-                Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
-                Instantiate(m_ItemButton, m_listInventoryPanel[2].transform);
-                m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[i].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[i].m_value;
+                InstantiateOnRightPanel(2, i);
+            }
+            else if(GameMediator.Instance.MainCharacter.m_items[i].GetComponent(typeof(IUsable)))
+            {
+                InstantiateOnRightPanel(3, i);
+            }
+            else
+            {
+                InstantiateOnRightPanel(4, i);
             }
         }
+    }
+
+    private void InstantiateOnRightPanel(int _PanelIndex, int _ItemIndex)
+    {
+        Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
+        Instantiate(m_ItemButton, m_listInventoryPanel[_PanelIndex].transform);
+        m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
     }
 
     public void InstantiateItemButtonInventory()
