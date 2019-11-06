@@ -68,7 +68,6 @@ public class InventoryUI : MonoBehaviour
 
                 m_listInventoryPanel[_index].SetActive(true);
                 m_listInventoryButton[_index].GetComponent<Image>().color = Color.yellow;
-                //CategoryText(i);
             }
         }
     }
@@ -96,7 +95,9 @@ public class InventoryUI : MonoBehaviour
 
     private void CategoryText(int _Index)
     {
-        m_CategorySelected.text = m_listInventoryPanel[_Index].ToString();
+        //m_CategorySelected.text = m_listInventoryPanel[0].ToString();
+        m_CategorySelected.text = m_listInventoryButton[0].ToString();
+        //Debug.Log(m_listInventoryPanel[_Index].ToString());
     }
 
     public void DisplayOnRightPanel()
