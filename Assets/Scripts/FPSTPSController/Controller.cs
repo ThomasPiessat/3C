@@ -200,7 +200,7 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(m_leftHandInput))
         {
-            m_character.Attack(0);
+            //m_character.Attack(0);
         }
     }
 
@@ -208,7 +208,7 @@ public class Controller : MonoBehaviour
     {
         if(Input.GetKeyDown(m_rightHandInput))
         {
-            m_character.Attack(1);
+            //m_character.Attack(1);
         }
     }
 
