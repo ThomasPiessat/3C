@@ -10,10 +10,20 @@ public class InputUI : MonoBehaviour
     public List<TMP_Dropdown> m_listInputDP = null;
 
     public List<Button> m_listInputButton = null;
-    
+
 
     private bool m_isAssign = false;
     private int m_IndexToAssign = 0;
+
+    private static InputUI m_Instance = null;
+
+    public static InputUI Instance
+    {
+        get
+        {
+            return m_Instance;
+        }
+    }
 
     private void Awake()
     {
@@ -121,6 +131,11 @@ public class InputUI : MonoBehaviour
     private void SetPlayerInput(KeyCode _newKeyCode)
     {
         GameMediator.Instance.Controller.m_controlKey[m_IndexToAssign] = _newKeyCode;
+    }
+
+    public void UpdateText(List<KeyCode> _ListKC)
+    {
+
     }
 
     //reset player input by default (ZQSD)
