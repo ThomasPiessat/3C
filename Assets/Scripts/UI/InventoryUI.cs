@@ -22,7 +22,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_CategorySelected = null;
     [SerializeField] private TextMeshProUGUI m_CapacityOfInventory = null;
 
-
     #endregion
 
     #region MONOBEHAVIOUR METHODS
@@ -53,10 +52,9 @@ public class InventoryUI : MonoBehaviour
             Time.timeScale = 0f;
             ResetPanel();
             CapacityText();
-            //DisplayItem(); 
+
         }
     }
-
     public void ChangePanel(int _index)
     {
         if (m_listInventoryPanel[_index] != null && m_listInventoryButton != null)
@@ -96,7 +94,7 @@ public class InventoryUI : MonoBehaviour
     private void CategoryText(int _Index)
     {
         //m_CategorySelected.text = m_listInventoryPanel[0].ToString();
-        m_CategorySelected.text = m_listInventoryButton[0].ToString();
+        m_CategorySelected.text = m_listInventoryButton[_Index].ToString();
         //Debug.Log(m_listInventoryPanel[_Index].ToString());
     }
 
