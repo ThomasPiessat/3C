@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6093094920585362411}
   - component: {fileID: 5573979032803619176}
   - component: {fileID: 5130702743361778840}
+  - component: {fileID: 373572776698984101}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Item_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +98,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -122,6 +123,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &373572776698984101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310332984548743447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03759263ec4f60c4fa4b138133cda3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ObjectToManipulate: {fileID: 0}
+  xPosition: 1400
+  yPosition: 1000
+  zPosition: 3
+  m_Coordinate: {x: 0, y: 0, z: 0}
 --- !u!1 &2380957684616000100
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +371,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -413,7 +431,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6688353440254272115}
-    characterCount: 14
+    characterCount: 15
     spriteCount: 0
     spaceCount: 2
     wordCount: 2

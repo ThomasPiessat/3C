@@ -6,30 +6,30 @@ public class Item : MonoBehaviour
 {
     #region ATTRIBUTES
 
-	
+
     #endregion
-	
-	#region PROPERTIES
 
-    [SerializeField] public string m_name = "";
-    [SerializeField] public int m_value = 0;   
+    #region PROPERTIES
 
+    public string m_name = "";
+    public int m_value = 0;
 
+    protected bool m_IsStackable = false;
 
-	#endregion
-	
-	#region MONOBEHAVIOUR METHODS
-	
+    #endregion
+
+    #region MONOBEHAVIOUR METHODS
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     #endregion

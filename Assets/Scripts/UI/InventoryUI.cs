@@ -17,9 +17,8 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Character m_character = null;
 
-    [SerializeField] private Button m_ItemButton = null;
+    [SerializeField] private ManipulateObject m_ItemButton = null;
 
-    [SerializeField] private TextMeshProUGUI m_CategorySelected = null;
     [SerializeField] private TextMeshProUGUI m_CapacityOfInventory = null;
 
     #endregion
@@ -52,7 +51,6 @@ public class InventoryUI : MonoBehaviour
             Time.timeScale = 0f;
             ResetPanel();
             CapacityText();
-
         }
     }
     public void ChangePanel(int _index)
@@ -91,13 +89,6 @@ public class InventoryUI : MonoBehaviour
         m_CapacityOfInventory.text = "Capacity : " + GameMediator.Instance.MainCharacter.m_items.Count.ToString() + " / " + GameMediator.Instance.MainCharacter.m_maxItemsToHold.ToString();
     }
 
-    private void CategoryText(int _Index)
-    {
-        //m_CategorySelected.text = m_listInventoryPanel[0].ToString();
-        m_CategorySelected.text = m_listInventoryButton[_Index].ToString();
-        //Debug.Log(m_listInventoryPanel[_Index].ToString());
-    }
-
     public void DisplayOnRightPanel()
     {
         for (int i = 0; i < GameMediator.Instance.MainCharacter.m_items.Count; i++)
@@ -122,9 +113,10 @@ public class InventoryUI : MonoBehaviour
     }
 
     private void InstantiateOnRightPanel(int _PanelIndex, int _ItemIndex)
-    {
+    {        
+        //instantiate on AllItemPanel
         Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
-        Instantiate(m_ItemButton, m_listInventoryPanel[_PanelIndex].transform);
+        Instantiate(m_ItemButton, m_listInventoryPanel[_PanelIndex].transform);        
         m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
     }
 
