@@ -9,11 +9,8 @@ public class TestManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     [SerializeField] private Transform objectToManipulate = null;
     [SerializeField] Vector3 coordinate = Vector3.zero;
-    [SerializeField] Vector3 screenPos = Vector3.zero;
 
     private bool m_IsHighlighted = false;
-
-    Vector3 GetPosition() => Camera.main.ScreenToViewportPoint(screenPos);
 
     // Start is called before the first frame update
     void Start()
@@ -25,18 +22,31 @@ public class TestManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointe
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = new Vector3(GameMediator.Instance.MainCharacter.transform.position.x + 0, GameMediator.Instance.MainCharacter.transform.position.y + 1, GameMediator.Instance.MainCharacter.transform.position.z + 5);
-        screenPos = pos;       
-        coordinate = GetPosition();
+        Vector3 pos = new Vector3(GameMediator.Instance.MainCharacter.transform.position.x + 0, GameMediator.Instance.MainCharacter.transform.position.y + 200, GameMediator.Instance.MainCharacter.transform.position.z + 5);
+        coordinate = Camera.main.ScreenToViewportPoint(pos);
+        if (m_IsHighlighted)
+        {
+            objectToManipulate.GetComponent<MeshRenderer>().enabled = true;            
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                Debug.Log("ObjectOnClicked");
+                objectToManipulate.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!objectToManipulate) return;
-        objectToManipulate.position = coordinate;
-        objectToManipulate.GetComponent<MeshRenderer>().enabled = true;
-        //objectToManipulate.GetComponent<BoxCollider>().enabled = true;
-        m_IsHighlighted = true;
+        if (!m_IsHighlighted)
+        {
+            if (!objectToManipulate) return;
+            objectToManipulate.position = coordinate;
+            objectToManipulate.GetComponent<MeshRenderer>().enabled = true;
+            //objectToManipulate.GetComponent<BoxCollider>().enabled = true;
+            m_IsHighlighted = true;
+        }
+        else
+            m_IsHighlighted = false;
 
     }
 
@@ -48,7 +58,7 @@ public class TestManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnSelect(BaseEventData eventData)
     {
-        objectToManipulate.GetComponent<MeshRenderer>().enabled = true;
+        //objectToManipulate.GetComponent<MeshRenderer>().enabled = true;
         //objectToManipulate.GetComponent<BoxCollider>().enabled = true;
     }
 }
