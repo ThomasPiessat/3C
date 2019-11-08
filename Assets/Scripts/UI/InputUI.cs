@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class InputUI : MonoBehaviour
 {
+    [SerializeField] private GameObject m_optionUI = null;
     public List<TMP_Dropdown> m_listInputDP = null;
 
     public List<Button> m_listInputButton = null;
@@ -15,21 +16,24 @@ public class InputUI : MonoBehaviour
     private bool m_isAssign = false;
     private int m_IndexToAssign = 0;
 
-    private static InputUI m_Instance = null;
+    private static InputUI m_instance = null;
 
     public static InputUI Instance
     {
         get
         {
-            return m_Instance;
+            return m_instance;
         }
     }
 
-    private void Awake()
+    #region MONOBEHAVIOUR METHODS
+
+    void Awake()
     {
-        //SetInput();
-        //AddCallbacks();
+        m_optionUI.SetActive(false);
     }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
