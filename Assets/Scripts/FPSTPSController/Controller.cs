@@ -94,16 +94,16 @@ public class Controller : MonoBehaviour
 
     protected virtual void InputHandle()
     {
-        //ZoomCam();
-        //ChangePOV();
-        if (m_camera.m_fpsCamera)
+        ChangeCamera(); 
+
+        if (m_camera.m_isFpsCamera)
         {
             m_camera.CameraFPS(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
         }
 
-        else if (!m_camera.m_fpsCamera)
+        else if (!m_camera.m_isFpsCamera)
         {
-            //CameraInput();
+            CameraInput();
         }
 
         if (!m_character.m_lockMovement)
@@ -257,6 +257,20 @@ public class Controller : MonoBehaviour
         {
             //m_camera.ChangeCamera(Input.GetAxis("Mouse ScrollWheel"));
             m_camera.TranslateCamera(Input.GetAxis("Mouse ScrollWheel"));
+        }
+    }
+
+    protected virtual void ChangeCamera()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            m_camera.SetFPSCameraPos();
+            m_camera.m_isFpsCamera = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.K))
+        {
+            m_camera.SetTPSCameraPos();
+            m_camera.m_isFpsCamera = false;
         }
     }
 

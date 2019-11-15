@@ -40,7 +40,7 @@ public class FTPSCamera : MonoBehaviour
     [SerializeField] private Image m_aimPoint = null;
     [SerializeField] private float m_interactableDistance = 50f;
 
-    public bool m_fpsCamera = true;
+    public bool m_isFpsCamera = true;
 
     #endregion
 
@@ -65,6 +65,7 @@ public class FTPSCamera : MonoBehaviour
 
     #region PUBLIC METHODS
 
+    //FPSCamera
     public bool CheckClampX(float _mouseValue)
     {
         float distance = transform.position.y - m_character.transform.position.y;
@@ -87,12 +88,14 @@ public class FTPSCamera : MonoBehaviour
         return false;
     }
 
+    //TPSCamera
     public void TurnAroundY(float _mouseSpeedValue)
     {
         transform.RotateAround(m_character.transform.position, Vector3.up,
             m_sensitivityY * _mouseSpeedValue * Time.deltaTime);
     }
 
+    //TPSCamera
     public void TurnAroundX(float _mouseSpeedValue)
     {
         if (CheckClampX(_mouseSpeedValue))
@@ -110,25 +113,7 @@ public class FTPSCamera : MonoBehaviour
         //m_player.transform.Rotate(Vector3.up, angle);
         m_character.transform.rotation = Quaternion.Lerp(m_character.transform.rotation, finalRotation, 5 * Time.deltaTime);
 
-
         transform.parent = m_character.transform;
-    }
-
-    public bool CheckClampTranslation()
-    {
-        float distance = transform.position.z - m_character.transform.position.z;
-        Debug.Log(distance);
-        if (distance >= m_cameraZoomMin)
-        {
-            return true;
-        }
-
-        if (distance <= m_cameraZoomMax)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public void TranslateCamera(float _wheelSpeedValue)
@@ -139,24 +124,14 @@ public class FTPSCamera : MonoBehaviour
         }
     }
 
-    public void ChangeCamera(float _mouseWheelValue)
+    public void SetTPSCameraPos()
     {
-        Vector3 dir = m_character.transform.position - transform.position;
-        transform.Translate(dir.normalized * _mouseWheelValue * m_scrollSpeed, Space.World);
-    }
-
-    public bool CameraMax()
-    {
-        m_fpsCamera = false;
         transform.position = new Vector3(m_character.cameraMax.position.x, m_character.cameraMax.position.y, m_character.cameraMax.position.z);
-        return false;
     }
 
-    public bool CameraMin()
+    public void SetFPSCameraPos()
     {
-        m_fpsCamera = true;
         transform.position = new Vector3(m_character.cameraMin.position.x, m_character.cameraMin.position.y, m_character.cameraMin.position.z);
-        return true;
     }
 
     public void CameraFPS(float _mouseY, float _mouseX)
