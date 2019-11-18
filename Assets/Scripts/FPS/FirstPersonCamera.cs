@@ -12,7 +12,6 @@ public class FirstPersonCamera : MonoBehaviour
 
     private Camera m_camera = null;
     [SerializeField] private Transform m_target = null;
-    private Vector2 m_movementSpeed = new Vector2();
 
     private float m_offsetPlayerPivot = 0;
     private float m_distance = 5f;
@@ -29,7 +28,6 @@ public class FirstPersonCamera : MonoBehaviour
     [SerializeField] private float m_rightOffset = 0f;
     [SerializeField] private float m_defaultDistanceToPlayer = 2.5f;
     [SerializeField] private float m_height = 1.4f;
-    [SerializeField] private float m_smoothFollow = 10f;
     [SerializeField] private float m_mouseSensitivityX = 3f;
     [SerializeField] private float m_mouseSensitivityY = 3f;
     [SerializeField] private float m_minX = 0f;
@@ -92,9 +90,6 @@ public class FirstPersonCamera : MonoBehaviour
     {
         m_mouseX += _x * m_mouseSensitivityX;
         m_mouseY -= _y * m_mouseSensitivityY;
-
-        m_movementSpeed.x = _x;
-        m_movementSpeed.y = -_y;
 
         m_xAxisClamp += m_mouseY;
 
