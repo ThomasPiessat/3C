@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -132,9 +132,6 @@ GameObject:
   - component: {fileID: 226614255}
   - component: {fileID: 226614254}
   - component: {fileID: 226614253}
-  - component: {fileID: 226614252}
-  - component: {fileID: 226614251}
-  - component: {fileID: 226614250}
   m_Layer: 5
   m_Name: CanvasGPP
   m_TagString: Untagged
@@ -142,68 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &226614250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226614249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc2b5991074f1544a64896e2ea6e1da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_inventoryUI: {fileID: 0}
-  m_listInventoryPanel:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_listInventoryButton:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_itemInfo: {fileID: 5400672518652074461, guid: bd0ffc162ddc9084a9d4e6facce42d6b,
-    type: 3}
-  m_character: {fileID: 0}
-  m_ItemButton: {fileID: 373572776698984101, guid: 38c0a5113b4528a4d8cd6a896a59972e,
-    type: 3}
-  m_CapacityOfInventory: {fileID: 0}
---- !u!114 &226614251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226614249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52a3b148279eafd4cbe2bf2345582de4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooManyItems: {fileID: 0}
-  m_PickUpCaract: {fileID: 0}
-  m_itemNameTMP: {fileID: 0}
-  m_itemValueTMP: {fileID: 0}
-  m_itemSpecTMP: {fileID: 0}
---- !u!114 &226614252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226614249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc97484f86d7e8429510cbd52bd4e40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_pauseUI: {fileID: 0}
-  m_optionUI: {fileID: 0}
 --- !u!114 &226614253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,10 +332,10 @@ MonoBehaviour:
   m_jumpInput: 32
   m_sprintInput: 304
   m_pauseInput: 27
-  m_controlKey: 
+  m_controlKey: 7a000000730000007100000064000000000000000000000000000000000000000000000000000000
   m_struct:
-    m_forward: 0
-    m_back: 0
+    m_forward: 122
+    m_back: 115
     m_left: 0
     m_right: 0
     m_jump: 0
@@ -1635,7 +1570,7 @@ MonoBehaviour:
   m_maxX: 0
   m_minY: 0
   m_maxY: 0
-  m_firstPersonCharacter: {fileID: 0}
+  m_firstPersonCharacter: {fileID: 635533218}
 --- !u!81 &1979882898
 AudioListener:
   m_ObjectHideFlags: 0
