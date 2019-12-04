@@ -37,16 +37,16 @@ public class FadeCamera : MonoBehaviour
 
     public void OnGUI()
     {
-        if (m_Done)
-            return;
-        if (m_Texture == null)
-            m_Texture = new Texture2D(1,1);
+        //if (m_Done)
+        //    return;
+        //if (m_Texture == null)
+        //    m_Texture = new Texture2D(1,1);
 
-        m_Texture.SetPixel(0, 0, new Color(0, 0, 0, m_Alpha));
-        m_Texture.Apply();
+        //m_Texture.SetPixel(0, 0, new Color(0, 0, 0, m_Alpha));
+        //m_Texture.Apply();
 
-        m_Time += Time.deltaTime;
-        m_Alpha = m_FadeCurve.Evaluate(m_Time);
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), m_Texture);
+        //m_Time += Time.deltaTime;
+        //m_Alpha = m_FadeCurve.Evaluate(m_Time);
+        //GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), m_Texture);
     }
 }

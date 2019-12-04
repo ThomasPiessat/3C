@@ -16,6 +16,21 @@ public class Option : MonoBehaviour
 
     #endregion
 
+    #region MONOBEHAVIOUR METHODS
+
+    private void Awake()
+    {
+
+    }
+
+    void Start()
+    {
+        m_optionUI.SetActive(false);
+    }
+
+    #endregion
+
+
     #region PUBLIC METHODS
 
     public void Return()

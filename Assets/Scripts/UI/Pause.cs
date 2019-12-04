@@ -28,6 +28,7 @@ public class Pause : MonoBehaviour
     void Start()
     {
         m_pauseUI.SetActive(false);
+        m_optionUI.SetActive(false);
     }
 
     #endregion

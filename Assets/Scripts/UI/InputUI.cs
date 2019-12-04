@@ -30,7 +30,6 @@ public class InputUI : MonoBehaviour
 
     void Awake()
     {
-        m_optionUI.SetActive(false);
     }
 
     #endregion
