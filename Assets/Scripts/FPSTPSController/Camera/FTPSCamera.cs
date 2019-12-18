@@ -65,7 +65,7 @@ public class FTPSCamera : MonoBehaviour
 
     #region PUBLIC METHODS
 
-    //FPSCamera
+    //TPSCamera
     public bool CheckClampX(float _mouseValue)
     {
         float distance = transform.position.y - m_character.transform.position.y;
