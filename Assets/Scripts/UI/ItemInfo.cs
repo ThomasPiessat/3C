@@ -34,7 +34,7 @@ public class ItemInfo : MonoBehaviour
 	
 	#region PRIVATE METHODS
 
-    public void SetItemInfo(string _itemName, int _itemValue)
+    private void SetItemInfo(string _itemName, int _itemValue)
     {
         GetComponentInChildren<TextMeshProUGUI>().text = _itemName;
         m_itemValueTMP.text = "Value : " + _itemValue.ToString();

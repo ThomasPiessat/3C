@@ -13,12 +13,13 @@ public class GameMediator : MySingleton<GameMediator>
     private static FirstPersonController m_firstPersonCharcater = null;
     private static Pause m_pause = null;
     private static InventoryUI m_inventory = null;
+    private static InventoryManager m_inventoryManager = null;
     private static UIManager m_uiManager = null;
     private static InputUI m_inputUI = null;
 
     #endregion
 
-    #region PROPERTIES
+    #region GET
 
     public Character MainCharacter
     {
@@ -93,6 +94,16 @@ public class GameMediator : MySingleton<GameMediator>
             }
 
             return m_inventory;
+        }
+    }
+
+    public InventoryManager InventoryManager
+    {
+        get
+        {
+            if (!m_inventoryManager)
+                m_inventoryManager = GameObject.FindObjectOfType<InventoryManager>();
+            return m_inventoryManager;
         }
     }
 

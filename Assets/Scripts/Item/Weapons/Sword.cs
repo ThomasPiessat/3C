@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sword : Item, IWeapon
 {
@@ -35,10 +36,9 @@ public class Sword : Item, IWeapon
 
     #region PUBLIC METHODS
 
-    public Sword(string _name, int _value) : base(_name, _value)
+    public Sword(string _name, int _value, Sprite _icon) : base(_name, _value, _icon)
     {
-        m_name = _name;
-        m_value = _value;
+        m_IsStackable = false;
     }
 
     public void Attack(int _damage)

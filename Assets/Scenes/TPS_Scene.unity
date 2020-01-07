@@ -1105,6 +1105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: GreenSword
   m_value: 50
+  m_icon: {fileID: 0}
   m_attackSpeedNeeded: 0
 --- !u!65 &120081832
 BoxCollider:
@@ -1763,6 +1764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: GreenSword
   m_value: 50
+  m_icon: {fileID: 0}
   m_attackSpeedNeeded: 0
 --- !u!65 &209589416
 BoxCollider:
@@ -9888,6 +9890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Sword Flame Of The West
   m_value: 457
+  m_icon: {fileID: 0}
   m_attackSpeedNeeded: 0
 --- !u!65 &936761720
 BoxCollider:
@@ -12984,6 +12987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: BlueSword
   m_value: 98
+  m_icon: {fileID: 21300000, guid: 8b144803e622ba04f82cdee8c96cd965, type: 3}
   m_attackSpeedNeeded: 0
 --- !u!1 &1201768720
 GameObject:
@@ -16750,7 +16754,7 @@ GameObject:
   - component: {fileID: 1624105707}
   - component: {fileID: 1624105711}
   m_Layer: 0
-  m_Name: Helmet
+  m_Name: RedHelmet
   m_TagString: Armor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16840,8 +16844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360a5f0b9442beb47abf2e2dc810cf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_name: GoldHelmet
+  m_name: RedHelmet
   m_value: 74
+  m_icon: {fileID: 21300000, guid: 6206df5886387bf40b54ddefa4d7a9fb, type: 3}
 --- !u!1 &1633862778
 GameObject:
   m_ObjectHideFlags: 0
@@ -21855,6 +21860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: GreenSword
   m_value: 50
+  m_icon: {fileID: 0}
   m_attackSpeedNeeded: 0
 --- !u!65 &2063304230
 BoxCollider:

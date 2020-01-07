@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Helmet : Item, IArmor
 {
@@ -16,10 +17,9 @@ public class Helmet : Item, IArmor
     {
 
     }
-    public Helmet(string _name, int _value) : base(_name, _value)
+    public Helmet(string _name, int _value, Sprite _icon) : base(_name, _value, _icon)
     {
-        m_name = _name;
-        m_value = _value;
+        m_IsStackable = false;
     }
 
     public override void DisplayCaractOnPickUp()

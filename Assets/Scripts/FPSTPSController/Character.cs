@@ -371,7 +371,7 @@ public class Character : MonoBehaviour
 
     private void A()
     {
-        GameMediator.Instance.InventoryUI.DisplayOnRightPanel();
+        GameMediator.Instance.InventoryUI.DisplayOnPanel();
     }
 
     private void B()
