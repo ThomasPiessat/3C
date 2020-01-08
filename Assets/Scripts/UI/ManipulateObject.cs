@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(Button))]
-public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
+public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, ISelectHandler, IPointerClickHandler
 {
     public Transform m_ObjectToManipulate = null;
 
@@ -18,7 +18,7 @@ public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool m_IsHighlighted = false;
     private bool m_IsInstantiate = false;
 
-    void SetPosition() => m_ObjectToManipulate.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(xPosition, yPosition/2, zPosition));
+    void SetPosition() => m_ObjectToManipulate.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(xPosition, yPosition / 2, zPosition));
 
 
     // Start is called before the first frame update
@@ -49,8 +49,19 @@ public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointerExi
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(xPosition, yPosition, zPosition));
     }
 
-
+    //Hovered
     public void OnPointerEnter(PointerEventData eventData)
+    {
+
+    }
+
+
+
+    public void OnSelect(BaseEventData eventData)
+    {
+
+    }
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!m_IsHighlighted && !m_IsInstantiate)
         {
@@ -63,21 +74,13 @@ public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, IPointerExi
             m_IsHighlighted = true;
             m_IsInstantiate = true;
         }
-        else
+        else if (m_IsInstantiate)
+        {
+            m_ObjectToManipulate.GetComponent<MeshRenderer>().enabled = false;
+            Destroy(m_ObjectToManipulate);
             m_IsHighlighted = false;
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        m_ObjectToManipulate.GetComponent<MeshRenderer>().enabled = false;
-        Destroy(m_ObjectToManipulate);
-        m_IsInstantiate = false;
-    }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        throw new System.NotImplementedException();
+            m_IsInstantiate = false;
+        }
     }
 
     private void SetObjectToManipulate()
