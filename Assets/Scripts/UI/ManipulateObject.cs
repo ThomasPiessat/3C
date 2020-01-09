@@ -8,13 +8,14 @@ using UnityEngine;
 [RequireComponent(typeof(Button))]
 public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, ISelectHandler, IPointerClickHandler
 {
-    public Transform m_ObjectToManipulate = null;
-
     [SerializeField, Header("Position X from screen"), Range(0, 1920)] float xPosition = 0;
     [SerializeField, Header("Position Y from screen"), Range(0, 1080)] float yPosition = 0;
     [SerializeField, Header("Position Z from screen"), Range(0, 100)] float zPosition = 5;
 
-    [SerializeField] private Vector3 m_Coordinate = Vector3.zero;
+    [SerializeField] private Vector3 m_Coordinate = Vector3.zero;    
+    
+    private Transform m_ObjectToManipulate = null;
+
     private bool m_IsHighlighted = false;
     private bool m_IsInstantiate = false;
 
@@ -52,10 +53,8 @@ public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, ISelectHand
     //Hovered
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        
     }
-
-
 
     public void OnSelect(BaseEventData eventData)
     {

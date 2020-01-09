@@ -7,7 +7,9 @@ public class ItemInfo : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [SerializeField] private GameObject m_panelInfo = null;
     [SerializeField] private TextMeshProUGUI m_itemNameTMP = null;
+    [SerializeField] private TextMeshProUGUI m_itemSpecTMP = null;
     [SerializeField] private TextMeshProUGUI m_itemValueTMP = null;
 
     #endregion
@@ -22,6 +24,7 @@ public class ItemInfo : MonoBehaviour
 	
     void Awake()
     {
+        SetEnablePanel(false);
     }
 
     // Update is called once per frame
@@ -29,15 +32,25 @@ public class ItemInfo : MonoBehaviour
     {
         
     }
-	
-	#endregion
-	
-	#region PRIVATE METHODS
 
-    private void SetItemInfo(string _itemName, int _itemValue)
+    #endregion
+
+    #region MyRegion
+
+    public void SetEnablePanel(bool _Value)
     {
-        GetComponentInChildren<TextMeshProUGUI>().text = _itemName;
-        m_itemValueTMP.text = "Value : " + _itemValue.ToString();
+        m_panelInfo.SetActive(_Value);
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    private void SetItemInfo(int _ItemIndex)
+    {
+        m_itemNameTMP.text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name;
+        //m_itemSpecTMP.text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_spec;
+        m_itemValueTMP.text = "Value : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value.ToString();       
     }
 	 
 	#endregion
