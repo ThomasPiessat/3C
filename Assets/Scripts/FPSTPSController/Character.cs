@@ -175,7 +175,6 @@ public class Character : MonoBehaviour
 
                 hit.transform.parent = m_characterRightHand;
                 hit.transform.localPosition = Vector3.zero;
-                A();
             }
         }        
     }
@@ -194,7 +193,6 @@ public class Character : MonoBehaviour
                 if (m_listItems[i].GetInstanceID() == weaponID)
                 {
                     m_listItems.RemoveAt(i);
-                    B();
                     break;
                 }
             }
@@ -367,16 +365,6 @@ public class Character : MonoBehaviour
         {
             GameMediator.Instance.UIManager.EnableTooManyItemsUI(false);
         }
-    }
-
-    private void A()
-    {
-        GameMediator.Instance.InventoryUI.DisplayOnPanel();
-    }
-
-    private void B()
-    {
-        GameMediator.Instance.InventoryUI.DestroyItemButtonInventory();
     }
 
     public void Pause()

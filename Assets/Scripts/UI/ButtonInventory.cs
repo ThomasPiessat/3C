@@ -5,14 +5,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonInventory : MonoBehaviour, ISelectHandler
+public class ButtonInventory : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] private string m_CategoryName = "";
-    [SerializeField] private TextMeshProUGUI m_CategorySelected = null;
-
-    public void OnSelect(BaseEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        m_CategorySelected.text = m_CategoryName;
+
     }
 
+    //Hovered
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        GameMediator.Instance.InventoryUI.InstantiateItemInfo();
+        GameMediator.Instance.InventoryUI.DisplayItemInfo();
+    }
+
+    //Exit Hovered
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GameMediator.Instance.InventoryUI.DestroyItemInfo();
+    }
 }

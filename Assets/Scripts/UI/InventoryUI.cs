@@ -10,14 +10,20 @@ public class InventoryUI : MonoBehaviour
     #region PROPERTIES
 
     [SerializeField] private GameObject m_inventoryUI = null;
+    [SerializeField] private GameObject m_CharacterSpec = null;
+
+    [Tooltip("List of Panels of all categories of the inventory")]
     [SerializeField] private List<GameObject> m_listInventoryPanel = null;
+    [Tooltip("List of Buttons of all categories of the inventory")]
     [SerializeField] private List<Button> m_listInventoryButton = null;
 
+    [Tooltip("ItemInfo Prefab")]
     [SerializeField] private ItemInfo m_itemInfo = null;
 
     [SerializeField] private Character m_character = null;
 
-    [SerializeField] private ManipulateObject m_ItemButton = null;
+    [Tooltip("Button of the item in inventory")]
+    [SerializeField] private Button m_ItemButton = null;
 
     [SerializeField] private TextMeshProUGUI m_CapacityOfInventory = null;
 
@@ -28,6 +34,7 @@ public class InventoryUI : MonoBehaviour
     void Awake()
     {
         m_inventoryUI.SetActive(false);
+        m_CharacterSpec.SetActive(false);
     }
 
     #endregion
@@ -41,6 +48,8 @@ public class InventoryUI : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             m_inventoryUI.SetActive(false);
+            m_CharacterSpec.SetActive(false);
+            DisplayAllItemInInventory();
             Time.timeScale = 1f;
         }
         else
@@ -48,6 +57,7 @@ public class InventoryUI : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             m_inventoryUI.SetActive(true);
+            m_CharacterSpec.SetActive(true);
             Time.timeScale = 0f;
             ResetPanel();
             CapacityText();
@@ -69,28 +79,30 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void DisplayOnPanel()
+    //Instantiate pick up item in inventory
+    public void DisplayAllItemInInventory()
     {
         for (int i = 0; i < GameMediator.Instance.MainCharacter.m_items.Count; i++)
         {
             if (GameMediator.Instance.MainCharacter.m_items[i].GetComponent<Sword>())
             {
-                InstantiateOnPanel(1, i);
+                InstantiateButtonOnPanel(1, i);
             }
             else if (GameMediator.Instance.MainCharacter.m_items[i].GetComponent(typeof(IArmor)))
             {
-                InstantiateOnPanel(2, i);
+                InstantiateButtonOnPanel(2, i);
             }
             else if (GameMediator.Instance.MainCharacter.m_items[i].GetComponent(typeof(IUsable)))
             {
-                InstantiateOnPanel(3, i);
+                InstantiateButtonOnPanel(3, i);
             }
             else
             {
-                InstantiateOnPanel(4, i);
+                InstantiateButtonOnPanel(4, i);
             }
         }
     }
+
     public void InstantiateItemButtonInventory()
     {
         for (int i = 0; i < GameMediator.Instance.MainCharacter.m_items.Count; i++)
@@ -107,6 +119,24 @@ public class InventoryUI : MonoBehaviour
     public void DestroyItemButtonInventory()
     {
         Destroy(m_ItemButton.gameObject);
+    }
+
+    public void InstantiateItemInfo()
+    {
+        Instantiate(m_itemInfo);
+    }
+
+    public void DestroyItemInfo()
+    {
+        Destroy(m_itemInfo);
+    }
+
+    public void DisplayItemInfo()
+    {
+        for (int i = 0; i < GameMediator.Instance.MainCharacter.m_items.Count; i++)
+        {
+            m_itemInfo.SetItemInfo(i);
+        }
     }
 
     #endregion
@@ -130,7 +160,7 @@ public class InventoryUI : MonoBehaviour
         m_CapacityOfInventory.text = "Capacity : " + GameMediator.Instance.MainCharacter.m_items.Count.ToString() + " / " + GameMediator.Instance.MainCharacter.m_maxItemsToHold.ToString();
     }
 
-    private void InstantiateOnPanel(int _PanelIndex, int _ItemIndex)
+    private void InstantiateButtonOnPanel(int _PanelIndex, int _ItemIndex)
     {
         //instantiate on AllItemPanel
         Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
@@ -139,6 +169,11 @@ public class InventoryUI : MonoBehaviour
         //m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
         //with sprite (icon)
         //m_ItemButton.GetComponentInChildren<Image>().sprite = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_icon;
+    }
+
+    private void OnMove()
+    {
+
     }
 
     private void SortInventory()

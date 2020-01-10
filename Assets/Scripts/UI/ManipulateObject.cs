@@ -82,6 +82,7 @@ public class ManipulateObject : MonoBehaviour, IPointerEnterHandler, ISelectHand
         }
     }
 
+    //TEST
     private void SetObjectToManipulate()
     {
         m_ObjectToManipulate = GameMediator.Instance.MainCharacter.m_items[0].transform;
