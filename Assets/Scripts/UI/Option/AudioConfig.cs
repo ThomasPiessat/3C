@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class AudioConfig : MonoBehaviour
 {
-    [SerializeField] private Dictionary<int, Slider> m_SliderList = null;
-    [SerializeField] private Dictionary<int, int> m_AudioValue = null;
     [SerializeField] private Slider m_MusicSlider = null;
     [SerializeField] private Slider m_SFXSlider = null;
     [SerializeField] private AudioMixer m_AudioMixer = null;
+    [SerializeField] private TextMeshProUGUI m_PercentageMusicVol = null;
+    [SerializeField] private TextMeshProUGUI m_PercentageEffectVol = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
         m_MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
         m_SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
+        //Ne fonctionne pas
+        m_PercentageMusicVol.SetText(m_MusicSlider.value.ToString() + " %");
     }
 
     // Update is called once per frame

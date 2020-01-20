@@ -41,6 +41,16 @@ public class InventoryUI : MonoBehaviour
 
     #region PUBLIC METHODS
 
+    public void TestBool (bool _coucou)
+    {
+
+    }
+
+    public void TestBool2()
+    {
+
+    }
+
     public void ToggleInventory()
     {
         if (m_inventoryUI.activeSelf)
