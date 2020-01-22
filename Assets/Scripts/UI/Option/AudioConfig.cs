@@ -12,8 +12,8 @@ public class AudioConfig : MonoBehaviour
     [SerializeField] private AudioMixer m_AudioMixer = null;
     [SerializeField] private TextMeshProUGUI m_PercentageMusicVol = null;
     [SerializeField] private TextMeshProUGUI m_PercentageEffectVol = null;
-    [SerializeField] private Sprite m_AudioOn = null;
-    [SerializeField] private Sprite m_AudioOff = null;
+    [SerializeField] private Sprite m_AudioOnSprite = null;
+    [SerializeField] private Sprite m_AudioOffSprite = null;
     [SerializeField] private Button m_MuteGeneral = null;
     [SerializeField] private Button m_MuteMusic = null;
     [SerializeField] private Button m_MuteEffect = null;
@@ -52,11 +52,11 @@ public class AudioConfig : MonoBehaviour
         if (PlayerPrefs.GetInt("Muted", 0) == 0)
         {
             //volume = 0
-            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOff;
+            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOffSprite;
         }
         else
         {
-
+            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOnSprite;
         }
 
         m_AudioMixer.SetFloat(_AudioToMute, 1);
