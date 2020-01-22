@@ -5121,6 +5121,11 @@ MonoBehaviour:
   m_AudioMixer: {fileID: 24100000, guid: 7d5648ed57a2b8445ae215865e9e220f, type: 2}
   m_PercentageMusicVol: {fileID: 616570171}
   m_PercentageEffectVol: {fileID: 1748632455}
+  m_AudioOn: {fileID: 21300000, guid: 7ac68af4ab4601b4fb8d92c79aaf5779, type: 3}
+  m_AudioOff: {fileID: 21300000, guid: 6c4c78b58f3b6564d814fb6b921f8080, type: 3}
+  m_MuteGeneral: {fileID: 0}
+  m_MuteMusic: {fileID: 0}
+  m_MuteEffect: {fileID: 0}
 --- !u!1 &504137205
 GameObject:
   m_ObjectHideFlags: 0
