@@ -12,7 +12,13 @@ public class AudioConfig : MonoBehaviour
     [SerializeField] private AudioMixer m_AudioMixer = null;
     [SerializeField] private TextMeshProUGUI m_PercentageMusicVol = null;
     [SerializeField] private TextMeshProUGUI m_PercentageEffectVol = null;
+    [SerializeField] private Sprite m_AudioOn = null;
+    [SerializeField] private Sprite m_AudioOff = null;
+    [SerializeField] private Button m_MuteGeneral = null;
+    [SerializeField] private Button m_MuteMusic = null;
+    [SerializeField] private Button m_MuteEffect = null;
 
+    private bool m_IsMute = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,22 @@ public class AudioConfig : MonoBehaviour
     {
         //Exposed parametters in audio mixer
         m_AudioMixer.SetFloat("SFXVolume", _Volume);
+    }
+
+    public void Mute(string _AudioToMute)
+    {
+        if (PlayerPrefs.GetInt("Muted", 0) == 0)
+        {
+            //volume = 0
+            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOff;
+        }
+        else
+        {
+
+        }
+
+        m_AudioMixer.SetFloat(_AudioToMute, 1);
+        m_IsMute = false;
     }
 
     private void OnDisable()
