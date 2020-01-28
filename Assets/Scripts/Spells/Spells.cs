@@ -6,11 +6,20 @@ public class Spells : MonoBehaviour
 {
     #region PROPERTIES
 
-    private float m_ManaCost = 0.0f;
+    protected string m_Name = "";
+    protected float m_ManaCost = 0.0f;
+    protected float m_Cooldown = 0.0f;
+    protected Sprite m_Icon = null;
 
     #endregion
 
-    // Start is called before the first frame update
+
+    public Spells(string _Name, int _ManaCost, Sprite _Icon)
+    {
+        m_Name = _Name;
+        m_ManaCost = _ManaCost;
+        m_Icon = _Icon;
+    }
     void Start()
     {
         

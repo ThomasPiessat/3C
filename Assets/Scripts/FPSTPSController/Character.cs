@@ -28,6 +28,8 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Vector2 m_input;
 
+    private List<Spells> m_ListSpells = new List<Spells>();
+
     /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
     [SerializeField] public List<Item> m_items = null;
@@ -330,6 +332,11 @@ public class Character : MonoBehaviour
                 m_sword.Attack(40);
             }
         }
+    }
+
+    public void LaunchSpell()
+    {
+        
     }
 
     #endregion
