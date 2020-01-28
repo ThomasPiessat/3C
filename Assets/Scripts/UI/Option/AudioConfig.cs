@@ -18,21 +18,16 @@ public class AudioConfig : MonoBehaviour
     [SerializeField] private Button m_MuteMusic = null;
     [SerializeField] private Button m_MuteEffect = null;
 
-    private bool m_IsMute = false;
+    private bool m_IsMusicMuted = false;
+    private bool m_IsSFXMuted = false;
+    private float m_VolumeBeforeMute = 0.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
         m_SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
         //Ne fonctionne pas
         m_PercentageMusicVol.SetText(m_MusicSlider.value.ToString() + " %");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void SetMusicVolume(float _Volume)
@@ -47,21 +42,12 @@ public class AudioConfig : MonoBehaviour
         m_AudioMixer.SetFloat("SFXVolume", _Volume);
     }
 
-    public void Mute(string _AudioToMute)
+    public void MuteMusicVolume()
     {
-        if (PlayerPrefs.GetInt("Muted", 0) == 0)
-        {
-            //volume = 0
-            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOffSprite;
-        }
-        else
-        {
-            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOnSprite;
-        }
-
-        m_AudioMixer.SetFloat(_AudioToMute, 1);
-        m_IsMute = false;
+        if (m_IsMusicMuted)
+            m_AudioMixer.SetFloat("MusicVolume", m_VolumeBeforeMute);
     }
+
 
     private void OnDisable()
     {
