@@ -29,13 +29,8 @@ public class AudioConfig : MonoBehaviour
     {
         m_MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
         m_SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
-        //Ne fonctionne pas
-        m_PercentageMusicVol.SetText(m_MusicSlider.value.ToString() + " %");
-<<<<<<< HEAD
         ChangeButtonSprite();
         ChangeText();
-=======
->>>>>>> 8eaefca0a1012b9a01f0c9c1a51d434f04df2653
     }
 
     public void SetMusicVolume(float _Volume)
@@ -51,8 +46,6 @@ public class AudioConfig : MonoBehaviour
         m_AudioMixer.SetFloat("SFXVolume", _Volume);
         ChangeText();
     }
-
-<<<<<<< HEAD
     public void ToggleMute(string _AudioToMute)
     {
         float currentVolume;
@@ -94,12 +87,6 @@ public class AudioConfig : MonoBehaviour
         float currentVolumeSFX;
         m_AudioMixer.GetFloat(m_SFXVolumeName, out currentVolumeSFX);
         m_MuteEffectButton.GetComponent<Image>().sprite = currentVolumeSFX > -80 ? m_AudioOnSprite : m_AudioOffSprite;
-=======
-    public void MuteMusicVolume()
-    {
-        if (m_IsMusicMuted)
-            m_AudioMixer.SetFloat("MusicVolume", m_VolumeBeforeMute);
->>>>>>> 8eaefca0a1012b9a01f0c9c1a51d434f04df2653
     }
 
 
