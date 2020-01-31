@@ -15,8 +15,11 @@ public class AudioConfig : MonoBehaviour
     [SerializeField] private Sprite m_AudioOnSprite = null;
     [SerializeField] private Sprite m_AudioOffSprite = null;
     [SerializeField] private Button m_MuteGeneral = null;
-    [SerializeField] private Button m_MuteMusic = null;
-    [SerializeField] private Button m_MuteEffect = null;
+    [SerializeField] private Button m_MuteMusicButton = null;
+    [SerializeField] private Button m_MuteEffectButton = null;
+
+    private string m_MusicVolumeName = "MusicVolume";
+    private string m_SFXVolumeName = "SFXVolume";
 
     private bool m_IsMute = false;
 
@@ -27,40 +30,65 @@ public class AudioConfig : MonoBehaviour
         m_SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
         //Ne fonctionne pas
         m_PercentageMusicVol.SetText(m_MusicSlider.value.ToString() + " %");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        ChangeButtonSprite();
+        ChangeText();
     }
 
     public void SetMusicVolume(float _Volume)
     {
         //Exposed parametters in audio mixer
         m_AudioMixer.SetFloat("MusicVolume", _Volume);
+        ChangeText();
     }
 
     public void SetSFXVolume(float _Volume)
     {
         //Exposed parametters in audio mixer
         m_AudioMixer.SetFloat("SFXVolume", _Volume);
+        ChangeText();
     }
 
-    public void Mute(string _AudioToMute)
+    public void ToggleMute(string _AudioToMute)
     {
-        if (PlayerPrefs.GetInt("Muted", 0) == 0)
+        float currentVolume;
+        if (!m_AudioMixer.GetFloat(_AudioToMute, out currentVolume))
+            return;
+
+        if (currentVolume != -80)
         {
-            //volume = 0
-            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOffSprite;
+            m_AudioMixer.SetFloat(_AudioToMute, -80);
         }
         else
         {
-            m_MuteMusic.GetComponent<Image>().sprite = m_AudioOnSprite;
+            if (_AudioToMute == m_MusicVolumeName)
+            {
+                m_AudioMixer.SetFloat(_AudioToMute, m_MusicSlider.value);
+            }
+            else if (_AudioToMute == m_SFXVolumeName)
+            {
+                m_AudioMixer.SetFloat(_AudioToMute, m_SFXSlider.value);
+            }
         }
+        ChangeButtonSprite();
+    }
 
-        m_AudioMixer.SetFloat(_AudioToMute, 1);
-        m_IsMute = false;
+    public void ChangeText()
+    {
+        float musicValue = (m_MusicSlider.value / 80 + 1) * 100;
+        float SFXValue = (m_SFXSlider.value / 80 + 1) * 100;
+        m_PercentageMusicVol.text = $"{string.Format("{0:0}", musicValue)}%";
+        m_PercentageEffectVol.text = $"{string.Format("{0:0}", SFXValue)}%";
+    }
+
+    private void ChangeButtonSprite()
+    {
+        float currentVolumeMusic;
+        m_AudioMixer.GetFloat(m_MusicVolumeName, out currentVolumeMusic);
+        m_MuteMusicButton.GetComponent<Image>().sprite = currentVolumeMusic > -80 ? m_AudioOnSprite : m_AudioOffSprite;
+
+        float currentVolumeSFX;
+        m_AudioMixer.GetFloat(m_SFXVolumeName, out currentVolumeSFX);
+        m_MuteEffectButton.GetComponent<Image>().sprite = currentVolumeSFX > -80 ? m_AudioOnSprite : m_AudioOffSprite;
     }
 
     private void OnDisable()

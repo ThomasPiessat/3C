@@ -1314,7 +1314,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 175705641}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 497591430}
+        m_MethodName: ToggleMute
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFXVolume
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &175705641
@@ -5121,11 +5132,11 @@ MonoBehaviour:
   m_AudioMixer: {fileID: 24100000, guid: 7d5648ed57a2b8445ae215865e9e220f, type: 2}
   m_PercentageMusicVol: {fileID: 616570171}
   m_PercentageEffectVol: {fileID: 1748632455}
-  m_AudioOn: {fileID: 21300000, guid: 7ac68af4ab4601b4fb8d92c79aaf5779, type: 3}
-  m_AudioOff: {fileID: 21300000, guid: 6c4c78b58f3b6564d814fb6b921f8080, type: 3}
+  m_AudioOnSprite: {fileID: 21300000, guid: 7ac68af4ab4601b4fb8d92c79aaf5779, type: 3}
+  m_AudioOffSprite: {fileID: 21300000, guid: 6c4c78b58f3b6564d814fb6b921f8080, type: 3}
   m_MuteGeneral: {fileID: 0}
-  m_MuteMusic: {fileID: 0}
-  m_MuteEffect: {fileID: 0}
+  m_MuteMusicButton: {fileID: 1117040502}
+  m_MuteEffectButton: {fileID: 175705640}
 --- !u!1 &504137205
 GameObject:
   m_ObjectHideFlags: 0
@@ -12805,7 +12816,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 497591430}
-        m_MethodName: Mute
+        m_MethodName: ToggleMute
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
