@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumable : Item
+public class Consumable : Item, IUsable
 {
     public Consumable(string _name, int _value, Sprite _icon) : base(_name, _value, _icon)
     {
@@ -20,4 +20,15 @@ public class Consumable : Item
     {
         
     }
+
+    public bool CanUse()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Use()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

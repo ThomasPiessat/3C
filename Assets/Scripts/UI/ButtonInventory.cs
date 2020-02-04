@@ -15,13 +15,13 @@ public class ButtonInventory : MonoBehaviour, IPointerEnterHandler, IPointerExit
     //Hovered
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameMediator.Instance.InventoryUI.InstantiateItemInfo();
-        GameMediator.Instance.InventoryUI.DisplayItemInfo();
+        //GameMediator.Instance.InventoryUI.InstantiateItemInfo();
+        //GameMediator.Instance.InventoryUI.DisplayItemInfo();
     }
 
     //Exit Hovered
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameMediator.Instance.InventoryUI.DestroyItemInfo();
+        //GameMediator.Instance.InventoryUI.DestroyItemInfo();
     }
 }
