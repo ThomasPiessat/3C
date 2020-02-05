@@ -9264,6 +9264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventoryUI: {fileID: 1768741497}
   m_CharacterSpec: {fileID: 1599051996}
+  m_character: {fileID: 821637863}
   m_listInventoryPanel:
   - {fileID: 1942374601}
   - {fileID: 1372890239}
@@ -9277,9 +9278,9 @@ MonoBehaviour:
   - {fileID: 1743420141}
   - {fileID: 691799557}
   m_itemInfo: {fileID: 0}
-  m_character: {fileID: 821637863}
   m_ItemButton: {fileID: 5130702743361778840, guid: 38c0a5113b4528a4d8cd6a896a59972e,
     type: 3}
+  m_ListButtonInventory: []
   m_CapacityOfInventory: {fileID: 1050753525}
 --- !u!1 &881702926
 GameObject:
@@ -19231,7 +19232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1768741498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20448,7 +20449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1942374602
 RectTransform:
   m_ObjectHideFlags: 0

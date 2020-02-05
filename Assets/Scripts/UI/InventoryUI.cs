@@ -15,6 +15,7 @@ public class InventoryUI : MonoBehaviour
 
     [Tooltip("List of Panels of all categories of the inventory")]
     [SerializeField] private List<GameObject> m_listInventoryPanel = null;
+
     [Tooltip("List of Buttons of all categories of the inventory")]
     [SerializeField] private List<Button> m_listInventoryButton = null;
 
@@ -153,9 +154,9 @@ public class InventoryUI : MonoBehaviour
         Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
         Instantiate(m_ItemButton, m_listInventoryPanel[_PanelIndex].transform);
         //with text
-        //m_ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
+        m_ItemButton.GetComponent<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
         //with sprite (icon)
-        m_ItemButton.GetComponent<Image>().sprite = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_icon;
+        //m_ItemButton.GetComponent<Image>().sprite = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_icon;
     }
 
     //Display pick up item in inventory
