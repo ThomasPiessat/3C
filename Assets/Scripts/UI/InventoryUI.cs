@@ -16,6 +16,9 @@ public class InventoryUI : MonoBehaviour
     [Tooltip("List of Panels of all categories of the inventory")]
     [SerializeField] private List<GameObject> m_listInventoryPanel = null;
 
+    [Tooltip("List of ScrollView of all categories panels of the inventory")]
+    [SerializeField] private List<GameObject> m_listScrollView = null;
+
     [Tooltip("List of Buttons of all categories of the inventory")]
     [SerializeField] private List<Button> m_listInventoryButton = null;
 
@@ -151,8 +154,8 @@ public class InventoryUI : MonoBehaviour
     private void InstantiateItemButtonOnPanel(int _PanelIndex, int _ItemIndex)
     {
         //instantiate on AllItemPanel
-        Instantiate(m_ItemButton, m_listInventoryPanel[0].transform);
-        Instantiate(m_ItemButton, m_listInventoryPanel[_PanelIndex].transform);
+        Instantiate(m_ItemButton, m_listScrollView[0].transform);
+        Instantiate(m_ItemButton, m_listScrollView[_PanelIndex].transform);
         //with text
         m_ItemButton.GetComponent<TextMeshProUGUI>().text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name + " : " + GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_value;
         //with sprite (icon)

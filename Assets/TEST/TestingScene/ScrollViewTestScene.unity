@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1052466749437057968, guid: 330eb6c464d1fed47b9378dadceaa13b, type: 3}
-  numberToCreate: 10
+  numberToCreate: 2
 --- !u!1 &1826272761
 GameObject:
   m_ObjectHideFlags: 0
