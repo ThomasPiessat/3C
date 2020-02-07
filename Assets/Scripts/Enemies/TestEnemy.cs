@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class TestEnemy : MonoBehaviour, IDamageable
 {
     #region ATTRIBUTES
 
-    [Header("Stats")]
-    [SerializeField] private float m_speed = 0f;
-    [SerializeField] private float m_maxHealth = 0f;
+    public float Health = 0.0f;
+    public float MaxHealth = 0.0f;
+    public float Speed = 0.0f;
+    public float MaxSpeed = 0.0f;
+    public int Attack = 0;
+    public int Armor = 0;
+    public float AttackRange = 0.0f;
+
     private bool m_isDead = false;
 
     #endregion
@@ -36,11 +41,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     #region PUBLIC METHODS
 
+
+
     public void TakeDamage(float _damageTaken)
     {
-        Debug.Log("aiTakeDamage health : " + m_maxHealth);
-        m_maxHealth -= _damageTaken;
-        if (m_maxHealth <= 0)
+        Debug.Log("aiTakeDamage health : " + MaxHealth);
+        MaxHealth -= _damageTaken;
+        if (MaxHealth <= 0)
         {
             m_isDead = true;
             Die();

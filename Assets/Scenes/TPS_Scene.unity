@@ -17153,8 +17153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aebedaa0c91204996f59780b79ccfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 10
-  m_maxHealth: 100
+  Health: 36.4
+  MaxHealth: 0
+  Speed: 0
+  MaxSpeed: 0
+  Attack: 48
+  Armor: 37
+  AttackRange: 0
 --- !u!136 &1394016687
 CapsuleCollider:
   m_ObjectHideFlags: 0
