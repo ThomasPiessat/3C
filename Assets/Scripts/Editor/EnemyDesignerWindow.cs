@@ -25,7 +25,7 @@ public class EnemyDesignerWindow : EditorWindow
     static CreatureData CreatureData;
     static MageData MageData;
     static WarriorData WarriorData;
-    
+
     public static CreatureData CreatureInfo { get { return CreatureData; } }
     public static MageData MageInfo { get { return MageData; } }
     public static WarriorData WarriorInfo { get { return WarriorData; } }
@@ -102,7 +102,7 @@ public class EnemyDesignerWindow : EditorWindow
 
         CreatureSection.x = 0;
         CreatureSection.y = 50;
-        CreatureSection.width = (Screen.width/3);
+        CreatureSection.width = (Screen.width / 3);
         CreatureSection.height = Screen.height;
 
         MageSection.x = (Screen.width / 3);
@@ -144,7 +144,7 @@ public class EnemyDesignerWindow : EditorWindow
         CreatureData.Type = (CreatureType)EditorGUILayout.EnumPopup(CreatureData.Type);
         EditorGUILayout.EndHorizontal();
 
-        if(GUILayout.Button("Create", GUILayout.Height(40)))
+        if (GUILayout.Button("Create", GUILayout.Height(40)))
         {
             GeneralSettings.OpenWindow(GeneralSettings.SettingsType.Creature);
         }
@@ -194,72 +194,118 @@ public class EnemyDesignerWindow : EditorWindow
 
         GUILayout.EndArea();
     }
+}
 
-    public class GeneralSettings : EditorWindow
+public class GeneralSettings : EditorWindow
+{
+    public enum SettingsType
     {
-        public enum SettingsType
+        Creature,
+        Mage,
+        Warrior
+    }
+
+    static SettingsType dataSettings;
+    static GeneralSettings window;
+
+    public static void OpenWindow(SettingsType settings)
+    {
+        dataSettings = settings;
+        window = (GeneralSettings)GetWindow(typeof(GeneralSettings));
+        window.minSize = new Vector2(250, 200);
+        window.Show();
+    }
+
+    private void OnGUI()
+    {
+        switch (dataSettings)
         {
-            Creature, 
-            Mage, 
-            Warrior
-        }
-
-        static SettingsType dataSettings;
-        static GeneralSettings window;
-
-        public static void OpenWindow(SettingsType settings)
-        {
-            dataSettings = settings;
-            window = (GeneralSettings)GetWindow(typeof(GeneralSettings));
-            window.minSize = new Vector2(250, 200);
-            window.Show();
-        }
-
-        private void OnGUI()
-        {
-            switch(dataSettings)
-            {
-                case SettingsType.Creature:
-                    DrawSettings((EnemyData)EnemyDesignerWindow.CreatureInfo);
-                    break;
-                case SettingsType.Mage:
-                    DrawSettings((EnemyData)EnemyDesignerWindow.MageInfo);
-                    break;
-                case SettingsType.Warrior:
-                    DrawSettings((EnemyData)EnemyDesignerWindow.WarriorInfo);
-                    break;
-            }
-        }
-
-        void DrawSettings(EnemyData enemyData)
-        {
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("Prefab");
-            enemyData.Prefab = (GameObject)EditorGUILayout.ObjectField(enemyData.Prefab, typeof(GameObject), false);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("MaxHealth");
-            enemyData.MaxHealth = EditorGUILayout.FloatField(enemyData.MaxHealth);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("Speed");
-            enemyData.Speed = EditorGUILayout.FloatField(enemyData.Speed);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("AttackRange");
-            enemyData.AttackRange = EditorGUILayout.Slider(enemyData.AttackRange, 0, 100);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("Name");
-            enemyData.Name = EditorGUILayout.TextField(enemyData.Name);
-            EditorGUILayout.EndHorizontal();
-
+            case SettingsType.Creature:
+                DrawSettings((EnemyData)EnemyDesignerWindow.CreatureInfo);
+                break;
+            case SettingsType.Mage:
+                DrawSettings((EnemyData)EnemyDesignerWindow.MageInfo);
+                break;
+            case SettingsType.Warrior:
+                DrawSettings((EnemyData)EnemyDesignerWindow.WarriorInfo);
+                break;
         }
     }
 
+    void DrawSettings(EnemyData enemyData)
+    {
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Prefab");
+        enemyData.Prefab = (GameObject)EditorGUILayout.ObjectField(enemyData.Prefab, typeof(GameObject), false);
+        EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("MaxHealth");
+        enemyData.MaxHealth = EditorGUILayout.FloatField(enemyData.MaxHealth);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Speed");
+        enemyData.Speed = EditorGUILayout.FloatField(enemyData.Speed);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("AttackRange");
+        enemyData.AttackRange = EditorGUILayout.Slider(enemyData.AttackRange, 0, 100);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Name");
+        enemyData.Name = EditorGUILayout.TextField(enemyData.Name);
+        EditorGUILayout.EndHorizontal();
+
+        if (enemyData.Prefab == null)
+        {
+            EditorGUILayout.HelpBox("This enemy need [Prefab]", MessageType.Warning);
+        }
+        else if (enemyData.name == null /*|| enemyData.name.Length < 1*/)
+        {
+            EditorGUILayout.HelpBox("This enemy need [Name]", MessageType.Warning);
+        }
+        else if (GUILayout.Button("Finish and Save", GUILayout.Height(30)))
+        {
+            SaveCharacterData();
+            window.Close();
+        }
+    }
+    void SaveCharacterData()
+    {
+        string prefabPath;
+        string newPrefabPath = "Assets/Prefabs/Enemy/";
+        string dataPath = "Assets/Resources/EnemyData/";
+
+        switch (dataSettings)
+        {
+            case SettingsType.Creature:
+                dataPath += "Creature/" + EnemyDesignerWindow.CreatureInfo.name + ".asset";
+                AssetDatabase.CreateAsset(EnemyDesignerWindow.CreatureInfo, dataPath);
+
+                newPrefabPath += "Creature/" + EnemyDesignerWindow.CreatureInfo.name + ".prefab";
+                prefabPath = AssetDatabase.GetAssetPath(EnemyDesignerWindow.CreatureInfo.Prefab);
+                AssetDatabase.CopyAsset(prefabPath, newPrefabPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                GameObject creaturePrefab = (GameObject)AssetDatabase.LoadAssetAtPath(newPrefabPath, typeof(GameObject));
+                if(!creaturePrefab.GetComponent<Creature>())
+                {
+                    creaturePrefab.AddComponent(typeof(Creature));
+                }
+                creaturePrefab.GetComponent<Creature>().CreatureData = EnemyDesignerWindow.CreatureInfo;
+
+                break;
+            case SettingsType.Mage:
+                dataPath += "Mage/" + EnemyDesignerWindow.CreatureInfo.name + ".asset";
+                break;
+            case SettingsType.Warrior:
+                dataPath += "Warrior/" + EnemyDesignerWindow.CreatureInfo.name + ".asset";
+                break;
+        }
+    }
 }
+
