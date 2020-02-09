@@ -7,7 +7,7 @@ public class Warrior : MonoBehaviour
 
     #region ATTRIBUTES
 
-
+    public WarriorData WarriorData;
 
     #endregion
 
