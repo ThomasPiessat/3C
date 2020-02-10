@@ -272,6 +272,7 @@ public class GeneralSettings : EditorWindow
             window.Close();
         }
     }
+
     void SaveCharacterData()
     {
         string prefabPath;
@@ -281,6 +282,7 @@ public class GeneralSettings : EditorWindow
         switch (dataSettings)
         {
             case SettingsType.Creature:
+                //string guid = AssetDatabase.CreateFolder(dataPath, "Creature");
                 dataPath += "Creature/" + EnemyDesignerWindow.CreatureInfo.Name + ".asset";
                 AssetDatabase.CreateAsset(EnemyDesignerWindow.CreatureInfo, dataPath);
 

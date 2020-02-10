@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyData : ScriptableObject
 {
-
     public GameObject Prefab;
     public float Health;
     public float MaxHealth;
