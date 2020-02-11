@@ -20,7 +20,7 @@ public class CameraDesignerWindow : EditorWindow
     #endregion
 
     #region PRIVATE STATIC VARIABLES
-    
+
     private static CameraFPSData m_CameraFPSData;
 
     #endregion
@@ -103,7 +103,7 @@ public class CameraDesignerWindow : EditorWindow
         m_CameraFPSData.Type = (TypeCameras)EditorGUILayout.EnumPopup(m_CameraFPSData.Type);
         EditorGUILayout.EndHorizontal();
 
-        if(GUILayout.Button("Create", GUILayout.Height(40)))
+        if (GUILayout.Button("Create", GUILayout.Height(40)))
         {
             GeneralCameraSettings.OpenWindow(GeneralCameraSettings.SettingsType.FPS);
         }
@@ -118,7 +118,7 @@ public class GeneralCameraSettings : EditorWindow
 {
     public enum SettingsType
     {
-        FPS, 
+        FPS,
         TPS,
         RTS
     }
@@ -138,7 +138,7 @@ public class GeneralCameraSettings : EditorWindow
 
     private void OnGUI()
     {
-        switch(m_CameraSettings)
+        switch (m_CameraSettings)
         {
             case SettingsType.FPS:
                 DrawSettings((CameraData)CameraDesignerWindow.CameraFPSInfo);
@@ -152,6 +152,54 @@ public class GeneralCameraSettings : EditorWindow
         GUILayout.Label("Target");
         _CameraData.Target = (GameObject)EditorGUILayout.ObjectField(_CameraData.Target, typeof(GameObject), false);
         EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Distance To Target");
+        _CameraData.DistanceToTarget = EditorGUILayout.FloatField(_CameraData.DistanceToTarget);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("SensitivityX");
+        _CameraData.SensitivityX = EditorGUILayout.FloatField(_CameraData.SensitivityX);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("SensitivityY");
+        _CameraData.SensitivityY = EditorGUILayout.FloatField(_CameraData.SensitivityY);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("ClampX");
+        _CameraData.ClampX = EditorGUILayout.FloatField(_CameraData.ClampX);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("ClampY");
+        _CameraData.ClampY = EditorGUILayout.FloatField(_CameraData.ClampY);
+        EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Finish and Save", GUILayout.Height(30)))
+        {
+            SaveAndCreateCamera();
+            m_CameraWindow.Close();
+        }
+
+    }
+
+    private void SaveAndCreateCamera()
+    {
+        switch (m_CameraSettings)
+        {
+            case SettingsType.FPS:
+                GameObject newFPSCamera = new GameObject("FPSCamera");
+                newFPSCamera.AddComponent<Camera>();
+                if(!newFPSCamera.GetComponent<FPSCamera>())
+                {
+                    newFPSCamera.AddComponent<FPSCamera>();
+                }
+                newFPSCamera.GetComponent<FPSCamera>().m_CameraFPSData = CameraDesignerWindow.CameraFPSInfo;
+                break;
+        }
     }
 
     #endregion

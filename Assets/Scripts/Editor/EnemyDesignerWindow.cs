@@ -268,12 +268,12 @@ public class GeneralSettings : EditorWindow
         }
         else if (GUILayout.Button("Finish and Save", GUILayout.Height(30)))
         {
-            SaveCharacterData();
+            SaveEnemyData();
             window.Close();
         }
     }
 
-    void SaveCharacterData()
+    void SaveEnemyData()
     {
         string prefabPath;
         string newPrefabPath = "Assets/Prefabs/Enemy/";
