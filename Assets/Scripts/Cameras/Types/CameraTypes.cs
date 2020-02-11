@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CameraTypes
 {
-    public enum CamerasType
+    public enum TypeCameras
     {
         FPS,
         TPS,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using CameraTypes;
 
 public class CameraDesignerWindow : EditorWindow
 {
@@ -99,7 +100,7 @@ public class CameraDesignerWindow : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Type");
-        m_CameraFPSData.Type = (CameraType)EditorGUILayout.EnumPopup(m_CameraFPSData.Type);
+        m_CameraFPSData.Type = (TypeCameras)EditorGUILayout.EnumPopup(m_CameraFPSData.Type);
         EditorGUILayout.EndHorizontal();
 
         if(GUILayout.Button("Create", GUILayout.Height(40)))

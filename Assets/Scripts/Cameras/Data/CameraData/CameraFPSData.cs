@@ -8,7 +8,7 @@ public class CameraFPSData : CameraData
 {
     #region ATTRIBUTES
 
-    public CameraType Type;
+    public TypeCameras Type;
 
     #endregion
 
