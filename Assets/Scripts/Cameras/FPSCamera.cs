@@ -21,25 +21,35 @@ public class FPSCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Test();
+
     }
 
     #endregion
 
     #region PUBLIC METHODS
 
-    public void Test()
-    {
-        
-        
 
-    }
 
     #endregion
 
     #region PRIVATE METHODS
 
+    private void Control(float _MouseY, float _MouseX)
+    {
+        float mouseY = _MouseY * m_CameraFPSData.m_SensitivityY * Time.deltaTime;
+        float mouseX = _MouseX * m_CameraFPSData.m_SensitivityX * Time.deltaTime;
 
+        m_CameraFPSData.m_ClampX += mouseY;
+
+        if(m_CameraFPSData.m_ClampX > m_CameraFPSData.m_MinX)
+        {
+            m_CameraFPSData.m_ClampX = m_CameraFPSData.m_MinX;
+            mouseY = 0.0f;
+        }
+
+        transform.Rotate(Vector3.left * mouseY);
+        m_CameraFPSData.Target.transform.Rotate(Vector3.up * mouseX);
+    }
 
     #endregion
 }

@@ -12,37 +12,4 @@ public class CameraFPSData : CameraData
 
     #endregion
 
-    #region COMPONENTS    
-
-
-
-    #endregion
-
-    #region MONOBEHAVIOUR METHODS
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    #endregion
-
-    #region PUBLIC METHODS
-
-
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-
-
-    #endregion
 }

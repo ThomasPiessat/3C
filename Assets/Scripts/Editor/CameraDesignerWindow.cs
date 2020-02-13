@@ -155,35 +155,69 @@ public class GeneralCameraSettings : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Distance To Target");
-        _CameraData.DistanceToTarget = EditorGUILayout.FloatField(_CameraData.DistanceToTarget);
+        _CameraData.m_DistanceToTarget = EditorGUILayout.FloatField(_CameraData.m_DistanceToTarget);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("SensitivityX");
-        _CameraData.SensitivityX = EditorGUILayout.FloatField(_CameraData.SensitivityX);
+        _CameraData.m_SensitivityX = EditorGUILayout.FloatField(_CameraData.m_SensitivityX);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("SensitivityY");
-        _CameraData.SensitivityY = EditorGUILayout.FloatField(_CameraData.SensitivityY);
+        _CameraData.m_SensitivityY = EditorGUILayout.FloatField(_CameraData.m_SensitivityY);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("ClampX");
-        _CameraData.ClampX = EditorGUILayout.FloatField(_CameraData.ClampX);
+        _CameraData.m_ClampX = EditorGUILayout.FloatField(_CameraData.m_ClampX);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("ClampY");
-        _CameraData.ClampY = EditorGUILayout.FloatField(_CameraData.ClampY);
+        _CameraData.m_ClampY = EditorGUILayout.FloatField(_CameraData.m_ClampY);
         EditorGUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Finish and Save", GUILayout.Height(30)))
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("MinAngleX");
+        _CameraData.m_MinX = EditorGUILayout.FloatField(_CameraData.m_MinX);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("MaxAngleX");
+        _CameraData.m_MaxX = EditorGUILayout.FloatField(_CameraData.m_MaxX);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("IsCursorVisible");
+        _CameraData.m_IsCursorVisible = EditorGUILayout.Toggle(_CameraData.m_IsCursorVisible);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("IsCursorLocked");
+        _CameraData.m_IsCursorLocked = EditorGUILayout.Toggle(_CameraData.m_IsCursorLocked);
+        EditorGUILayout.EndHorizontal();
+
+        //If his true -> put warning to set sprite 2D
+        //EditorGUILayout.BeginHorizontal();
+        //GUILayout.Label("HasAimPoint");
+        //_CameraData.m_HasAimPoint = EditorGUILayout.Toggle(_CameraData.m_HasAimPoint);
+        //EditorGUILayout.EndHorizontal();
+
+        //EditorGUILayout.BeginHorizontal();
+        //GUILayout.Label("AimPoint");
+        //_CameraData.m_AimPoint = (Sprite)EditorGUILayout.ObjectField(_CameraData.m_AimPoint, typeof(Sprite));
+        //EditorGUILayout.EndHorizontal();
+
+        //if (_CameraData.m_HasAimPoint == true && _CameraData.m_AimPoint == null)
+        //{
+        //    EditorGUILayout.HelpBox("Need [AimPoint]", MessageType.Warning);
+        //}
+        /*else*/ if (GUILayout.Button("Finish and Save", GUILayout.Height(30)))
         {
             SaveAndCreateCamera();
             m_CameraWindow.Close();
         }
-
     }
 
     private void SaveAndCreateCamera()
