@@ -14,7 +14,7 @@ public class CameraData : ScriptableObject
     public float m_MinX;
     public float m_MaxX;
     public bool m_IsCursorVisible;
-    public bool m_IsCursorLocked;
+    public CursorLockMode m_LockMode;
     public bool m_HasAimPoint;
     public Image m_AimPoint;
     //Controller Mouse X/Y 

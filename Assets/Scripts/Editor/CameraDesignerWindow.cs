@@ -194,8 +194,8 @@ public class GeneralCameraSettings : EditorWindow
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Label("IsCursorLocked");
-        _CameraData.m_IsCursorLocked = EditorGUILayout.Toggle(_CameraData.m_IsCursorLocked);
+        GUILayout.Label("CursorLockMode");
+        _CameraData.m_LockMode = (CursorLockMode)EditorGUILayout.EnumPopup(_CameraData.m_LockMode);
         EditorGUILayout.EndHorizontal();
 
         //If his true -> put warning to set sprite 2D

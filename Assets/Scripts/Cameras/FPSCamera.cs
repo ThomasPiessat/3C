@@ -15,7 +15,7 @@ public class FPSCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitCursor();
     }
 
     // Update is called once per frame
@@ -33,6 +33,12 @@ public class FPSCamera : MonoBehaviour
     #endregion
 
     #region PRIVATE METHODS
+
+    private void InitCursor()
+    {
+        Cursor.lockState = m_CameraFPSData.m_LockMode;
+        Cursor.visible = m_CameraFPSData.m_IsCursorVisible;
+    }
 
     private void Control(float _MouseY, float _MouseX)
     {
