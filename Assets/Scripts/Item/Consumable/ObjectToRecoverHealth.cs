@@ -24,5 +24,11 @@ public class ObjectToRecoverHealth : Consumable
         
     }
 
+    public override void DisplayCaractOnPickUp()
+    {
+        base.DisplayCaractOnPickUp();
+        GameMediator.Instance.UIManager.EnablePickUpUI(true);
+        GameMediator.Instance.UIManager.SetItemSpec(m_name, m_value);
+    }
 
 }
