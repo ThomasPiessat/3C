@@ -1,0 +1,3 @@
+Spells
+Map tp
+	(When you click on the map you can tp at the point you have selected)

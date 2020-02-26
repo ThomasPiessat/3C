@@ -28,11 +28,12 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Vector2 m_input;
 
-    private List<Spells> m_ListSpells = new List<Spells>();
-
     /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
     [SerializeField] public List<Item> m_items = null;
+    private Dictionary<int, Spells> m_ListSpells;
+    [SerializeField] private List<Spells> m_ListSpellsTest = null;
+
 
     #endregion    
 
@@ -382,6 +383,19 @@ public class Character : MonoBehaviour
     public void Inventory()
     {
         GameMediator.Instance.InventoryUI.ToggleInventory();
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    private void InitSpell()
+    {
+        foreach (var spell in m_ListSpells)
+        {
+            m_ListSpells.Add(spell.Key, spell.Value);
+            
+        }
     }
 
     #endregion

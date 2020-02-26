@@ -18,5 +18,4 @@ public class CameraData : ScriptableObject
     public bool m_HasAimPoint;
     public Image m_AimPoint;
     //Controller Mouse X/Y 
-
 }
