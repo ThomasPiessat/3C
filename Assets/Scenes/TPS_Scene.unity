@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10131,6 +10131,7 @@ MonoBehaviour:
   m_input: {x: 0, y: 0}
   m_sword: {fileID: 936761719}
   m_items: []
+  m_ListSpellsTest: []
   m_maxFrictionPhysics: {fileID: 0}
   m_frictionPhysics: {fileID: 0}
   m_slippyPhysics: {fileID: 0}
@@ -26632,7 +26633,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106495735}
-  - component: {fileID: 2106495734}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -26640,18 +26640,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2106495734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106495733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa27c40ecceb16f4ca0f793338bfab16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2106495735
 Transform:
   m_ObjectHideFlags: 0

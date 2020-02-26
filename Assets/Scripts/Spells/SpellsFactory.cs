@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+namespace SpellsTypes
+{
+    public enum SpellsType
+    {
+        Damage,
+        Healing,
+        stun
+    }
+}
+
 public struct SpellsStats
 {
     public string m_Name;

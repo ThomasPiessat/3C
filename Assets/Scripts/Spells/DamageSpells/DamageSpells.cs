@@ -1,17 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpellsTypes;
 
-public class DamageSpells
+[CreateAssetMenuAttribute(fileName = "New Spell Data", menuName = "Spell Data/Damage")]
+public class DamageSpells : SpellData
 {
-    #region PROPERTIES
+    public SpellsType m_Type;
 
-    private float m_Damage = 0.0f;
-
-    #endregion
-
-    public DamageSpells()
-    {
-
-    }
 }
