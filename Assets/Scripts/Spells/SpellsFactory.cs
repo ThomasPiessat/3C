@@ -22,19 +22,19 @@ public struct SpellsStats
 
 public class SpellsFactory
 {
-    public static Spells CreateSpells(Spells.AllSpells _Spells)
-    {
-        switch (_Spells)
-        {
-            case Spells.AllSpells.FireBall:
-                return new Spells("FireBall", 12);             
-            case Spells.AllSpells.IceBall:
-                return new Spells("IceBall", 13);
-            case Spells.AllSpells.Healing:
-                return new Spells("Healing", 15);
-            default:
-                break;
-        }
-        return null;
-    }
+    //public static Spells CreateSpells(Spells.AllSpells _Spells)
+    //{
+    //    switch (_Spells)
+    //    {
+            //case Spells.AllSpells.FireBall:
+            //    return new Spells("FireBall", 12);             
+            //case Spells.AllSpells.IceBall:
+            //    return new Spells("IceBall", 13);
+            //case Spells.AllSpells.Healing:
+            //    return new Spells("Healing", 15);
+    //        default:
+    //            break;
+    //    }
+    //    return null;
+    //}
 }
