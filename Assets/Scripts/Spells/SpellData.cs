@@ -5,9 +5,9 @@ using UnityEngine;
 public class SpellData : ScriptableObject
 {
     public GameObject Prefab;
-    public Sprite m_Icon = null;
-    public string m_Name;
-    public int m_ManaCost;
-    public float m_Cooldown;
-    public float m_AttackRange;
+    public Sprite Icon = null;
+    public string Name;
+    public int ManaCost;
+    public float Cooldown;
+    public float AttackRange;
 }

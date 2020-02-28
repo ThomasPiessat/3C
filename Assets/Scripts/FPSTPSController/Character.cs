@@ -31,8 +31,8 @@ public class Character : MonoBehaviour
     /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
     [SerializeField] public List<Item> m_items = null;
-    private Dictionary<int, Spells> m_ListSpells;
-    [SerializeField] private List<Spells> m_ListSpellsTest = null;
+    [SerializeField] private List<SpellData> m_ListSpellsTest = null;
+    public SpellData m_TestSpellData;
 
 
     #endregion    
@@ -119,6 +119,7 @@ public class Character : MonoBehaviour
         m_currentHealth = m_maxHealth; 
         m_listItems = new List<GameObject>();
         m_items = new List<Item>();
+        InitSpell();
     }
 
     // Update is called once per frame
@@ -391,11 +392,10 @@ public class Character : MonoBehaviour
 
     private void InitSpell()
     {
-        foreach (var spell in m_ListSpells)
-        {
-            m_ListSpells.Add(spell.Key, spell.Value);
-            
-        }
+        GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
+
+        currentSpell.name = m_TestSpellData.Name;
+
     }
 
     #endregion
