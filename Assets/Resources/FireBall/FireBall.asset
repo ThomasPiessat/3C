@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27c40ecceb16f4ca0f793338bfab16, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1654736843778140, guid: 78e8b38d431ddef4fa2994a3f2d6e2ff, type: 3}
+  Prefab: {fileID: 1537593200154216, guid: 25093a0593dc83043a7bc17ebba0e95d, type: 3}
   Icon: {fileID: 0}
-  Name: MesCouilles
+  Name: FireBall
   ManaCost: 10
-  Cooldown: 21
-  AttackRange: 500
+  Cooldown: 5
+  AttackRange: 10
   m_Type: 0

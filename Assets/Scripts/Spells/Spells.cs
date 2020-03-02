@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spells : MonoBehaviour
-{
-    void Start()
+{    void Start()
     {
 
     }

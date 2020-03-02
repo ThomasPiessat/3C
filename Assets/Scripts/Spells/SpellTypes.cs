@@ -13,8 +13,3 @@ namespace SpellsTypes
     }
 }
 
-
-public class SpellsFactory
-{
-
-}
