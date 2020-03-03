@@ -4324,8 +4324,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10121,7 +10121,8 @@ MonoBehaviour:
   m_sword: {fileID: 936761719}
   m_items: []
   m_ListSpellsTest: []
-  m_TestSpellData: {fileID: 11400000, guid: 4a4b5b18440a1a04996ec474fba2ae0c, type: 2}
+  m_TestSpellData: {fileID: 11400000, guid: c68a8ddc3e791044c97a7d10c653f22f, type: 2}
+  iconSpell: {fileID: 0}
   m_maxFrictionPhysics: {fileID: 0}
   m_frictionPhysics: {fileID: 0}
   m_slippyPhysics: {fileID: 0}
@@ -10996,6 +10997,7 @@ GameObject:
   - component: {fileID: 877969812}
   - component: {fileID: 877969813}
   - component: {fileID: 877969814}
+  - component: {fileID: 877969815}
   m_Layer: 5
   m_Name: CanvasGPP
   m_TagString: Untagged
@@ -11153,6 +11155,20 @@ MonoBehaviour:
     type: 3}
   m_ListButtonInventory: []
   m_CapacityOfInventory: {fileID: 1050753525}
+--- !u!114 &877969815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877969807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a8becfb0f574498ba2673058bc7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerSpells:
+  - {fileID: 373362468}
 --- !u!1 &881702926
 GameObject:
   m_ObjectHideFlags: 0

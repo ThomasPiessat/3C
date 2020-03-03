@@ -406,7 +406,6 @@ public class Character : MonoBehaviour
             currentSpell.AddComponent(typeof(FireBall));
 
         currentSpell.GetComponent<FireBall>().FireBallData = DmgSpellData;
-
     }
 
     #endregion
