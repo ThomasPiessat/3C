@@ -43,6 +43,7 @@ public class Controller : MonoBehaviour
         public KeyCode m_pickUP;
         public KeyCode m_drop;
         public KeyCode m_inventory;
+        public List<KeyCode> m_listSpells;
     }
 
     #endregion
@@ -122,6 +123,7 @@ public class Controller : MonoBehaviour
 
         PauseInput();
         InventoryInput();
+        LaunchSpellInput();
     }
 
     #region Character Methods
@@ -209,6 +211,15 @@ public class Controller : MonoBehaviour
         if(Input.GetKeyDown(m_rightHandInput))
         {
             //m_character.Attack(1);
+        }
+    }
+
+    protected virtual void LaunchSpellInput()
+    {
+        int index = 0;
+        if (Input.GetKeyDown(m_struct.m_listSpells[index]))
+        {
+            m_character.CastSpell(index);
         }
     }
 

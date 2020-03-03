@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27c40ecceb16f4ca0f793338bfab16, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1537593200154216, guid: 25093a0593dc83043a7bc17ebba0e95d, type: 3}
+  Prefab: {fileID: 5385221535584054137, guid: f162c9ac043380a46a07d1c3abc07063, type: 3}
   Icon: {fileID: 21300000, guid: fa86d2472e0cc764db6c59ec35b9756d, type: 3}
   Name: Couilles
   ManaCost: 10

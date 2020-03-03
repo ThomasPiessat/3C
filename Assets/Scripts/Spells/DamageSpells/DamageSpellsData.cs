@@ -7,5 +7,4 @@ using SpellsTypes;
 public class DamageSpellsData : SpellData
 {
     public SpellsType m_Type;
-
 }

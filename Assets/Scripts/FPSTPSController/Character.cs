@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpellsTypes;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamageable
 {
     #region ATTRIBUTES
 
@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
     /*DEBUG//TEST*/
     [SerializeField] private Sword m_sword = null;
     [SerializeField] public List<Item> m_items = null;
-    [SerializeField] private List<SpellData> m_ListSpellsTest = null;
+    [SerializeField] public List<SpellData> m_ListSpellsTest = null;
     public SpellData m_TestSpellData;
 
     static DamageSpellsData DmgSpellData;
@@ -120,7 +120,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_currentHealth = m_maxHealth; 
+        m_currentHealth = m_maxHealth;
         m_listItems = new List<GameObject>();
         m_items = new List<Item>();
         InitSpell();
@@ -184,7 +184,7 @@ public class Character : MonoBehaviour
                 hit.transform.parent = m_characterRightHand;
                 hit.transform.localPosition = Vector3.zero;
             }
-        }        
+        }
     }
 
     public void Drop()
@@ -340,10 +340,21 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void LaunchSpell()
+    public void CastSpell(int _index)
     {
-        
+        //if (m_ListSpellsTest.Count > _index && m_ListSpellsTest[_index] != null)
+        //{    
+        //    GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
+        //    currentSpell.transform.position += this.transform.forward * 50 * Time.deltaTime;
+        //}
+
+        GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
+
+        currentSpell.name = m_TestSpellData.Name;
+
+        m_TestSpellData.Prefab.GetComponent<FireBall>().m_IsCast = true;
     }
+
 
     #endregion
 
@@ -361,7 +372,7 @@ public class Character : MonoBehaviour
 
     public void Die()
     {
-        Destroy(this);
+        //Destroy(this);
     }
 
     #endregion
@@ -404,8 +415,6 @@ public class Character : MonoBehaviour
 
         if (!currentSpell.GetComponent<FireBall>())
             currentSpell.AddComponent(typeof(FireBall));
-
-        currentSpell.GetComponent<FireBall>().FireBallData = DmgSpellData;
     }
 
     #endregion

@@ -10086,6 +10086,7 @@ MonoBehaviour:
     m_pickUP: 101
     m_drop: 97
     m_inventory: 105
+    m_listSpells: 31000000
   m_item1: 49
   m_item2: 50
   m_leftHandInput: 323
@@ -10120,9 +10121,10 @@ MonoBehaviour:
   m_input: {x: 0, y: 0}
   m_sword: {fileID: 936761719}
   m_items: []
-  m_ListSpellsTest: []
+  m_ListSpellsTest:
+  - {fileID: 11400000, guid: c68a8ddc3e791044c97a7d10c653f22f, type: 2}
   m_TestSpellData: {fileID: 11400000, guid: c68a8ddc3e791044c97a7d10c653f22f, type: 2}
-  iconSpell: {fileID: 0}
+  coucou: {fileID: 0}
   m_maxFrictionPhysics: {fileID: 0}
   m_frictionPhysics: {fileID: 0}
   m_slippyPhysics: {fileID: 0}
