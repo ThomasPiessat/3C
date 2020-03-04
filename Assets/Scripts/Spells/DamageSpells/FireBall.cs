@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBall : Spells
+public class FireBall : DamageSpells
 {
 
     #region ATTRIBUTES
 
-    public DamageSpellsData FireBallData;
     private float m_TimeToDestroy = 15f;
 
     #endregion

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    [HideInInspector] public bool m_IsCast = false;
+    private GameObject m_Prefab = null;
+    private Sprite m_Icon = null;
+    private string m_Name;
+    private int m_ManaCost;
+    private float m_Cooldown;
+    public bool m_IsCast = false;
 
     protected void Start()
     {

@@ -35,10 +35,6 @@ public class Character : MonoBehaviour, IDamageable
     [SerializeField] public List<SpellData> m_ListSpellsTest = null;
     public SpellData m_TestSpellData;
 
-    static DamageSpellsData DmgSpellData;
-
-    public static DamageSpellsData SpellInfo { get { return DmgSpellData; } }
-
     #endregion    
 
     #region ACTIONS
@@ -425,7 +421,6 @@ public class Character : MonoBehaviour, IDamageable
 
     private void InitSpell()
     {
-        DmgSpellData = (DamageSpellsData)ScriptableObject.CreateInstance(typeof(DamageSpellsData));
 
         GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
 
