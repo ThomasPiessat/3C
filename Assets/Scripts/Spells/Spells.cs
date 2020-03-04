@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    public GameObject m_Prefab = null;
+    protected GameObject m_Prefab = null;
     protected Sprite m_Icon = null;
     protected string m_Name;
     protected int m_ManaCost;

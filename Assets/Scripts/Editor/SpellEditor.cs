@@ -22,11 +22,11 @@ public class SpellEditor : Editor
 
     Spells fb;
 
-
     public void OnEnable()
     {
         po = serializedObject.FindProperty("m_Prefab");
     }
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -38,7 +38,7 @@ public class SpellEditor : Editor
         GUILayout.BeginHorizontal();
         GUILayout.Label("PrefabSpell");
         PrefabSpell = (GameObject)EditorGUILayout.ObjectField(PrefabSpell, typeof(GameObject), false);
-        EditorGUILayout.ObjectField(po, new GUIContent("m_Prefab"));
+        //EditorGUILayout.ObjectField(po, new GUIContent("m_Prefab"));
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
