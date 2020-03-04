@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    private GameObject m_Prefab = null;
-    private Sprite m_Icon = null;
-    private string m_Name;
-    private int m_ManaCost;
-    private float m_Cooldown;
+    public GameObject m_Prefab = null;
+    protected Sprite m_Icon = null;
+    protected string m_Name;
+    protected int m_ManaCost;
+    protected float m_Cooldown;
     public bool m_IsCast = false;
 
     protected void Start()
@@ -29,4 +29,16 @@ public class Spells : MonoBehaviour
     {
         transform.position += transform.forward * 40 * Time.deltaTime;
     }
+
+    public void TestForButtonEditor()
+    {
+        if (m_Prefab)
+        {
+            Instantiate(m_Prefab, this.transform.position, this.transform.rotation);
+            Debug.Log("BISMILA");
+        }
+        else
+            Debug.Log("NIQUE TA MERE");
+    }
+
 }

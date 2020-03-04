@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -12,27 +14,6 @@ public class EnemyDataEditor : Editor
 
     #endregion
 
-    #region COMPONENTS    
-
-
-
-    #endregion
-
-    #region MONOBEHAVIOUR METHODS
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    #endregion
 
     #region PUBLIC METHODS
     public override void OnInspectorGUI()
@@ -47,3 +28,5 @@ public class EnemyDataEditor : Editor
 
     #endregion
 }
+
+#endif

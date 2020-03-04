@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireBall : DamageSpells
 {
 
     #region ATTRIBUTES
 
-    private float m_TimeToDestroy = 15f;
+
 
     #endregion
 
@@ -27,6 +25,11 @@ public class FireBall : DamageSpells
                 Destroy(this);
             }
         }
+    }
+
+    public void TestForButtonEditor()
+    {
+        Instantiate(m_Prefab, this.transform.position, this.transform.rotation);
     }
 
 }

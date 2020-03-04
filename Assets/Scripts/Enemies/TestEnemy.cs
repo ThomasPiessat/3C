@@ -41,8 +41,6 @@ public class TestEnemy : MonoBehaviour, IDamageable
 
     #region PUBLIC METHODS
 
-
-
     public void TakeDamage(float _damageTaken)
     {
         Debug.Log("aiTakeDamage health : " + MaxHealth);

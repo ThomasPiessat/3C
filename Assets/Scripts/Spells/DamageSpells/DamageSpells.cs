@@ -5,5 +5,5 @@ using SpellsTypes;
 
 public class DamageSpells: Spells
 {
-    
+    protected float m_TimeToDestroy = 15f;
 }

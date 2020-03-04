@@ -10,12 +10,23 @@ using UnityEngine.UIElements;
 [CanEditMultipleObjects]
 public class SpellEditor : Editor
 {
+    SerializedProperty po;
     private GameObject PrefabSpell;
     private Sprite IconSpell;
     private string NameSpell;
     private int ManaCostSpell;
     private float CooldownSpell;
 
+    private int toolBaarint = 0;
+    string[] toolbarSettings = { "Couille1", "BurneG", "BurneD" };
+
+    Spells fb;
+
+
+    public void OnEnable()
+    {
+        po = serializedObject.FindProperty("m_Prefab");
+    }
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -27,6 +38,7 @@ public class SpellEditor : Editor
         GUILayout.BeginHorizontal();
         GUILayout.Label("PrefabSpell");
         PrefabSpell = (GameObject)EditorGUILayout.ObjectField(PrefabSpell, typeof(GameObject), false);
+        EditorGUILayout.ObjectField(po, new GUIContent("m_Prefab"));
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
@@ -49,10 +61,21 @@ public class SpellEditor : Editor
         CooldownSpell = EditorGUILayout.FloatField(CooldownSpell);
         GUILayout.EndHorizontal();
 
+        GUILayout.BeginHorizontal(EditorStyles.toolbar);
+        toolBaarint = GUILayout.Toolbar(toolBaarint, toolbarSettings);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Bite"))
+        {
+            fb = (Spells)target;
+            fb.TestForButtonEditor();
+        }
+        GUILayout.EndHorizontal();
+
         GUILayout.EndVertical();
         //base.OnInspectorGUI();
-
-
+        serializedObject.ApplyModifiedProperties();
     }
 }
 

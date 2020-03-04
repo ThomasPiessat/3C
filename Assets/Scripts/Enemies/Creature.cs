@@ -37,9 +37,7 @@ public class Creature : MonoBehaviour
     #region PUBLIC METHODS
 
 
-
     #endregion
-
 
     #region PRIVATE METHODS
 
