@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spells : MonoBehaviour
-{    
-    public bool m_IsCast = false;
+{
+    [HideInInspector] public bool m_IsCast = false;
 
     protected void Start()
     {

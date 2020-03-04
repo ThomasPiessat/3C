@@ -91,6 +91,13 @@ public class Character : MonoBehaviour, IDamageable
 
     #endregion
 
+    #region Mana
+
+    private float m_MaxMana = 50f;
+    private float m_CurrentMana = 0f;
+
+    #endregion
+
     #endregion
 
     public Transform cameraMax;
@@ -108,6 +115,16 @@ public class Character : MonoBehaviour, IDamageable
         return m_maxHealth;
     }
 
+    public float GetCurrentMana()
+    {
+        return m_CurrentMana;
+    }
+
+    public float GetMaxMana()
+    {
+        return m_MaxMana;
+    }
+
     public bool GetIsDead()
     {
         return m_isDead;
@@ -117,10 +134,15 @@ public class Character : MonoBehaviour, IDamageable
 
     #region MONOBEHAVIOUR METHODS
 
+    private void Awake()
+    {
+        m_currentHealth = m_maxHealth;
+        m_CurrentMana = m_MaxMana;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        m_currentHealth = m_maxHealth;
         m_listItems = new List<GameObject>();
         m_items = new List<Item>();
         InitSpell();
@@ -342,13 +364,7 @@ public class Character : MonoBehaviour, IDamageable
 
     public void CastSpell(int _index)
     {
-        //if (m_ListSpellsTest.Count > _index && m_ListSpellsTest[_index] != null)
-        //{    
-        //    GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
-        //    currentSpell.transform.position += this.transform.forward * 50 * Time.deltaTime;
-        //}
-
-        GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, this.transform.position, this.transform.rotation);
+        GameObject currentSpell = Instantiate(m_TestSpellData.Prefab, m_characterRightHand.position, m_characterRightHand.rotation);
 
         currentSpell.name = m_TestSpellData.Name;
 
