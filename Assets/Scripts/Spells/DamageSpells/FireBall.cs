@@ -14,6 +14,7 @@ public class FireBall : Spells
 
     private void Update()
     {
+        base.Update();
         DestroyByTime();
     }
 
@@ -22,7 +23,7 @@ public class FireBall : Spells
         if (m_IsCast)
         {
             m_TimeToDestroy -= Time.deltaTime;
-            if (m_TimeToDestroy < 0)
+            if (m_TimeToDestroy <= 0)
             {
                 Destroy(this);
             }

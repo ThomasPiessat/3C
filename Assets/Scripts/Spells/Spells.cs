@@ -22,6 +22,6 @@ public class Spells : MonoBehaviour
 
     protected virtual void Launch()
     {
-        transform.position += transform.forward * 50 * Time.deltaTime;
+        transform.position += transform.forward * 40 * Time.deltaTime;
     }
 }

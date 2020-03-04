@@ -145,7 +145,6 @@ public class Character : MonoBehaviour, IDamageable
     {
         m_listItems = new List<GameObject>();
         m_items = new List<Item>();
-        InitSpell();
     }
 
     // Update is called once per frame
@@ -369,6 +368,9 @@ public class Character : MonoBehaviour, IDamageable
         currentSpell.name = m_TestSpellData.Name;
 
         m_TestSpellData.Prefab.GetComponent<FireBall>().m_IsCast = true;
+
+        if (!currentSpell.GetComponent<FireBall>())
+            currentSpell.AddComponent(typeof(FireBall));
     }
 
 
