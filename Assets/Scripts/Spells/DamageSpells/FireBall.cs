@@ -26,10 +26,4 @@ public class FireBall : DamageSpells
             }
         }
     }
-
-    public void TestForButtonEditor()
-    {
-        Instantiate(m_Prefab, this.transform.position, this.transform.rotation);
-    }
-
 }

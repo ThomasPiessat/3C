@@ -61,17 +61,17 @@ public class SpellEditor : Editor
         CooldownSpell = EditorGUILayout.FloatField(CooldownSpell);
         GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal(EditorStyles.toolbar);
-        toolBaarint = GUILayout.Toolbar(toolBaarint, toolbarSettings);
-        GUILayout.EndHorizontal();
+        //GUILayout.BeginHorizontal(EditorStyles.toolbar);
+        //toolBaarint = GUILayout.Toolbar(toolBaarint, toolbarSettings);
+        //GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Bite"))
-        {
-            fb = (Spells)target;
-            fb.TestForButtonEditor();
-        }
-        GUILayout.EndHorizontal();
+        //GUILayout.BeginHorizontal();
+        //if (GUILayout.Button("Bite"))
+        //{
+        //    fb = (Spells)target;
+        //    fb.TestForButtonEditor();
+        //}
+        //GUILayout.EndHorizontal();
 
         GUILayout.EndVertical();
         //base.OnInspectorGUI();
