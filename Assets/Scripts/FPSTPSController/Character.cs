@@ -172,6 +172,7 @@ public class Character : MonoBehaviour, IDamageable
         ChangeSpeedValue();
         transform.position += transform.forward * m_speed * Time.deltaTime;
     }
+
     public void MoveBack()
     {
         transform.position += -transform.forward * m_speed * Time.deltaTime;

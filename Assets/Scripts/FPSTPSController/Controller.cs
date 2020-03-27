@@ -95,7 +95,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void InputHandle()
     {
-        ChangeCamera(); 
+        ChangeCamera();
 
         if (m_camera.m_isFpsCamera)
         {
@@ -137,6 +137,14 @@ public class Controller : MonoBehaviour
         {
             m_character.MoveFront();
         }
+        else if (Input.GetAxis("XBox_LJV") < 0)
+        {
+            m_character.transform.position -= m_character.transform.TransformDirection(Vector3.forward) * 5 * Time.deltaTime * Input.GetAxis("XBox_LJV") * 2.5f;
+        }
+        else if (Input.GetAxis("XBox_LJV") != 0)
+        {
+            m_character.transform.position -= m_character.transform.TransformDirection(Vector3.forward) * 5 * Time.deltaTime * Input.GetAxis("XBox_LJV");
+        }
         if (Input.GetKey(m_controlKey[1]))
         {
             m_character.MoveBack();
@@ -165,7 +173,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void JumpInput()
     {
-        if (Input.GetKeyDown(m_controlKey[4]))
+        if (Input.GetKeyDown(m_controlKey[4]) || Input.GetButtonDown("XBox_A"))
             m_character.Jump();
     }
 
@@ -208,7 +216,7 @@ public class Controller : MonoBehaviour
 
     protected virtual void RightHandInput()
     {
-        if(Input.GetKeyDown(m_rightHandInput))
+        if (Input.GetKeyDown(m_rightHandInput))
         {
             //m_character.Attack(1);
         }
@@ -273,12 +281,12 @@ public class Controller : MonoBehaviour
 
     protected virtual void ChangeCamera()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             m_camera.SetFPSCameraPos();
             m_camera.m_isFpsCamera = true;
         }
-        else if(Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
             m_camera.SetTPSCameraPos();
             m_camera.m_isFpsCamera = false;
