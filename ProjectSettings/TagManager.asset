@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - Armor
+  - Ground
   layers:
   - Default
   - TransparentFX

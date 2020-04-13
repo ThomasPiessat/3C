@@ -9,6 +9,7 @@ public class HoverBoardTest : MonoBehaviour
     [SerializeField] private float m_MovementSpeed = 0.0f;
     [SerializeField] private float m_DistanceWithGround = 2.0f;
 
+    private GameObject go;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,14 @@ public class HoverBoardTest : MonoBehaviour
         FloorDetection();
     }
 
+    private void InstantiatePoints()
+    {
+        for (int i = 0; i < m_ListCornerPoint.Count; i++)
+        {
+            go = Instantiate(m_Prefab);
+        }
+    }
+
     private void FloorDetection()
     {
         RaycastHit hit;
@@ -29,15 +38,18 @@ public class HoverBoardTest : MonoBehaviour
         {
             Vector3 point = m_ListCornerPoint[i].transform.position - m_ListCornerPoint[i].transform.up;
 
-            if (Physics.Raycast(m_ListCornerPoint[i].transform.position, Vector3.down, out hit, m_DistanceWithGround))
+            if (Physics.Raycast(m_ListCornerPoint[i].transform.position, Vector3.down, out hit, Mathf.Infinity))
             {
-                Debug.DrawRay(m_ListCornerPoint[i].transform.position, Vector3.down, Color.red);
+                //Debug.DrawRay(m_ListCornerPoint[i].transform.position, Vector3.down * Mathf.Infinity, Color.red);
+
                 if (hit.transform.name == "Ground")
                 {
+                    Debug.Log("GroundTouch");
+
                     if (i <= m_ListCornerPoint.Count)
                     {
                         //GameObject go = Instantiate(m_Prefab, point, Quaternion.identity);
-                        //go.transform.parent = this.transform;                        
+                        //go.transform.parent = this.transform; 
                     }                        
                 }
             }
