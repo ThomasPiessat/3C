@@ -45,12 +45,10 @@ public class HoverBoardTest : MonoBehaviour
                 if (hit.transform.name == "Ground")
                 {
                     Debug.Log("GroundTouch");
+                     
+                    //Calcul distance to the ground
 
-                    if (i <= m_ListCornerPoint.Count)
-                    {
-                        //GameObject go = Instantiate(m_Prefab, point, Quaternion.identity);
-                        //go.transform.parent = this.transform; 
-                    }                        
+                    
                 }
             }
         }
