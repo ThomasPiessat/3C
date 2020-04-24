@@ -17,10 +17,10 @@ public class Character : MonoBehaviour, IDamageable
 
     [Header("ItemManager")]
     //see in inspector (=> to remove)
-    [SerializeField] private List<GameObject> m_listItems = null;
+    [SerializeField] public List<Item> m_listItems = null;
     [SerializeField] public int m_maxItemsToHold = 2;
     //see in inspector (=> to remove)
-    [SerializeField] private GameObject m_currentWeapon = null;
+    [SerializeField] private Item m_currentWeapon = null;
     [SerializeField] private Transform m_characterRightHand = null;
     [SerializeField] private Transform m_dropPoint = null;
     [SerializeField] private FTPSCamera m_FTPSCamera = null;
@@ -143,7 +143,7 @@ public class Character : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        m_listItems = new List<GameObject>();
+        m_listItems = new List<Item>();
         m_items = new List<Item>();
     }
 
@@ -199,7 +199,7 @@ public class Character : MonoBehaviour, IDamageable
         {
             if (hit.transform.GetComponent<Item>() && m_listItems.Count < m_maxItemsToHold)
             {
-                m_listItems.Add(hit.collider.gameObject);
+                m_listItems.Add(hit.transform.GetComponent<Item>());
                 m_items.Add(hit.transform.GetComponent<Item>());
                 hit.collider.gameObject.SetActive(false);
 
@@ -240,7 +240,7 @@ public class Character : MonoBehaviour, IDamageable
             }
 
             m_currentWeapon = m_listItems[_index];
-            m_currentWeapon.SetActive(true);
+            //m_currentWeapon.SetActive(true);
         }
     }
 
