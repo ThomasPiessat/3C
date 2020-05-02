@@ -29,9 +29,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Button m_ItemButton = null;
 
     //m_ListButtonInventory.Count == m_ListItemInInventoryPlayer.Count
-    [Tooltip("List button in all panel")]
-    [SerializeField] private List<Button> m_ListItemsButton = new List<Button>();
-
+    private List<Button> m_ListItemsButtonAllCat = new List<Button>();
+    private List<Button> m_ListItemsButtonWeapon = new List<Button>();
 
     [SerializeField] private TextMeshProUGUI m_CapacityOfInventory = null;
 
@@ -138,18 +137,18 @@ public class InventoryUI : MonoBehaviour
         //Debug.Log("Player = " + GameMediator.Instance.MainCharacter.m_listItems.Count);
         //Debug.Log("UI = " + m_ListItemsButton.Count);
 
-        if (m_ListItemsButton.Count == GameMediator.Instance.MainCharacter.m_listItems.Count)
+        if (m_ListItemsButtonAllCat.Count == GameMediator.Instance.MainCharacter.m_listItems.Count)
         {
             Debug.Log("Display/Enable");
         }
-        else if (m_ListItemsButton.Count < GameMediator.Instance.MainCharacter.m_listItems.Count)
+        else if (m_ListItemsButtonAllCat.Count < GameMediator.Instance.MainCharacter.m_listItems.Count)
         {
             Debug.Log("Pas asser de btn");
             InstantiateItemsButtonOnRightPanel();
             AssignCharacteristicsButton();
         }
             
-        else if (m_ListItemsButton.Count > GameMediator.Instance.MainCharacter.m_listItems.Count)
+        else if (m_ListItemsButtonAllCat.Count > GameMediator.Instance.MainCharacter.m_listItems.Count)
             Debug.Log("Trop de btn");
 
     }
@@ -157,7 +156,13 @@ public class InventoryUI : MonoBehaviour
     private void InstantiateItemsButton(int _Index)
     {
         Instantiate(m_ItemButton, m_listScrollViewContent[_Index].transform);
-        m_ListItemsButton.Add(m_ItemButton);
+        m_ListItemsButtonAllCat.Add(m_ItemButton);
+    }
+
+    private void DestroyItemButtonInventory(int _Index)
+    {
+        Destroy(m_ItemButton.gameObject);
+        m_ListItemsButtonAllCat.Remove(m_ItemButton);
     }
 
     private void InstantiateItemsButtonOnRightPanel()
@@ -167,6 +172,7 @@ public class InventoryUI : MonoBehaviour
             if (GameMediator.Instance.MainCharacter.m_listItems[i].GetComponent(typeof(IWeapon)))
             {
                 InstantiateItemsButton(i);
+                m_ListItemsButtonWeapon.Add(m_ItemButton);
             }
             else if (GameMediator.Instance.MainCharacter.m_listItems[i].GetComponent(typeof(IArmor)))
             {
@@ -185,10 +191,10 @@ public class InventoryUI : MonoBehaviour
 
     private void AssignCharacteristicsButton()
     {
-        for (int i = 0; i < m_ListItemsButton.Count; i++)
+        for (int i = 0; i < m_ListItemsButtonAllCat.Count; i++)
         {
-            Image iconItem = m_ListItemsButton[i].transform.GetChild(0).GetComponent<Image>();
-            TextMeshProUGUI nameItem = m_ListItemsButton[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            Image iconItem = m_ListItemsButtonAllCat[i].transform.GetChild(0).GetComponent<Image>();
+            TextMeshProUGUI nameItem = m_ListItemsButtonAllCat[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
             if(iconItem && nameItem)
             {
@@ -202,32 +208,8 @@ public class InventoryUI : MonoBehaviour
         Image iconItem = m_ItemButton.transform.GetChild(0).GetComponent<Image>();
         TextMeshProUGUI nameItemTxt = m_ItemButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        //if (true)
-        //{
-        //    //nameItemTxt.text = GameMediator.Instance.MainCharacter.m_listItems[0].m_name;
         nameItemTxt.text = GameMediator.Instance.MainCharacter.m_listItems[0].m_name;
         iconItem.sprite = GameMediator.Instance.MainCharacter.m_listItems[0].m_icon;
-        //}
-        //else
-        //    Debug.Log("Ca me casse les couilles");
-        //if (GameMediator.Instance.MainCharacter.m_items[_ItemIndex].GetIsStackable)
-        //{
-        //    if (m_ItemButton.transform.childCount >= 2)
-        //    {
-        //        TextMeshProUGUI textMeshPro = m_ItemButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        //        if (textMeshPro)
-        //        {
-        //            textMeshPro.text = GameMediator.Instance.MainCharacter.m_items[_ItemIndex].m_name;
-        //        }
-        //    }
-
-        //}
-    }
-
-    //== Clear
-    private void DestroyItemButtonInventory(int _Index)
-    {
-        Destroy(m_ItemButton.gameObject);
     }
 
     private void OnMove()

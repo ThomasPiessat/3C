@@ -295,7 +295,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2442,7 +2442,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4730,7 +4730,7 @@ GameObject:
   - component: {fileID: 393149603}
   - component: {fileID: 393149602}
   m_Layer: 5
-  m_Name: Content_WeaponCat
+  m_Name: Content_PotionCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5715,9 +5715,9 @@ RectTransform:
   m_Father: {fileID: 1942374602}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 374.5, y: -217.04001}
   m_SizeDelta: {x: 749, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &467802720
@@ -6330,9 +6330,9 @@ RectTransform:
   m_Father: {fileID: 1942374602}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 374.5, y: -25}
   m_SizeDelta: {x: 749, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487257688
@@ -12926,7 +12926,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00002390831}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &657863531
 MonoBehaviour:
@@ -13097,9 +13097,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &670170594
 MonoBehaviour:
@@ -14856,9 +14856,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &815447558
 MonoBehaviour:
@@ -15394,7 +15394,7 @@ MonoBehaviour:
   m_groundMaxDistance: 0.5
   m_colliderHeight: 0
   m_listItems: []
-  m_maxItemsToHold: 2
+  m_maxItemsToHold: 10
   m_currentWeapon: {fileID: 0}
   m_characterRightHand: {fileID: 1319282538}
   m_dropPoint: {fileID: 844825984}
@@ -16514,6 +16514,10 @@ MonoBehaviour:
   - {fileID: 1727474295}
   m_listScrollViewContent:
   - {fileID: 657863528}
+  - {fileID: 1893409082}
+  - {fileID: 1354535848}
+  - {fileID: 393149600}
+  - {fileID: 1251269726}
   m_listInventoryButton:
   - {fileID: 2010263182}
   - {fileID: 407178848}
@@ -19190,8 +19194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -831.5, y: 0}
-  m_SizeDelta: {x: 257.1, y: 50}
+  m_AnchoredPosition: {x: -825.6, y: 43.9}
+  m_SizeDelta: {x: 270, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050753525
 MonoBehaviour:
@@ -20719,11 +20723,11 @@ RectTransform:
   m_Father: {fileID: 1599051997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1168852051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20777,7 +20781,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 260
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -21546,7 +21550,7 @@ GameObject:
   - component: {fileID: 1251269729}
   - component: {fileID: 1251269728}
   m_Layer: 5
-  m_Name: Content_WeaponCat
+  m_Name: Content_ItemCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22363,7 +22367,7 @@ GameObject:
   - component: {fileID: 1354535851}
   - component: {fileID: 1354535850}
   m_Layer: 5
-  m_Name: Content_WeaponCat
+  m_Name: Content_ArmorCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22910,7 +22914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1372890240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25780,7 +25784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1599051997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29410,7 +29414,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00002390831}
-  m_SizeDelta: {x: 0, y: 2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1893409084
 MonoBehaviour:
@@ -29955,7 +29959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1942374602
 RectTransform:
   m_ObjectHideFlags: 0
